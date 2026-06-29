@@ -1927,11 +1927,14 @@ function trackRequest(env, ctx) {
 // ==========================================================
 const HTML_TEMPLATES = {
   nginx: `<!DOCTYPE html>
-<html lang="fa" dir="rtl" class="dark">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kourosh Asli Panel</title>
+    <script>
+        (function(){var t=localStorage.getItem('color-theme');if(t==='dark'||(t===null&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark')})();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
     <script>
@@ -1940,9 +1943,16 @@ const HTML_TEMPLATES = {
     <style>
         body { font-family: 'Vazirmatn', sans-serif; }
         .glass { backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
+        html:not(.dark) body { background-color: #f8fafc; color: #0f172a; }
+        html:not(.dark) [class*="bg-slate-9"] { background-color: #ffffff; }
+        html:not(.dark) [class*="bg-slate-8"] { background-color: #f1f5f9; }
+        html:not(.dark) [class*="text-slate-1"],[class*="text-slate-2"],[class*="text-slate-3"],[class*="text-white"] { color: #0f172a; }
+        html:not(.dark) [class*="text-slate-4"],[class*="text-slate-5"] { color: #64748b; }
+        html:not(.dark) [class*="border-slate-7"],[class*="border-slate-8"] { border-color: #e2e8f0; }
+        html:not(.dark) .glass { background: rgba(255,255,255,0.8); backdrop-filter: blur(24px); }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+<body class="bg-slate-950 dark:bg-slate-950 text-slate-100 dark:text-slate-100 min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
     <div class="fixed inset-0 overflow-hidden pointer-events-none">
         <div class="absolute -top-48 -right-48 w-96 h-96 bg-teal-500/8 rounded-full blur-[80px]"></div>
         <div class="absolute -bottom-48 -left-48 w-96 h-96 bg-sky-600/5 rounded-full blur-[80px]"></div>
@@ -1965,11 +1975,14 @@ const HTML_TEMPLATES = {
 </html>`,
 
   setup: `<!DOCTYPE html>
-<html lang="fa" dir="rtl" class="dark">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تنظیم رمز پنل کوروش</title>
+    <script>
+        (function(){var t=localStorage.getItem('color-theme');if(t==='dark'||(t===null&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark')})();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
     <script>
@@ -1978,9 +1991,16 @@ const HTML_TEMPLATES = {
     <style>
         body { font-family: 'Vazirmatn', sans-serif; }
         .glass { backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
+        html:not(.dark) body { background-color: #f8fafc; color: #0f172a; }
+        html:not(.dark) [class*="bg-slate-9"] { background-color: #ffffff; }
+        html:not(.dark) [class*="bg-slate-8"] { background-color: #f1f5f9; }
+        html:not(.dark) [class*="text-slate-1"],[class*="text-slate-2"],[class*="text-slate-3"],[class*="text-white"] { color: #0f172a; }
+        html:not(.dark) [class*="text-slate-4"],[class*="text-slate-5"] { color: #64748b; }
+        html:not(.dark) [class*="border-slate-7"],[class*="border-slate-8"] { border-color: #e2e8f0; }
+        html:not(.dark) .glass { background: rgba(255,255,255,0.8); backdrop-filter: blur(24px); }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+<body class="bg-slate-950 dark:bg-slate-950 text-slate-100 dark:text-slate-100 min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
     <div class="fixed inset-0 overflow-hidden pointer-events-none">
         <div class="absolute -top-48 -right-48 w-96 h-96 bg-teal-500/8 rounded-full blur-[80px]"></div>
         <div class="absolute -bottom-48 -left-48 w-96 h-96 bg-sky-600/5 rounded-full blur-[80px]"></div>
@@ -2047,11 +2067,14 @@ const HTML_TEMPLATES = {
 </html>`,
 
   login: `<!DOCTYPE html>
-<html lang="fa" dir="rtl" class="dark">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ورود | پنل کوروش</title>
+    <script>
+        (function(){var t=localStorage.getItem('color-theme');if(t==='dark'||(t===null&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark')})();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
     <script>
@@ -2060,9 +2083,18 @@ const HTML_TEMPLATES = {
     <style>
         body { font-family: 'Vazirmatn', sans-serif; }
         .glass { backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.3s ease-out; }
+        html:not(.dark) body { background-color: #f8fafc; color: #0f172a; }
+        html:not(.dark) [class*="bg-slate-9"] { background-color: #ffffff; }
+        html:not(.dark) [class*="bg-slate-8"] { background-color: #f1f5f9; }
+        html:not(.dark) [class*="text-slate-1"],[class*="text-slate-2"],[class*="text-slate-3"],[class*="text-white"] { color: #0f172a; }
+        html:not(.dark) [class*="text-slate-4"],[class*="text-slate-5"] { color: #64748b; }
+        html:not(.dark) [class*="border-slate-7"],[class*="border-slate-8"] { border-color: #e2e8f0; }
+        html:not(.dark) .glass { background: rgba(255,255,255,0.8); backdrop-filter: blur(24px); }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+<body class="bg-slate-950 dark:bg-slate-950 text-slate-100 dark:text-slate-100 min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
     <div class="fixed inset-0 overflow-hidden pointer-events-none">
         <div class="absolute -top-48 -right-48 w-96 h-96 bg-teal-500/8 rounded-full blur-[80px]"></div>
         <div class="absolute -bottom-48 -left-48 w-96 h-96 bg-sky-600/5 rounded-full blur-[80px]"></div>
@@ -2125,6 +2157,9 @@ const HTML_TEMPLATES = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>پنل کوروش اصلی</title>
     <script>
+        (function(){var t=localStorage.getItem('color-theme');if(t==='dark'||(t===null&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark')})();
+    </script>
+    <script>
         const originalWarn = console.warn;
         console.warn = (...args) => {
             if (typeof args[0] === 'string' && args[0].includes('cdn.tailwindcss.com')) return;
@@ -2146,9 +2181,19 @@ const HTML_TEMPLATES = {
         .glass { backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
         @keyframes fade-in { 0% { opacity: 0; transform: translateY(8px); } 100% { opacity: 1; transform: translateY(0); } }
         .animate-fade-in { animation: fade-in 0.3s ease-out; }
+        html:not(.dark) body { background-color: #f8fafc; color: #0f172a; }
+        html:not(.dark) [class*="bg-slate-9"] { background-color: #ffffff; }
+        html:not(.dark) [class*="bg-slate-8"] { background-color: #f1f5f9; }
+        html:not(.dark) [class*="text-slate-1"],[class*="text-slate-2"],[class*="text-slate-3"],[class*="text-white"] { color: #0f172a; }
+        html:not(.dark) [class*="text-slate-4"],[class*="text-slate-5"] { color: #64748b; }
+        html:not(.dark) [class*="border-slate-7"],[class*="border-slate-8"] { border-color: #e2e8f0; }
+        html:not(.dark) .glass { background: rgba(255,255,255,0.8); backdrop-filter: blur(24px); }
+        html:not(.dark) ::-webkit-scrollbar-track { background: #f1f5f9; }
+        html:not(.dark) ::-webkit-scrollbar-thumb { background: #cbd5e1; }
+        html:not(.dark) * { scrollbar-color: #cbd5e1 #f1f5f9; }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen relative overflow-x-hidden">
+<body class="bg-slate-950 dark:bg-slate-950 text-slate-100 dark:text-slate-100 min-h-screen relative overflow-x-hidden">
     <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div class="absolute -top-48 -right-48 w-96 h-96 bg-teal-500/5 rounded-full blur-[100px]"></div>
         <div class="absolute -bottom-48 -left-48 w-96 h-96 bg-sky-600/5 rounded-full blur-[100px]"></div>
@@ -2161,7 +2206,7 @@ const HTML_TEMPLATES = {
                     <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                 </div>
                 <h1 class="text-sm sm:text-base font-bold text-white truncate">پنل کوروش اصلی</h1>
-                <span id="panel-version" class="text-[10px] px-1.5 py-0.5 font-semibold bg-slate-800 text-slate-400 border border-slate-700 rounded-full flex-shrink-0">v1.0.1</span>
+                <span id="panel-version" class="text-[10px] px-1.5 py-0.5 font-semibold bg-slate-800 text-slate-400 border border-slate-700 rounded-full flex-shrink-0">v1.0.2</span>
             </div>
             <div class="flex items-center gap-1 flex-shrink-0">
                 <button id="theme-toggle" class="p-1.5 rounded-lg bg-slate-800/60 border border-slate-700/50 hover:bg-slate-700/60 transition text-slate-400">
@@ -3687,8 +3732,8 @@ function editUser(encodedUsername) {
                 window.location.reload();
             }
         }
-const CURRENT_VERSION = '1.0.1';
-const UPDATE_FIX = "constsCURRENT_VERSION='1.0.1'";
+const CURRENT_VERSION = '1.0.2';
+const UPDATE_FIX = "constsCURRENT_VERSION='1.0.2'";
 
 		async function checkForUpdates(isManual = false) {
             try {
@@ -3877,11 +3922,14 @@ function applySelectedIps() {
 </html>`,
 
   status: `<!DOCTYPE html>
-<html lang="fa" dir="rtl" class="dark">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>وضعیت اشتراک | کوروش</title>
+    <script>
+        (function(){var t=localStorage.getItem('color-theme');if(t==='dark'||(t===null&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark')})();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
@@ -3894,9 +3942,16 @@ function applySelectedIps() {
     <style>
         body { font-family: 'Vazirmatn', sans-serif; }
         .glass { background: rgba(15,23,42,0.6); backdrop-filter: blur(12px); }
+        html:not(.dark) body { background-color: #f8fafc; color: #0f172a; }
+        html:not(.dark) [class*="bg-slate-9"] { background-color: #ffffff; }
+        html:not(.dark) [class*="bg-slate-8"] { background-color: #f1f5f9; }
+        html:not(.dark) [class*="text-slate-1"],[class*="text-slate-2"],[class*="text-slate-3"],[class*="text-white"] { color: #0f172a; }
+        html:not(.dark) [class*="text-slate-4"],[class*="text-slate-5"] { color: #64748b; }
+        html:not(.dark) [class*="border-slate-7"],[class*="border-slate-8"] { border-color: #e2e8f0; }
+        html:not(.dark) .glass { background: rgba(255,255,255,0.8); backdrop-filter: blur(12px); }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col items-center py-6 sm:py-12 px-3 sm:px-4 relative overflow-hidden">
+<body class="bg-slate-950 dark:bg-slate-950 text-slate-100 dark:text-slate-100 min-h-screen flex flex-col items-center py-6 sm:py-12 px-3 sm:px-4 relative overflow-hidden">
     <div class="fixed inset-0 overflow-hidden pointer-events-none">
         <div class="absolute -top-48 -left-48 w-96 h-96 bg-teal-700/10 rounded-full blur-3xl"></div>
         <div class="absolute -bottom-48 -right-48 w-96 h-96 bg-sky-600/5 rounded-full blur-3xl"></div>
