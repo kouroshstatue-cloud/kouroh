@@ -2214,7 +2214,7 @@ const HTML_TEMPLATES = {
                     <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                 </div>
                 <h1 class="text-sm sm:text-base font-bold text-white truncate">پنل کوروش اصلی</h1>
-                <span id="panel-version" class="text-[10px] px-1.5 py-0.5 font-semibold bg-slate-800 text-slate-400 border border-slate-700 rounded-full flex-shrink-0">v1.0.2</span>
+                <span id="panel-version" class="text-[10px] px-1.5 py-0.5 font-semibold bg-slate-800 text-slate-400 border border-slate-700 rounded-full flex-shrink-0">v1.0.3</span>
             </div>
             <div class="flex items-center gap-1 flex-shrink-0">
                 <button id="theme-toggle" class="p-1.5 rounded-lg bg-slate-800/60 border border-slate-700/50 hover:bg-slate-700/60 transition text-slate-400">
@@ -3740,8 +3740,8 @@ function editUser(encodedUsername) {
                 window.location.reload();
             }
         }
-const CURRENT_VERSION = '1.0.2';
-const BUILD_ID = 'x9y8z7';
+const CURRENT_VERSION = '1.0.3';
+const BUILD_ID = 'm3n4p5';
 
 		async function checkForUpdates(isManual = false) {
             try {
