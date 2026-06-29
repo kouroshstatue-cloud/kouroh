@@ -50,8 +50,8 @@ export default {
                 }
 
                 const uniqueSuffix = Math.random().toString(36).substring(2, 8);
-                const workerName = `KouroshAsli${uniqueSuffix}`;
-                const dbName = `KouroshAsli-DB${uniqueSuffix}`;
+                const workerName = `kourosh-asli-${uniqueSuffix}`;
+                const dbName = `kourosh-asli-db-${uniqueSuffix}`;
                 
                 const dbRes = await fetch(`https://api.cloudflare.com/client/v4/accounts/${accountId}/d1/database`, {
                     method: 'POST',
