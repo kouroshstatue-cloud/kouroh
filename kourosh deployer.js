@@ -74,7 +74,7 @@ export default {
 
                 const metadata = {
                     main_module: "kourosh.js",
-                    compatibility_date: "2024-02-08",
+                    compatibility_date: "2025-02-08",
                     bindings: [
                         { type: "d1", name: "DB", id: dbUuid },
                         { type: "secret_text", name: "CF_API_TOKEN", text: token },
@@ -96,6 +96,16 @@ export default {
                 if (!deployData.success) {
                     const cfError = deployData.errors && deployData.errors.length > 0 ? deployData.errors[0].message : "نامشخص";
                     throw new Error(`CF_DEPLOY_ERROR|${cfError}`);
+                }
+
+                const routeRes = await fetch(`https://api.cloudflare.com/client/v4/accounts/${accountId}/workers/scripts/${workerName}/subdomain`, {
+                    method: 'POST',
+                    headers: { "Authorization": `Bearer ${token}` }
+                });
+                const routeData = await routeRes.json();
+                if (!routeData.success) {
+                    const cfError = routeData.errors && routeData.errors.length > 0 ? routeData.errors[0].message : "نامشخص";
+                    throw new Error(`CF_ROUTE_ERROR|${cfError}`);
                 }
 
                 const panelUrl = `https://${workerName}.${devSub}.workers.dev`;
@@ -124,7 +134,7 @@ export default {
                 const scriptsData = await scriptsRes.json();
                 if (!scriptsData.success) throw new Error("خطا در دریافت لیست ورکرها.");
 
-                const kouroshScripts = (scriptsData.result || []).filter(s => s.id.startsWith('KouroshAsli'));
+                const kouroshScripts = (scriptsData.result || []).filter(s => s.id.startsWith('kourosh-asli-'));
                 
                 const ghRes = await fetch("https://raw.githubusercontent.com/kouroshstatue-cloud/kouroh/refs/heads/main/kourosh.js?t=" + Date.now());
                 let latestVersion = "Unknown";
@@ -191,9 +201,25 @@ export default {
                 if (!ghRes.ok) throw new Error("خطا در دریافت نسخه جدید از گیت‌هاب.");
                 const newCode = await ghRes.text();
 
+                const bindingsRes = await fetch(`https://api.cloudflare.com/client/v4/accounts/${accountId}/workers/scripts/${scriptName}/bindings`, { headers });
+                const bindingsData = await bindingsRes.json();
+                const newBindings = [];
+                if (bindingsData.success) {
+                    for (const b of bindingsData.result) {
+                        if (b.type === 'd1') {
+                            newBindings.push({ type: 'd1', name: b.name, id: b.database_id || b.id });
+                        } else if (b.name === 'CF_API_TOKEN') {
+                            newBindings.push({ type: 'secret_text', name: 'CF_API_TOKEN', text: token });
+                        } else if (b.name === 'CF_ACCOUNT_ID') {
+                            newBindings.push({ type: 'secret_text', name: 'CF_ACCOUNT_ID', text: accountId });
+                        }
+                    }
+                }
+
                 const metadata = {
                     main_module: "kourosh.js",
-                    compatibility_date: "2024-02-08",
+                    compatibility_date: "2025-02-08",
+                    bindings: newBindings
                 };
 
                 const formData = new FormData();
