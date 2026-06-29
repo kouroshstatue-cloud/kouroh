@@ -177,7 +177,7 @@ export default {
                     let version = "Unknown";
                     if (contentRes.ok) {
                         const contentText = await contentRes.text();
-                        const varMatch = contentText.match(/CURRENT_VERSION\s*=\s*['"]([0-9\.]+)['"]/i);
+                        const varMatch = contentText.match(/CURRENT_VERSION\s*=\s*['"]([^'"]+)['"]/i);
                         if (varMatch) version = varMatch[1];
                     }
                     return new Response(JSON.stringify({ success: true, version }), {
@@ -327,7 +327,7 @@ function getHtmlContent() {
                     ساخت پنل کوروش
                 </button>
                 <button type="button" id="openUpdateModalBtn" onclick="toggleUpdateModal(true)" class="w-full py-3 bg-gradient-to-r from-teal-600 to-sky-600 hover:from-teal-500 hover:to-sky-500 text-white font-bold rounded-xl text-sm transition-all duration-300 shadow-lg shadow-teal-900/40 active:scale-[0.98]">
-                    بروزرسانی پنل‌های موجود
+                    بروزرسانی پنل
                 </button>
 
                 <div id="status-container" class="hidden bg-slate-800/40 rounded-xl p-3 border border-slate-700/50">
@@ -457,7 +457,8 @@ async function fetchPanelVersion(token, scriptName, latestVersion) {
         const version = result.success ? result.version : "Unknown";
 
         const displayVersion = version === "Unknown" ? "نسخه قدیمی / نامشخص" : version;
-        const isLatest = (version === latestVersion && latestVersion !== "Unknown");
+        const cleanVersion = version.replace(/-[a-z0-9]+$/i, '');
+        const isLatest = (cleanVersion === latestVersion && latestVersion !== "Unknown");
 
         const versionText = document.getElementById('version-text-' + scriptName);
         const btnContainer = document.getElementById('btn-container-' + scriptName);
