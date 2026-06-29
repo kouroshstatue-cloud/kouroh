@@ -139,13 +139,13 @@ export default {
                 const scriptsData = await scriptsRes.json();
                 if (!scriptsData.success) throw new Error("خطا در دریافت لیست ورکرها.");
 
-                const kouroshScripts = (scriptsData.result || []).filter(s => s.id.startsWith('kourosh-asli-'));
+                const kouroshScripts = (scriptsData.result || []).filter(s => s.id.startsWith('kourosh-asli-')).map(s => ({ name: s.id }));
                 
                 const ghRes = await fetch("https://raw.githubusercontent.com/kouroshstatue-cloud/kouroh/refs/heads/main/kourosh.js?t=" + Date.now());
                 let latestVersion = "Unknown";
                 if (ghRes.ok) {
                     const ghText = await ghRes.text();
-                    const match = ghText.match(/CURRENT_VERSION\s*=\s*['"]([0-9\.]+)['"]/i);
+                    const match = ghText.match(/CURRENT_VERSION\s*=\s*['"]([^'"]+)['"]/i);
                     if (match) latestVersion = match[1];
                 }
 
@@ -215,18 +215,18 @@ export default {
 
                 const bindingsRes = await fetch(`https://api.cloudflare.com/client/v4/accounts/${accountId}/workers/scripts/${scriptName}/bindings`, { headers });
                 const bindingsData = await bindingsRes.json();
+                if (!bindingsData.success) throw new Error("عدم دسترسی به بایندینگ‌های پنل. توکن دسترسی کافی ندارد.");
                 const newBindings = [];
-                if (bindingsData.success) {
-                    for (const b of bindingsData.result) {
-                        if (b.type === 'd1') {
-                            newBindings.push({ type: 'd1', name: b.name, id: b.database_id || b.id });
-                        } else if (b.name === 'CF_API_TOKEN') {
-                            newBindings.push({ type: 'secret_text', name: 'CF_API_TOKEN', text: token });
-                        } else if (b.name === 'CF_ACCOUNT_ID') {
-                            newBindings.push({ type: 'secret_text', name: 'CF_ACCOUNT_ID', text: accountId });
-                        }
+                for (const b of bindingsData.result) {
+                    if (b.type === 'd1') {
+                        newBindings.push({ type: 'd1', name: b.name, id: b.database_id || b.id });
+                    } else if (b.name === 'CF_API_TOKEN') {
+                        newBindings.push({ type: 'secret_text', name: 'CF_API_TOKEN', text: token });
+                    } else if (b.name === 'CF_ACCOUNT_ID') {
+                        newBindings.push({ type: 'secret_text', name: 'CF_ACCOUNT_ID', text: accountId });
                     }
                 }
+                if (newBindings.length === 0) throw new Error("بایندینگ D1 برای این پنل یافت نشد. پنل خراب است یا آپدیت قبلی ناموفق بوده.");
 
                 const metadata = {
                     main_module: "kourosh.js",
@@ -246,6 +246,14 @@ export default {
                 const deployData = await deployRes.json();
                 
                 if (!deployData.success) throw new Error("خطا در اعمال آپدیت.");
+
+                try {
+                    await fetch(`https://api.cloudflare.com/client/v4/accounts/${accountId}/workers/scripts/${scriptName}/subdomain`, {
+                        method: 'POST',
+                        headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json" },
+                        body: '{"enabled":true}'
+                    });
+                } catch (_) {}
 
                 return new Response(JSON.stringify({ success: true }), {
                     headers: { 'Content-Type': 'application/json' }

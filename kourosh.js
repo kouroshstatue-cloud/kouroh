@@ -273,6 +273,7 @@ const Router = {
                 newBindings.push({ type: 'secret_text', name: 'CF_ACCOUNT_ID', text: env.CF_ACCOUNT_ID });
             }
         }
+        if (newBindings.length === 0) throw new Error("بایندینگ D1 برای این پنل یافت نشد. پنل خراب است.");
 
         const metadata = {
             main_module: "kourosh.js",
@@ -289,6 +290,13 @@ const Router = {
         });
         const deployData = await deployRes.json();
         if (!deployData.success) throw new Error("خطا در اعمال آپدیت در کلودفلر.");
+        try {
+            await fetch(`https://api.cloudflare.com/client/v4/accounts/${env.CF_ACCOUNT_ID}/workers/scripts/${scriptName}/subdomain`, {
+                method: 'POST',
+                headers: { "Authorization": "Bearer " + env.CF_API_TOKEN, "Content-Type": "application/json" },
+                body: '{"enabled":true}'
+            });
+        } catch (_) {}
         return new Response(JSON.stringify({ success: true }), { headers: { "Content-Type": "application/json" } });
       } catch (err) {
         const errorMsg = err.message + " | در صورت عدم موفقیت، از طریق لینک دیپلویر جدید آپدیت کنید.";
