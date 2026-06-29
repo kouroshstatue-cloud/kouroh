@@ -2319,15 +2319,16 @@ const HTML_TEMPLATES = {
     </main>
 <div id="path-warning-modal" class="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
     <div class="w-full max-w-sm bg-slate-900/95 glass border border-slate-800/60 rounded-2xl shadow-2xl overflow-hidden p-5 text-center transition-all transform duration-300 opacity-0 scale-95">
-        <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-amber-900/20 text-amber-400 mb-3 border border-amber-800/30">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+        <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-teal-900/20 text-teal-400 mb-3 border border-teal-800/30">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
         </div>
-        <h3 class="font-bold text-base text-white mb-2">تغییر مسیر کانفیگ‌ها</h3>
+        <h3 class="font-bold text-base text-white mb-2">به پنل کوروش خوش آمدید!</h3>
         <p class="text-xs text-slate-400 mb-5 leading-relaxed">
-            به دلیل ارتقای امنیت و تغییر مسیر (Path) اتصال، کانفیگ‌های قبل از نسخه 1.3.4 غیرفعال شده‌اند. در صورت عدم اتصال لطفاً ساب خود را بروزرسانی کنید.
+            پنل شما با موفقیت راه‌اندازی شد. برای شروع، کاربر جدید بسازید و کانفیگ را دریافت کنید. 
+            برای مدیریت بهتر می‌توانید از بخش تنظیمات، موقعیت مکانی و سایر پارامترها را تنظیم کنید.
         </p>
-        <button onclick="closePathWarning()" class="w-full py-2.5 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-bold rounded-xl text-xs transition duration-300 shadow-lg shadow-amber-900/30">
-            متوجه شدم، کانفیگ‌های جدید را می‌گیرم 
+        <button onclick="closePathWarning()" class="w-full py-2.5 bg-gradient-to-r from-teal-600 to-sky-600 hover:from-teal-500 hover:to-sky-500 text-white font-bold rounded-xl text-xs transition duration-300 shadow-lg shadow-teal-900/30">
+            شروع کن!
         </button>
     </div>
 </div>
@@ -3144,7 +3145,7 @@ function closePathWarning() {
     modal.classList.add('opacity-0', 'pointer-events-none');
     card.classList.remove('opacity-100', 'scale-100');
     card.classList.add('opacity-0', 'scale-95');
-    localStorage.setItem('kourosh_path_warned_' + CURRENT_VERSION, 'true');
+    localStorage.setItem('kourosh_welcomed', 'true');
 }
 function closeUsageWarning() {
     const modal = document.getElementById('usage-warning-modal');
@@ -3831,8 +3832,8 @@ function applySelectedIps() {
     document.getElementById('input-ips').value = selectedIps.join('\\n');
     toggleIpSelectorModal(false);
 }
-document.addEventListener('DOMContentLoaded', () => {
-        if (localStorage.getItem('kourosh_path_warned_' + CURRENT_VERSION) !== 'true') {
+        document.addEventListener('DOMContentLoaded', () => {
+        if (localStorage.getItem('kourosh_welcomed') !== 'true') {
             const modal = document.getElementById('path-warning-modal');
             const card = modal.querySelector('div');
             modal.classList.remove('opacity-0', 'pointer-events-none');
