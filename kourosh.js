@@ -3741,7 +3741,7 @@ function editUser(encodedUsername) {
             }
         }
 const CURRENT_VERSION = '1.0.2';
-const UPDATE_FIX = "constsCURRENT_VERSION='1.0.2'";
+const BUILD_ID = 'a1b2c3';
 
 		async function checkForUpdates(isManual = false) {
             try {
@@ -3751,17 +3751,22 @@ const UPDATE_FIX = "constsCURRENT_VERSION='1.0.2'";
                 const res = await fetch('https://raw.githubusercontent.com/kouroshstatue-cloud/kouroh/refs/heads/main/kourosh.js?t=' + Date.now());
                 if (!res.ok) throw new Error('Network response was not ok');
                 const text = await res.text();
-                const match = text.match(/const\\s+CURRENT_VERSION\\s*=\\s*['"](\\d+\\.\\d+\\.\\d+)['"]/i);
-                const latestVersion = match ? match[1] : null;
+                const verMatch = text.match(/const\\s+CURRENT_VERSION\\s*=\\s*['"]([^'"]+)['"]/i);
+                const latestVersion = verMatch ? verMatch[1] : null;
+                const idMatch = text.match(/const\\s+BUILD_ID\\s*=\\s*['"]([^'"]+)['"]/i);
+                const latestId = idMatch ? idMatch[1] : null;
                 if (isManual) {
                     document.getElementById('update-toggle').classList.remove('animate-pulse');
                 }
-                if (latestVersion && latestVersion !== CURRENT_VERSION.replace(/-[a-z0-9]+$/, '')) {
+                const hasUpdate = latestVersion && latestVersion !== CURRENT_VERSION.replace(/-[a-z0-9]+$/, '');
+                const hasNewCode = latestId && latestId !== BUILD_ID;
+                if (hasUpdate || hasNewCode) {
                     document.getElementById('update-toggle').className = "p-1.5 rounded-lg bg-red-950/60 border border-red-500 hover:bg-red-900/80 transition text-red-400 shadow-[0_0_15px_rgba(239,68,68,0.4)] animate-pulse relative";
                     const badge = document.getElementById('update-badge');
                     if (badge) badge.remove();
                     if (isManual) {
-                        if (confirm('نسخه جدید (v' + latestVersion + ') در دسترس است! آیا می خواهید پنل را آپدیت کنید؟')) {
+                        const vText = hasUpdate ? 'v' + latestVersion : 'نسخه جدید';
+                        if (confirm('نسخه جدید (' + vText + ') در دسترس است! آیا می خواهید پنل را آپدیت کنید؟')) {
                             applyUpdate();
                         }
                     }
