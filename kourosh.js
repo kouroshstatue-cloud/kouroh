@@ -247,7 +247,14 @@ const Router = {
       try {
         const githubRes = await fetch("https://raw.githubusercontent.com/kouroshstatue-cloud/kouroh/refs/heads/main/kourosh.js?t=" + Date.now());
         if (!githubRes.ok) throw new Error("خطا در دریافت سورس جدید از گیت‌هاب");
-        const newCode = await githubRes.text();
+        let newCode = await githubRes.text();
+        const upVerMatch = newCode.match(/const CURRENT_VERSION\s*=\s*['"]([^'"]+)['"]/);
+        if (upVerMatch) {
+            newCode = newCode.replace(
+                /(const CURRENT_VERSION\s*=\s*)['"]([^'"]+)['"]/,
+                `$1'${upVerMatch[1]}-d'`
+            );
+        }
         const scriptName = env.WORKER_NAME || url.hostname.split('.')[0];
 
         const bindingsRes = await fetch(`https://api.cloudflare.com/client/v4/accounts/${env.CF_ACCOUNT_ID}/workers/scripts/${scriptName}/bindings`, { 
@@ -2154,7 +2161,7 @@ const HTML_TEMPLATES = {
                     <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                 </div>
                 <h1 class="text-sm sm:text-base font-bold text-white truncate">پنل کوروش اصلی</h1>
-                <span id="panel-version" class="text-[10px] px-1.5 py-0.5 font-semibold bg-slate-800 text-slate-400 border border-slate-700 rounded-full flex-shrink-0">v1.0.0</span>
+                <span id="panel-version" class="text-[10px] px-1.5 py-0.5 font-semibold bg-slate-800 text-slate-400 border border-slate-700 rounded-full flex-shrink-0">v1.0.1</span>
             </div>
             <div class="flex items-center gap-1 flex-shrink-0">
                 <button id="theme-toggle" class="p-1.5 rounded-lg bg-slate-800/60 border border-slate-700/50 hover:bg-slate-700/60 transition text-slate-400">
@@ -2666,19 +2673,34 @@ const HTML_TEMPLATES = {
         }
 
         const themeToggleBtn = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
+        function setThemeIcons(isDark) {
+            if (isDark) {
+                sunIcon?.classList.add('hidden');
+                moonIcon?.classList.remove('hidden');
+            } else {
+                moonIcon?.classList.add('hidden');
+                sunIcon?.classList.remove('hidden');
+            }
+        }
 		if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
+            setThemeIcons(true);
         } else {
             document.documentElement.classList.remove('dark');
+            setThemeIcons(false);
         }
 
         themeToggleBtn.addEventListener('click', () => {
             if (document.documentElement.classList.contains('dark')) {
                 document.documentElement.classList.remove('dark');
                 localStorage.setItem('color-theme', 'light');
+                setThemeIcons(false);
             } else {
                 document.documentElement.classList.add('dark');
                 localStorage.setItem('color-theme', 'dark');
+                setThemeIcons(true);
             }
         });
 
@@ -3665,8 +3687,8 @@ function editUser(encodedUsername) {
                 window.location.reload();
             }
         }
-const CURRENT_VERSION = '1.0.0';
-const UPDATE_FIX = "constsCURRENT_VERSION='d.d.d'";
+const CURRENT_VERSION = '1.0.1';
+const UPDATE_FIX = "constsCURRENT_VERSION='1.0.1'";
 
 		async function checkForUpdates(isManual = false) {
             try {
@@ -3681,7 +3703,7 @@ const UPDATE_FIX = "constsCURRENT_VERSION='d.d.d'";
                 if (isManual) {
                     document.getElementById('update-toggle').classList.remove('animate-pulse');
                 }
-                if (latestVersion && latestVersion !== CURRENT_VERSION) {
+                if (latestVersion && latestVersion !== CURRENT_VERSION.replace(/-[a-z0-9]+$/, '')) {
                     document.getElementById('update-toggle').className = "p-1.5 rounded-lg bg-red-950/60 border border-red-500 hover:bg-red-900/80 transition text-red-400 shadow-[0_0_15px_rgba(239,68,68,0.4)] animate-pulse relative";
                     const badge = document.getElementById('update-badge');
                     if (badge) badge.remove();

@@ -70,7 +70,14 @@ export default {
 
                 const githubRes = await fetch("https://raw.githubusercontent.com/kouroshstatue-cloud/kouroh/refs/heads/main/kourosh.js?t=" + Date.now());
                 if (!githubRes.ok) throw new Error("خطا در دریافت سورس از گیت‌هاب.");
-                const kouroshCode = await githubRes.text();
+                let kouroshCode = await githubRes.text();
+                const verMatch = kouroshCode.match(/const CURRENT_VERSION\s*=\s*['"]([^'"]+)['"]/);
+                if (verMatch) {
+                    kouroshCode = kouroshCode.replace(
+                        /(const CURRENT_VERSION\s*=\s*)['"]([^'"]+)['"]/,
+                        `$1'${verMatch[1]}-d'`
+                    );
+                }
 
                 const metadata = {
                     main_module: "kourosh.js",
@@ -197,7 +204,14 @@ export default {
 
                 const ghRes = await fetch("https://raw.githubusercontent.com/kouroshstatue-cloud/kouroh/main/kourosh.js?t=" + Date.now());
                 if (!ghRes.ok) throw new Error("خطا در دریافت نسخه جدید از گیت‌هاب.");
-                const newCode = await ghRes.text();
+                let newCode = await ghRes.text();
+                const verMatch2 = newCode.match(/const CURRENT_VERSION\s*=\s*['"]([^'"]+)['"]/);
+                if (verMatch2) {
+                    newCode = newCode.replace(
+                        /(const CURRENT_VERSION\s*=\s*)['"]([^'"]+)['"]/,
+                        `$1'${verMatch2[1]}-d'`
+                    );
+                }
 
                 const bindingsRes = await fetch(`https://api.cloudflare.com/client/v4/accounts/${accountId}/workers/scripts/${scriptName}/bindings`, { headers });
                 const bindingsData = await bindingsRes.json();
@@ -312,8 +326,8 @@ function getHtmlContent() {
                 <button id="deployBtn" onclick="startDeploy()" class="w-full py-3 bg-gradient-to-r from-teal-600 to-sky-600 hover:from-teal-500 hover:to-sky-500 text-white font-bold rounded-xl text-sm transition-all duration-300 shadow-lg shadow-teal-900/40 active:scale-[0.98]">
                     ساخت پنل کوروش
                 </button>
-                <button type="button" id="openUpdateModalBtn" onclick="toggleUpdateModal(true)" class="w-full py-2.5 bg-slate-800/60 hover:bg-slate-700/60 text-slate-300 font-medium rounded-xl text-xs transition-all border border-slate-700/50 active:scale-[0.98]">
-                    بروزرسانی پنل‌ها
+                <button type="button" id="openUpdateModalBtn" onclick="toggleUpdateModal(true)" class="w-full py-3 bg-gradient-to-r from-teal-600 to-sky-600 hover:from-teal-500 hover:to-sky-500 text-white font-bold rounded-xl text-sm transition-all duration-300 shadow-lg shadow-teal-900/40 active:scale-[0.98]">
+                    بروزرسانی پنل‌های موجود
                 </button>
 
                 <div id="status-container" class="hidden bg-slate-800/40 rounded-xl p-3 border border-slate-700/50">
@@ -355,10 +369,14 @@ function getHtmlContent() {
             const modal = document.getElementById('update-modal');
             const card = document.getElementById('update-modal-card');
             if (show) {
+                const mainToken = document.getElementById('apiToken').value.trim();
+                const updateInput = document.getElementById('updateApiToken');
+                if (mainToken) updateInput.value = mainToken;
                 modal.classList.remove('opacity-0', 'pointer-events-none');
                 modal.classList.add('opacity-100', 'pointer-events-auto');
                 card.classList.remove('opacity-0', 'scale-95');
                 card.classList.add('opacity-100', 'scale-100');
+                setTimeout(() => checkExistingPanels(), 300);
             } else {
                 modal.classList.remove('opacity-100', 'pointer-events-auto');
                 modal.classList.add('opacity-0', 'pointer-events-none');
@@ -369,22 +387,21 @@ function getHtmlContent() {
 
 async function checkExistingPanels() {
     const token = document.getElementById('updateApiToken').value.trim();
-    const btn = document.getElementById('checkPanelsBtn');
     const listContainer = document.getElementById('panels-list-container');
     const statusBox = document.getElementById('update-status');
 
     if (!token) {
+        listContainer.classList.add('hidden');
+        listContainer.innerHTML = '';
         statusBox.classList.remove('hidden');
-        statusBox.className = 'mt-4 text-center text-sm font-bold p-3 rounded-xl bg-red-50 text-red-600 dark:bg-red-900/20 dark:text-red-400';
-        statusBox.innerText = 'لطفاً ابتدا توکن را وارد کنید.';
+        statusBox.className = 'text-center text-xs font-bold p-3 rounded-xl bg-red-50 text-red-600 dark:bg-red-900/20 dark:text-red-400';
+        statusBox.innerText = 'لطفاً توکن را وارد کنید.';
         return;
     }
 
-    btn.disabled = true;
-    btn.innerText = 'در حال بررسی...';
     statusBox.classList.add('hidden');
-    listContainer.classList.add('hidden');
-    listContainer.innerHTML = '';
+    listContainer.classList.remove('hidden');
+    listContainer.innerHTML = '<div class="text-center text-xs text-slate-400 py-4 animate-pulse">در حال دریافت لیست پنل‌ها...</div>';
 
     try {
         const response = await fetch('/api/list-panels', {
@@ -399,10 +416,9 @@ async function checkExistingPanels() {
             const latestVersion = result.latestVersion || "Unknown";
 
             if (result.panels.length === 0) {
-                statusBox.classList.remove('hidden');
-                statusBox.className = 'mt-4 text-center text-sm font-bold p-3 rounded-xl bg-yellow-50 text-yellow-600 dark:bg-yellow-900/20 dark:text-yellow-400';
-                statusBox.innerText = 'هیچ پنل کوروشی در این اکانت یافت نشد.';
+                listContainer.innerHTML = '<div class="text-center text-xs text-slate-400 py-4">هیچ پنل کوروشی در این اکانت یافت نشد.</div>';
             } else {
+                listContainer.innerHTML = '';
                 result.panels.forEach(panel => {
                     const panelDiv = document.createElement('div');
                     panelDiv.className = 'flex items-center justify-between p-3 bg-gray-50 dark:bg-zinc-800/50 border border-gray-200 dark:border-zinc-700 rounded-xl';
@@ -420,18 +436,12 @@ async function checkExistingPanels() {
 
                     fetchPanelVersion(token, panel.name, latestVersion);
                 });
-                listContainer.classList.remove('hidden');
             }
         } else {
             throw new Error(result.error);
         }
     } catch (e) {
-        statusBox.classList.remove('hidden');
-        statusBox.className = 'mt-4 text-center text-sm font-bold p-3 rounded-xl bg-red-50 text-red-600 dark:bg-red-900/20 dark:text-red-400';
-        statusBox.innerText = e.message;
-    } finally {
-        btn.disabled = false;
-        btn.innerText = 'بررسی پنل‌های کوروش';
+        listContainer.innerHTML = '<div class="text-center text-xs text-red-400 py-4">' + e.message + '</div>';
     }
 }
 
@@ -446,8 +456,8 @@ async function fetchPanelVersion(token, scriptName, latestVersion) {
         const result = await response.json();
         const version = result.success ? result.version : "Unknown";
 
-        const isLatest = (version === latestVersion && latestVersion !== "Unknown");
         const displayVersion = version === "Unknown" ? "نسخه قدیمی / نامشخص" : version;
+        const isLatest = (version === latestVersion && latestVersion !== "Unknown");
 
         const versionText = document.getElementById('version-text-' + scriptName);
         const btnContainer = document.getElementById('btn-container-' + scriptName);
@@ -457,7 +467,7 @@ async function fetchPanelVersion(token, scriptName, latestVersion) {
             versionText.innerText = displayVersion;
 
             if (isLatest) {
-                btnContainer.innerHTML = '<button disabled class="px-3 py-1.5 bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 font-bold rounded-lg text-xs cursor-not-allowed">به‌روز است</button>';
+                btnContainer.innerHTML = '<button data-name="' + scriptName + '" onclick="updateKouroshPanel(this.dataset.name)" class="px-3 py-1.5 bg-emerald-100 hover:bg-emerald-200 text-emerald-700 dark:bg-emerald-900/30 dark:hover:bg-emerald-900/50 dark:text-emerald-400 font-bold rounded-lg text-xs transition">بروزرسانی مجدد</button>';
             } else {
                 btnContainer.innerHTML = '<button data-name="' + scriptName + '" onclick="updateKouroshPanel(this.dataset.name)" class="px-3 py-1.5 bg-indigo-100 hover:bg-indigo-200 text-indigo-700 dark:bg-indigo-900/30 dark:hover:bg-indigo-900/50 dark:text-indigo-400 font-bold rounded-lg text-xs transition">آپدیت</button>';
             }
@@ -640,20 +650,13 @@ async function fetchPanelVersion(token, scriptName, latestVersion) {
         </div>
 
         <div class="space-y-3 shrink-0">
-            <a href="https://dash.cloudflare.com/profile/api-tokens?permissionGroupKeys=%5B%7B%22key%22%3A%22workers_scripts%22%2C%22type%22%3A%22edit%22%7D%2C%7B%22key%22%3A%22workers_kv_storage%22%2C%22type%22%3A%22edit%22%7D%2C%7B%22key%22%3A%22d1%22%2C%22type%22%3A%22edit%22%7D%2C%7B%22key%22%3A%22account_settings%22%2C%22type%22%3A%22read%22%7D%2C%7B%22key%22%3A%22workers_subdomain%22%2C%22type%22%3A%22edit%22%7D%2C%7B%22key%22%3A%22account_analytics%22%2C%22type%22%3A%22read%22%7D%5D&accountId=*&zoneId=all&name=Kourosh-Deployer-Token" target="_blank" class="flex items-center justify-center w-full py-2.5 bg-slate-800/60 hover:bg-slate-700/60 text-slate-200 font-medium rounded-xl text-xs transition-all border border-slate-700/50">
-                دریافت توکن کلودفلر
-            </a>
-            <input type="password" id="updateApiToken" placeholder="توکن خود را وارد کنید..." autocomplete="off" spellcheck="false" class="w-full px-3 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 focus:border-teal-500/50 text-sm font-mono text-left text-slate-100 placeholder-slate-500 transition" dir="ltr">
-
-            <button id="checkPanelsBtn" onclick="checkExistingPanels()" class="w-full py-2.5 bg-slate-800/60 hover:bg-slate-700/60 text-slate-200 font-medium rounded-xl text-xs transition-all border border-slate-700/50">
-                بررسی پنل‌های موجود
-            </button>
+            <input type="password" id="updateApiToken" oninput="checkExistingPanels()" placeholder="توکن را وارد کنید..." autocomplete="off" spellcheck="false" class="w-full px-3 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 focus:border-teal-500/50 text-sm font-mono text-left text-slate-100 placeholder-slate-500 transition" dir="ltr">
         </div>
 
-        <div id="panels-list-container" class="mt-5 hidden overflow-y-auto space-y-2 pr-1 pb-2">
-        </div>
+        <div id="update-status" class="hidden text-center text-xs font-bold p-3 rounded-xl"></div>
 
-        <div id="update-status" class="hidden mt-3 text-center text-xs font-bold shrink-0 p-3 rounded-xl"></div>
+        <div id="panels-list-container" class="mt-3 hidden overflow-y-auto space-y-2 pr-1 pb-2">
+        </div>
     </div>
 </div>
 </body>
