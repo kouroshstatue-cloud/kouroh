@@ -269,7 +269,7 @@ const Router = {
 
         const metadata = {
             main_module: "kourosh.js",
-            compatibility_date: "2024-02-08",
+            compatibility_date: "2025-02-08",
             bindings: newBindings
         };
         const formData = new FormData();
