@@ -26,6 +26,8 @@ const DOWNSTREAM_GRAIN_TAIL_THRESHOLD = 512;
 const DOWNSTREAM_GRAIN_SILENT_MS = 1;
 const TCP_CONCURRENCY = 2;
 const PRELOAD_RACE_DIAL = true;
+const CURRENT_VERSION = '1.0.3';
+const BUILD_ID = 'k9j2h7';
 
 // ==========================================================
 // ۳. نقطه ورود اصلی ورکر (MAIN FETCH HANDLER)
@@ -232,6 +234,11 @@ const Router = {
       });
     }
 
+    if (url.pathname === '/api/version' && request.method === 'GET') {
+      return new Response(JSON.stringify({ version: CURRENT_VERSION, buildId: BUILD_ID }), {
+        headers: { "Content-Type": "application/json; charset=utf-8", "Access-Control-Allow-Origin": "*" }
+      });
+    }
     // بررسی عمومی احراز هویت برای بقیه APIها
     const authorized = await DbService.verifyApiAuth(request, env);
     if (!authorized) {
@@ -3740,9 +3747,8 @@ function editUser(encodedUsername) {
                 window.location.reload();
             }
         }
-const CURRENT_VERSION = '1.0.3';
-const BUILD_ID = 'k9j2h7';
-
+const CURRENT_VERSION = '${CURRENT_VERSION}';
+const BUILD_ID = '${BUILD_ID}';
 		async function checkForUpdates(isManual = false) {
             try {
                 if (isManual) {
