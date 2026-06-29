@@ -3741,7 +3741,7 @@ function editUser(encodedUsername) {
             }
         }
 const CURRENT_VERSION = '1.0.2';
-const BUILD_ID = 'a1b2c3';
+const BUILD_ID = 'x9y8z7';
 
 		async function checkForUpdates(isManual = false) {
             try {
