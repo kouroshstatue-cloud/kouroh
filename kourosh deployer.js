@@ -100,7 +100,8 @@ export default {
 
                 const routeRes = await fetch(`https://api.cloudflare.com/client/v4/accounts/${accountId}/workers/scripts/${workerName}/subdomain`, {
                     method: 'POST',
-                    headers: { "Authorization": `Bearer ${token}` }
+                    headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json" },
+                    body: "{}"
                 });
                 const routeData = await routeRes.json();
                 if (!routeData.success) {
