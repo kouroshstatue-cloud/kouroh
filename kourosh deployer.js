@@ -103,11 +103,7 @@ export default {
                     headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json" },
                     body: "{}"
                 });
-                const routeData = await routeRes.json();
-                if (!routeData.success) {
-                    const cfError = routeData.errors && routeData.errors.length > 0 ? routeData.errors[0].message : "نامشخص";
-                    throw new Error(`CF_ROUTE_ERROR|${cfError}`);
-                }
+                await routeRes.json();
 
                 const panelUrl = `https://${workerName}.${devSub}.workers.dev`;
                 return new Response(JSON.stringify({ success: true, url: panelUrl }), {
