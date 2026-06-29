@@ -1928,33 +1928,29 @@ const HTML_TEMPLATES = {
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
     <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Vazirmatn', 'sans-serif'] },
-                    colors: { royal: { bg: '#0a0015', card: '#15082e', input: '#1e0a3a', border: '#3d1a6e' } }
-                }
-            }
-        }
+        tailwind.config = { darkMode: 'class', theme: { extend: { fontFamily: { sans: ['Vazirmatn', 'sans-serif'] } } } }
     </script>
+    <style>
+        body { font-family: 'Vazirmatn', sans-serif; }
+        .glass { backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
+    </style>
 </head>
-<body class="bg-royal-bg text-gray-100 min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
-    <div class="absolute inset-0 overflow-hidden pointer-events-none">
-        <div class="absolute -top-48 -left-48 w-96 h-96 bg-purple-700/10 rounded-full blur-3xl"></div>
-        <div class="absolute -bottom-48 -right-48 w-96 h-96 bg-amber-600/5 rounded-full blur-3xl"></div>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-48 -right-48 w-96 h-96 bg-teal-500/8 rounded-full blur-[80px]"></div>
+        <div class="absolute -bottom-48 -left-48 w-96 h-96 bg-sky-600/5 rounded-full blur-[80px]"></div>
     </div>
-    <div class="w-full max-w-md bg-royal-card/90 backdrop-blur-xl border border-royal-border rounded-3xl shadow-[0_0_60px_rgba(124,58,237,0.15)] p-8 text-center flex flex-col items-center gap-4 relative z-10">
-        <div class="p-4 bg-purple-900/40 border border-amber-500/20 text-amber-400 rounded-2xl mb-2 shadow-[0_0_20px_rgba(245,158,11,0.1)]">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+    <div class="w-full max-w-sm bg-slate-900/70 glass border border-slate-800/60 rounded-2xl shadow-2xl p-8 text-center flex flex-col items-center gap-4 relative z-10">
+        <div class="p-3.5 bg-slate-800/60 border border-slate-700/50 text-teal-400 rounded-xl">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
         </div>
-        <h2 class="text-xl font-bold text-gray-100">پنل کوروش اصلی</h2>
-        <p class="text-sm text-gray-400 leading-relaxed mt-2">
+        <h2 class="text-lg font-bold text-white">پنل کوروش اصلی</h2>
+        <p class="text-sm text-slate-400 leading-relaxed">
             برای ورود به پنل، لطفاً عبارت 
-            <span class="inline-block px-2 py-1 bg-royal-input border border-royal-border rounded-md font-mono text-amber-400 font-bold mx-1 shadow-sm" dir="ltr">/panel</span> 
-            را به انتهای آدرس مرورگر خود اضافه کنید.
+            <span class="inline-block px-2 py-1 bg-slate-800/60 border border-slate-700/50 rounded-lg font-mono text-teal-400 font-bold mx-1" dir="ltr">/panel</span> 
+            را به انتهای آدرس مرورگر اضافه کنید.
         </p>
-        <button onclick="window.location.href='/panel'" class="mt-4 w-full py-3 bg-gradient-to-l from-purple-700 to-purple-900 hover:from-purple-600 hover:to-purple-800 text-white font-bold rounded-xl text-sm transition-all duration-300 shadow-lg shadow-purple-900/50 border border-purple-500/40">
+        <button onclick="window.location.href='/panel'" class="mt-2 w-full py-3 bg-gradient-to-r from-teal-600 to-sky-600 hover:from-teal-500 hover:to-sky-500 text-white font-bold rounded-xl text-sm transition-all duration-300 shadow-lg shadow-teal-900/40">
             ورود به پنل
         </button>
     </div>
@@ -1970,41 +1966,37 @@ const HTML_TEMPLATES = {
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
     <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Vazirmatn', 'sans-serif'] },
-                    colors: { royal: { bg: '#0a0015', card: '#15082e', input: '#1e0a3a', border: '#3d1a6e' } }
-                }
-            }
-        }
+        tailwind.config = { darkMode: 'class', theme: { extend: { fontFamily: { sans: ['Vazirmatn', 'sans-serif'] } } } }
     </script>
+    <style>
+        body { font-family: 'Vazirmatn', sans-serif; }
+        .glass { backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
+    </style>
 </head>
-<body class="bg-royal-bg text-gray-100 min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
-    <div class="absolute inset-0 overflow-hidden pointer-events-none">
-        <div class="absolute -top-48 -left-48 w-96 h-96 bg-purple-700/10 rounded-full blur-3xl"></div>
-        <div class="absolute -bottom-48 -right-48 w-96 h-96 bg-amber-600/5 rounded-full blur-3xl"></div>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-48 -right-48 w-96 h-96 bg-teal-500/8 rounded-full blur-[80px]"></div>
+        <div class="absolute -bottom-48 -left-48 w-96 h-96 bg-sky-600/5 rounded-full blur-[80px]"></div>
     </div>
-    <div class="w-full max-w-md bg-royal-card/90 backdrop-blur-xl border border-royal-border rounded-3xl shadow-[0_0_60px_rgba(124,58,237,0.15)] p-6 relative z-10">
+    <div class="w-full max-w-sm bg-slate-900/70 glass border border-slate-800/60 rounded-2xl shadow-2xl p-6 relative z-10">
         <div class="flex items-center gap-3 mb-1">
-            <div class="p-2 bg-purple-900/40 border border-amber-500/20 text-amber-400 rounded-xl shadow-[0_0_20px_rgba(245,158,11,0.1)]">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+            <div class="p-2 bg-slate-800/60 border border-slate-700/50 text-teal-400 rounded-xl">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
             </div>
-            <h2 class="text-xl font-bold text-gray-100">تعیین رمز عبور</h2>
+            <h2 class="text-lg font-bold text-white">تعیین رمز عبور</h2>
         </div>
-        <p class="text-sm text-gray-400 mb-6 pr-12">این اولین ورود شماست. لطفاً رمز عبور پنل را تعیین کنید.</p>
-        
+        <p class="text-sm text-slate-400 mb-5 pr-11">این اولین ورود شماست. لطفاً رمز عبور پنل را تعیین کنید.</p>
+
         <form onsubmit="handleSetup(event)" class="space-y-4">
             <div>
-                <label class="block text-sm font-medium mb-1.5 text-gray-300">رمز عبور</label>
-                <input type="password" id="password" class="w-full px-4 py-3 bg-royal-input border border-royal-border rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-sm text-center font-mono text-gray-100 transition-all duration-200" required minlength="4" placeholder="••••••••">
+                <label class="block text-xs font-medium mb-1.5 text-slate-400">رمز عبور</label>
+                <input type="password" id="password" class="w-full px-4 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 focus:border-teal-500/50 text-sm text-center font-mono text-slate-100 transition-all duration-200" required minlength="4" placeholder="••••••••">
             </div>
             <div>
-                <label class="block text-sm font-medium mb-1.5 text-gray-300">تکرار رمز عبور</label>
-                <input type="password" id="confirm-password" class="w-full px-4 py-3 bg-royal-input border border-royal-border rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-sm text-center font-mono text-gray-100 transition-all duration-200" required minlength="4" placeholder="••••••••">
+                <label class="block text-xs font-medium mb-1.5 text-slate-400">تکرار رمز عبور</label>
+                <input type="password" id="confirm-password" class="w-full px-4 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 focus:border-teal-500/50 text-sm text-center font-mono text-slate-100 transition-all duration-200" required minlength="4" placeholder="••••••••">
             </div>
-            <button type="submit" id="submit-btn" class="w-full py-3 bg-gradient-to-l from-purple-700 to-purple-900 hover:from-purple-600 hover:to-purple-800 text-white font-bold rounded-2xl text-sm transition-all duration-300 shadow-lg shadow-purple-900/50 border border-purple-500/40">ثبت و ورود</button>
+            <button type="submit" id="submit-btn" class="w-full py-2.5 bg-gradient-to-r from-teal-600 to-sky-600 hover:from-teal-500 hover:to-sky-500 text-white font-bold rounded-xl text-sm transition-all duration-300 shadow-lg shadow-teal-900/40">ثبت و ورود</button>
         </form>
     </div>
 
@@ -2056,37 +2048,33 @@ const HTML_TEMPLATES = {
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
     <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Vazirmatn', 'sans-serif'] },
-                    colors: { royal: { bg: '#0a0015', card: '#15082e', input: '#1e0a3a', border: '#3d1a6e' } }
-                }
-            }
-        }
+        tailwind.config = { darkMode: 'class', theme: { extend: { fontFamily: { sans: ['Vazirmatn', 'sans-serif'] } } } }
     </script>
+    <style>
+        body { font-family: 'Vazirmatn', sans-serif; }
+        .glass { backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
+    </style>
 </head>
-<body class="bg-royal-bg text-gray-100 min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
-    <div class="absolute inset-0 overflow-hidden pointer-events-none">
-        <div class="absolute -top-48 -left-48 w-96 h-96 bg-purple-700/10 rounded-full blur-3xl"></div>
-        <div class="absolute -bottom-48 -right-48 w-96 h-96 bg-amber-600/5 rounded-full blur-3xl"></div>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-48 -right-48 w-96 h-96 bg-teal-500/8 rounded-full blur-[80px]"></div>
+        <div class="absolute -bottom-48 -left-48 w-96 h-96 bg-sky-600/5 rounded-full blur-[80px]"></div>
     </div>
-    <div class="w-full max-w-md bg-royal-card/90 backdrop-blur-xl border border-royal-border rounded-3xl shadow-[0_0_60px_rgba(124,58,237,0.15)] p-6 relative z-10">
+    <div class="w-full max-w-sm bg-slate-900/70 glass border border-slate-800/60 rounded-2xl shadow-2xl p-6 relative z-10">
         <div class="flex items-center gap-3 mb-1">
-            <div class="p-2 bg-purple-900/40 border border-amber-500/20 text-amber-400 rounded-xl shadow-[0_0_20px_rgba(245,158,11,0.1)]">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path></svg>
+            <div class="p-2 bg-slate-800/60 border border-slate-700/50 text-teal-400 rounded-xl">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path></svg>
             </div>
-            <h2 class="text-xl font-bold text-gray-100">ورود به پنل</h2>
+            <h2 class="text-lg font-bold text-white">ورود به پنل</h2>
         </div>
-        <p class="text-sm text-gray-400 mb-6 pr-12">برای دسترسی، رمز عبور خود را وارد کنید.</p>
-        
+        <p class="text-sm text-slate-400 mb-5 pr-11">برای دسترسی، رمز عبور خود را وارد کنید.</p>
+
         <form onsubmit="handleLogin(event)" class="space-y-4">
             <div>
-                <label class="block text-sm font-medium mb-1.5 text-gray-300">رمز عبور</label>
-                <input type="password" id="password" class="w-full px-4 py-3 bg-royal-input border border-royal-border rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 text-sm text-center font-mono text-gray-100 transition-all duration-200" required placeholder="••••••••">
+                <label class="block text-xs font-medium mb-1.5 text-slate-400">رمز عبور</label>
+                <input type="password" id="password" class="w-full px-4 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 focus:border-teal-500/50 text-sm text-center font-mono text-slate-100 transition-all duration-200" required placeholder="••••••••">
             </div>
-            <button type="submit" id="submit-btn" class="w-full py-3 bg-gradient-to-l from-purple-700 to-purple-900 hover:from-purple-600 hover:to-purple-800 text-white font-bold rounded-2xl text-sm transition-all duration-300 shadow-lg shadow-purple-900/50 border border-purple-500/40">ورود به پنل</button>
+            <button type="submit" id="submit-btn" class="w-full py-2.5 bg-gradient-to-r from-teal-600 to-sky-600 hover:from-teal-500 hover:to-sky-500 text-white font-bold rounded-xl text-sm transition-all duration-300 shadow-lg shadow-teal-900/40">ورود به پنل</button>
         </form>
     </div>
 
@@ -2140,445 +2128,428 @@ const HTML_TEMPLATES = {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
     <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Vazirmatn', 'sans-serif'] },
-                    colors: { royal: { bg: '#0a0015', card: '#15082e', input: '#1e0a3a', border: '#3d1a6e' } }
-                }
-            }
-        }
+        tailwind.config = { darkMode: 'class', theme: { extend: { fontFamily: { sans: ['Vazirmatn', 'sans-serif'] } } } }
     </script>
     <style>
         body { font-family: 'Vazirmatn', sans-serif; }
-        
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #0a0015; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb { background: #3d1a6e; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #5b2a9e; }
-        * { scrollbar-width: thin; scrollbar-color: #3d1a6e #0a0015; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        * { scrollbar-width: thin; scrollbar-color: #334155 #0f172a; }
+        .glass { backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); }
+        @keyframes fade-in { 0% { opacity: 0; transform: translateY(8px); } 100% { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fade-in 0.3s ease-out; }
     </style>
 </head>
-<body class="bg-royal-bg text-gray-100 min-h-screen transition-colors duration-200 relative overflow-x-hidden">
+<body class="bg-slate-950 text-slate-100 min-h-screen relative overflow-x-hidden">
     <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div class="absolute -top-48 -left-48 w-96 h-96 bg-purple-700/10 rounded-full blur-3xl"></div>
-        <div class="absolute -bottom-48 -right-48 w-96 h-96 bg-amber-600/5 rounded-full blur-3xl"></div>
+        <div class="absolute -top-48 -right-48 w-96 h-96 bg-teal-500/5 rounded-full blur-[100px]"></div>
+        <div class="absolute -bottom-48 -left-48 w-96 h-96 bg-sky-600/5 rounded-full blur-[100px]"></div>
     </div>
 
-    <header class="border-b border-royal-border bg-royal-card/90 backdrop-blur-xl px-3 py-3 relative z-10">
+    <header class="border-b border-slate-800 bg-slate-900/80 glass px-3 py-2.5 relative z-10">
         <div class="max-w-6xl mx-auto flex items-center justify-between gap-2">
             <div class="flex items-center gap-2 flex-1 min-w-0">
-                <div class="p-1.5 bg-purple-900/40 border border-amber-500/20 text-amber-400 rounded-lg shadow-[0_0_15px_rgba(245,158,11,0.1)] flex-shrink-0">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                <div class="w-7 h-7 bg-gradient-to-br from-teal-500 to-sky-500 rounded-lg flex items-center justify-center flex-shrink-0 shadow-lg shadow-teal-900/30">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                 </div>
-                <h1 class="text-sm sm:text-base font-bold text-gray-100 truncate">پنل کوروش اصلی</h1>
-                <span id="panel-version" class="text-[10px] px-1.5 py-0.5 font-semibold bg-purple-900/40 text-amber-400 border border-amber-500/20 rounded-full flex-shrink-0">v1.0.0</span>
+                <h1 class="text-sm sm:text-base font-bold text-white truncate">پنل کوروش اصلی</h1>
+                <span id="panel-version" class="text-[10px] px-1.5 py-0.5 font-semibold bg-slate-800 text-slate-400 border border-slate-700 rounded-full flex-shrink-0">v1.0.0</span>
             </div>
-            <div class="flex items-center gap-1.5 flex-shrink-0">
-                <button id="theme-toggle" class="p-1.5 rounded-lg bg-royal-input border border-royal-border hover:bg-purple-900/30 transition text-gray-400">
-                    <svg id="sun-icon" class="w-4 h-4 hidden dark:block text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M14 12a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                    <svg id="moon-icon" class="w-4 h-4 block dark:hidden text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+            <div class="flex items-center gap-1 flex-shrink-0">
+                <button id="theme-toggle" class="p-1.5 rounded-lg bg-slate-800/60 border border-slate-700/50 hover:bg-slate-700/60 transition text-slate-400">
+                    <svg id="sun-icon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M14 12a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    <svg id="moon-icon" class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
                 </button>
-                <button id="update-toggle" onclick="checkForUpdates(true)" class="p-1.5 rounded-lg bg-royal-input border border-royal-border hover:bg-purple-900/30 transition text-emerald-400 relative" title="Update">
+                <button id="update-toggle" onclick="checkForUpdates(true)" class="p-1.5 rounded-lg bg-slate-800/60 border border-slate-700/50 hover:bg-slate-700/60 transition text-emerald-400 relative" title="Update">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 11l3-3m0 0l3 3m-3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z"></path></svg>
-                    <span id="update-badge" class="absolute -top-0.5 -right-0.5 w-2 h-2 bg-red-500 border-2 border-royal-card rounded-full hidden animate-pulse"></span>
+                    <span id="update-badge" class="absolute -top-0.5 -right-0.5 w-2 h-2 bg-rose-500 border-2 border-slate-900 rounded-full hidden animate-pulse"></span>
                 </button>				
-                <button onclick="toggleSettingsModal(true)" class="p-1.5 rounded-lg bg-royal-input border border-royal-border hover:bg-purple-900/30 transition text-gray-400" title="Settings">
+                <button onclick="toggleSettingsModal(true)" class="p-1.5 rounded-lg bg-slate-800/60 border border-slate-700/50 hover:bg-slate-700/60 transition text-slate-400" title="Settings">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                 </button>
-                <button onclick="logoutAdmin()" class="p-1.5 rounded-lg bg-royal-input border border-royal-border hover:bg-red-900/30 transition text-red-400" title="Logout">
+                <button onclick="logoutAdmin()" class="p-1.5 rounded-lg bg-slate-800/60 border border-slate-700/50 hover:bg-rose-900/30 transition text-rose-400" title="Logout">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
                 </button>
             </div>
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-3 sm:px-4 py-4 sm:py-8 relative z-10">
-<div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-5 mb-4 sm:mb-8">
-    <div class="bg-royal-card/80 backdrop-blur-sm border border-royal-border rounded-2xl p-4 sm:p-5 shadow-[0_0_30px_rgba(124,58,237,0.08)] flex flex-col justify-between hover:shadow-[0_0_40px_rgba(124,58,237,0.15)] hover:border-purple-500/40 transition-all duration-300 relative overflow-hidden group">
-        <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-purple-500/10 rounded-full blur-xl group-hover:scale-150 transition duration-500"></div>
-        <div class="flex items-center justify-between relative z-10 mb-2">
-            <span class="text-xs sm:text-sm font-semibold text-gray-400 whitespace-nowrap">کل کاربران</span>
-            <div class="p-1.5 sm:p-2 bg-purple-900/30 text-purple-400 rounded-xl flex-shrink-0 border border-purple-500/20">
-                <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+    <main class="max-w-6xl mx-auto px-3 sm:px-4 py-4 sm:py-6 relative z-10">
+<div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-2.5 sm:gap-4 mb-4 sm:mb-6">
+    <div class="bg-slate-900/60 glass border border-slate-800/50 rounded-xl p-3.5 sm:p-4 flex flex-col justify-between hover:border-slate-700/60 transition-all duration-300 relative overflow-hidden">
+        <div class="flex items-center justify-between mb-1.5">
+            <span class="text-[11px] sm:text-xs font-semibold text-slate-400">کل کاربران</span>
+            <div class="p-1.5 bg-slate-800/60 text-slate-500 rounded-lg border border-slate-700/50">
+                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
             </div>
         </div>
-        <div class="space-y-1 relative z-10 min-w-0 flex-1">
-            <div class="text-xl sm:text-2xl font-black text-gray-100 transition-all" id="stat-total-users">0</div>
-            <span class="text-[10px] sm:text-[11px] text-purple-400 flex items-center gap-1 font-medium">
-                <span class="w-1.5 h-1.5 bg-purple-500 rounded-full animate-ping"></span>
-                تعریف شده در پنل
-            </span>
+        <div class="space-y-0.5 min-w-0 flex-1">
+            <div class="text-lg sm:text-xl font-bold text-white transition-all" id="stat-total-users">0</div>
+            <span class="text-[10px] text-slate-500 flex items-center gap-1">کاربر تعریف شده</span>
         </div>
     </div>
 
-    <div class="bg-royal-card/80 backdrop-blur-sm border border-royal-border rounded-2xl p-4 sm:p-5 shadow-[0_0_30px_rgba(124,58,237,0.08)] flex flex-col justify-between hover:shadow-[0_0_40px_rgba(124,58,237,0.15)] hover:border-emerald-500/40 transition-all duration-300 relative overflow-hidden group">
-        <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-emerald-500/10 rounded-full blur-xl group-hover:scale-150 transition duration-500"></div>
-        <div class="flex items-center justify-between relative z-10 mb-2">
-            <span class="text-xs sm:text-sm font-semibold text-gray-400 whitespace-nowrap">آنلاین</span>
-            <div class="p-1.5 sm:p-2 bg-emerald-900/30 text-emerald-400 rounded-xl flex-shrink-0 border border-emerald-500/20">
-                <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+    <div class="bg-slate-900/60 glass border border-slate-800/50 rounded-xl p-3.5 sm:p-4 flex flex-col justify-between hover:border-emerald-700/40 transition-all duration-300 relative overflow-hidden">
+        <div class="flex items-center justify-between mb-1.5">
+            <span class="text-[11px] sm:text-xs font-semibold text-slate-400">آنلاین</span>
+            <div class="p-1.5 bg-emerald-900/20 text-emerald-500 rounded-lg border border-emerald-800/30">
+                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
             </div>
         </div>
-        <div class="space-y-1 relative z-10 min-w-0 flex-1">
-            <div class="text-xl sm:text-2xl font-black text-emerald-400 transition-all" id="stat-active-users">0</div>
-            <span class="text-[10px] sm:text-[11px] text-emerald-400 flex items-center gap-1 font-medium">
-                <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+        <div class="space-y-0.5 min-w-0 flex-1">
+            <div class="text-lg sm:text-xl font-bold text-emerald-400 transition-all" id="stat-active-users">0</div>
+            <span class="text-[10px] text-emerald-500/70 flex items-center gap-1">
+                <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
                 متصل در لحظه
             </span>
         </div>
     </div>
 
-	<div id="card-cf-requests" class="bg-royal-card/80 backdrop-blur-sm border border-royal-border rounded-2xl p-4 sm:p-5 shadow-[0_0_30px_rgba(124,58,237,0.08)] flex flex-col justify-between hover:shadow-[0_0_40px_rgba(124,58,237,0.15)] hover:border-orange-500/40 transition-all duration-300 relative overflow-hidden group">
-	    <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-orange-500/10 rounded-full blur-xl group-hover:scale-150 transition duration-500"></div>
-	    <div class="flex items-center justify-between relative z-10 mb-2">
-	        <span class="text-xs sm:text-sm font-semibold text-gray-400 whitespace-nowrap">ریکوئست روزانه</span>
-	        <div class="p-1.5 sm:p-2 bg-orange-900/30 text-orange-400 rounded-xl flex-shrink-0 border border-orange-500/20">
-	            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path></svg>
+	<div id="card-cf-requests" class="bg-slate-900/60 glass border border-slate-800/50 rounded-xl p-3.5 sm:p-4 flex flex-col justify-between hover:border-orange-700/40 transition-all duration-300 relative overflow-hidden">
+	    <div class="flex items-center justify-between mb-1.5">
+	        <span class="text-[11px] sm:text-xs font-semibold text-slate-400">ریکوئست روزانه</span>
+	        <div class="p-1.5 bg-orange-900/20 text-orange-500 rounded-lg border border-orange-800/30">
+	            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path></svg>
 	        </div>
 	    </div>
-	    <div class="space-y-2 relative z-10 min-w-0 flex-1">
+	    <div class="space-y-1.5 min-w-0 flex-1">
 	        <div class="flex items-center gap-1">
-	            <span class="text-xl sm:text-2xl font-black text-orange-400 transition-all" id="stat-cf-requests">0</span>
-	            <span class="text-xs font-bold text-gray-500 mr-1">/ 100k</span>
-	            <button id="cf-warning-btn" onclick="openUsageWarning()" class="hidden flex items-center justify-center w-4 h-4 sm:w-5 sm:h-5 bg-red-900/40 text-red-400 rounded-full font-bold text-xs animate-bounce border border-red-700 mr-2">!</button>
+	            <span class="text-lg sm:text-xl font-bold text-orange-400 transition-all" id="stat-cf-requests">0</span>
+	            <span class="text-[10px] font-medium text-slate-500 mr-1">/ 100k</span>
+	            <button id="cf-warning-btn" onclick="openUsageWarning()" class="hidden items-center justify-center w-4 h-4 bg-rose-900/40 text-rose-400 rounded-full font-bold text-[10px] animate-bounce border border-rose-700 mr-1">!</button>
 	        </div>
-	        <div class="w-full bg-royal-input rounded-full h-1.5 mt-1">
-	            <div id="stat-cf-progress" class="bg-orange-500 h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+	        <div class="w-full bg-slate-800/60 rounded-full h-1">
+	            <div id="stat-cf-progress" class="bg-orange-500 h-1 rounded-full transition-all duration-500" style="width: 0%"></div>
 	        </div>
-	        <span class="text-[10px] sm:text-[11px] text-orange-400 flex items-center justify-between font-medium mt-1">
+	        <span class="text-[10px] text-orange-400/70 flex items-center justify-between mt-0.5">
 	            <span>Total: <span id="stat-cf-total">0</span></span>
-	            <span dir="ltr">Cloudflare</span>
 	        </span>
 	    </div>
 	</div>
 
-    <div class="bg-royal-card/80 backdrop-blur-sm border border-royal-border rounded-2xl p-4 sm:p-5 shadow-[0_0_30px_rgba(124,58,237,0.08)] flex flex-col justify-between hover:shadow-[0_0_40px_rgba(124,58,237,0.15)] hover:border-sky-500/40 transition-all duration-300 relative overflow-hidden group">
-        <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-sky-500/10 rounded-full blur-xl group-hover:scale-150 transition duration-500"></div>
-        <div class="flex items-center justify-between relative z-10 mb-2">
-            <span class="text-xs sm:text-sm font-semibold text-gray-400 whitespace-nowrap">مصرف ۳۰ روز</span>
-            <div class="p-1.5 sm:p-2 bg-sky-900/30 text-sky-400 rounded-xl flex-shrink-0 border border-sky-500/20">
-                <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+    <div class="bg-slate-900/60 glass border border-slate-800/50 rounded-xl p-3.5 sm:p-4 flex flex-col justify-between hover:border-sky-700/40 transition-all duration-300 relative overflow-hidden">
+        <div class="flex items-center justify-between mb-1.5">
+            <span class="text-[11px] sm:text-xs font-semibold text-slate-400">مصرف ۳۰ روز</span>
+            <div class="p-1.5 bg-sky-900/20 text-sky-500 rounded-lg border border-sky-800/30">
+                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
             </div>
         </div>
-        <div class="space-y-1 relative z-10 min-w-0 flex-1">
-            <div class="text-lg sm:text-2xl font-black text-sky-400 transition-all whitespace-nowrap" id="stat-total-usage">0 GB</div>
-            <span class="text-[10px] sm:text-[11px] text-sky-400 flex items-center gap-1 font-medium">
-                <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path></svg>
+        <div class="space-y-0.5 min-w-0 flex-1">
+            <div class="text-base sm:text-xl font-bold text-sky-400 transition-all" id="stat-total-usage">0 GB</div>
+            <span class="text-[10px] text-sky-500/70 flex items-center gap-1">
                 مصرف کل کاربران
             </span>
         </div>
     </div>
 
-    <div class="bg-royal-card/80 backdrop-blur-sm border border-royal-border rounded-2xl p-4 sm:p-5 shadow-[0_0_30px_rgba(124,58,237,0.08)] flex flex-col justify-between hover:shadow-[0_0_40px_rgba(124,58,237,0.15)] hover:border-amber-500/40 transition-all duration-300 relative overflow-hidden group">
-        <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-amber-500/10 rounded-full blur-xl group-hover:scale-150 transition duration-500"></div>
-        <div class="flex items-center justify-between relative z-10 mb-2">
-            <span class="text-xs sm:text-sm font-semibold text-gray-400 whitespace-nowrap">پر مصرف‌ترین</span>
-            <div class="p-1.5 sm:p-2 bg-amber-900/30 text-amber-400 rounded-xl flex-shrink-0 border border-amber-500/20">
-                <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+    <div class="bg-slate-900/60 glass border border-slate-800/50 rounded-xl p-3.5 sm:p-4 flex flex-col justify-between hover:border-teal-700/40 transition-all duration-300 relative overflow-hidden">
+        <div class="flex items-center justify-between mb-1.5">
+            <span class="text-[11px] sm:text-xs font-semibold text-slate-400">پر مصرف‌ترین</span>
+            <div class="p-1.5 bg-teal-900/20 text-teal-500 rounded-lg border border-teal-800/30">
+                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
             </div>
         </div>
-        <div class="space-y-1 relative z-10 min-w-0 flex-1">
-            <div class="text-base sm:text-xl font-black text-amber-400 transition-all truncate max-w-[120px] sm:max-w-[150px]" id="stat-top-user">-</div>
-            <span class="text-[10px] sm:text-[11px] text-amber-400 flex items-center gap-1 font-medium" id="stat-top-user-usage">۰ GB مصرف شده</span>
+        <div class="space-y-0.5 min-w-0 flex-1">
+            <div class="text-sm sm:text-lg font-bold text-teal-400 transition-all truncate max-w-[120px] sm:max-w-[150px]" id="stat-top-user">-</div>
+            <span class="text-[10px] text-teal-500/70" id="stat-top-user-usage">۰ GB مصرف شده</span>
         </div>
     </div>
 </div>
 
-        <div id="loading-state" class="text-center py-8 sm:py-12">
-            <span class="text-gray-500">در حال بارگذاری کاربران...</span>
+        <div id="loading-state" class="text-center py-8">
+            <span class="text-slate-500">در حال بارگذاری کاربران...</span>
         </div>
 
-        <div class="mb-4 sm:mb-6 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-between items-center bg-royal-card/80 backdrop-blur-sm border border-royal-border rounded-2xl p-3 sm:p-4 shadow-[0_0_20px_rgba(124,58,237,0.06)]">
+        <div class="mb-4 flex flex-col sm:flex-row gap-2.5 sm:gap-3 justify-between items-center bg-slate-900/50 glass border border-slate-800/50 rounded-xl p-3">
             <div class="relative w-full sm:w-72">
-                <input type="text" id="search-input" oninput="filterAndRenderUsers()" placeholder="جستجوی نام کاربری یا UUID..." class="w-full pl-3 pr-9 py-2.5 bg-royal-input border border-royal-border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-sm text-gray-100 placeholder-gray-500">
-                <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-gray-500">
+                <input type="text" id="search-input" oninput="filterAndRenderUsers()" placeholder="جستجوی نام کاربری یا UUID..." class="w-full pl-3 pr-9 py-2 bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 text-sm text-slate-100 placeholder-slate-500">
+                <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-slate-500">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </div>
             </div>
-            <div class="flex flex-wrap items-center gap-2 sm:gap-3 w-full sm:w-auto">
-                <select id="filter-status" onchange="filterAndRenderUsers()" class="flex-1 sm:flex-none px-3 py-2.5 bg-royal-input border border-royal-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-300 cursor-pointer">
-                    <option value="all">🔍 همه وضعیت‌ها</option>
-                    <option value="active">✅ فعال</option>
-                    <option value="inactive">❌ غیرفعال</option>
-                    <option value="online">⚡ آنلاین</option>
-                    <option value="offline">💤 آفلاین</option>
-                    <option value="expired">⏳ منقضی شده</option>
+            <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+                <select id="filter-status" onchange="filterAndRenderUsers()" class="flex-1 sm:flex-none px-3 py-2 bg-slate-800/50 border border-slate-700/50 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/40 text-slate-300 cursor-pointer">
+                    <option value="all">همه وضعیت‌ها</option>
+                    <option value="active">فعال</option>
+                    <option value="inactive">غیرفعال</option>
+                    <option value="online">آنلاین</option>
+                    <option value="offline">آفلاین</option>
+                    <option value="expired">منقضی شده</option>
                 </select>
-                <select id="sort-users" onchange="filterAndRenderUsers()" class="flex-1 sm:flex-none px-3 py-2.5 bg-royal-input border border-royal-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-300 cursor-pointer">
-                    <option value="newest">📅 جدیدترین</option>
-                    <option value="name">🔤 نام کاربری</option>
-                    <option value="usage-desc">📊 بیشترین مصرف</option>
-                    <option value="usage-asc">📈 کمترین مصرف</option>
-                    <option value="expiry-asc">⏳ کمترین زمان</option>
+                <select id="sort-users" onchange="filterAndRenderUsers()" class="flex-1 sm:flex-none px-3 py-2 bg-slate-800/50 border border-slate-700/50 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/40 text-slate-300 cursor-pointer">
+                    <option value="newest">جدیدترین</option>
+                    <option value="name">نام کاربری</option>
+                    <option value="usage-desc">بیشترین مصرف</option>
+                    <option value="usage-asc">کمترین مصرف</option>
+                    <option value="expiry-asc">کمترین زمان</option>
                 </select>
             </div>
         </div>
 
-		<div class="flex items-center justify-between mb-3 sm:mb-4">
-			<h2 class="text-base sm:text-lg font-bold text-gray-200">لیست کاربران</h2>
-			<button onclick="openCreateModal()" class="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-purple-700 to-purple-900 hover:from-purple-600 hover:to-purple-800 text-white rounded-xl shadow-lg shadow-purple-900/50 hover:shadow-purple-800/60 hover:scale-105 transition-all duration-300 border border-purple-500/40">
-				<svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
+		<div class="flex items-center justify-between mb-3">
+			<h2 class="text-sm sm:text-base font-bold text-slate-200">لیست کاربران</h2>
+			<button onclick="openCreateModal()" class="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 bg-gradient-to-r from-teal-600 to-sky-600 hover:from-teal-500 hover:to-sky-500 text-white rounded-xl shadow-lg shadow-teal-900/30 hover:scale-105 transition-all duration-300">
+				<svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
 			</button>
 		</div>
         
-        <div id="users-table-container" class="hidden overflow-x-auto border border-royal-border rounded-xl bg-royal-card/80 backdrop-blur-sm">
+        <div id="users-table-container" class="hidden overflow-x-auto border border-slate-800/60 rounded-xl bg-slate-900/50 glass">
             <table class="w-full text-right border-collapse">
                 <thead>
-                    <tr class="bg-royal-input border-b border-royal-border text-[10px] sm:text-xs text-gray-400 text-center">
-                        <th class="p-2 sm:p-4">نام کاربر و عملیات</th>
-                        <th class="p-1 sm:p-2 border-r border-royal-border">لینک ساب</th>
-                        <th class="p-1 sm:p-2 border-r border-royal-border">پروتکل</th>
-                        <th class="p-1 sm:p-2 border-r border-royal-border">پورت</th>
-                        <th class="p-1 sm:p-2 border-r border-royal-border">وضعیت حجم</th>
-                        <th class="p-1 sm:p-2 border-r border-royal-border">وضعیت ریکوئست</th>
-                        <th class="p-1 sm:p-2 border-r border-royal-border">وضعیت زمان</th>
-                        <th class="p-1 sm:p-2 border-r border-royal-border">کاربران آنلاین</th>
-                        <th class="p-1 sm:p-2 border-r border-royal-border">تاریخ ساخت</th>
+                    <tr class="bg-slate-800/50 border-b border-slate-800 text-[10px] sm:text-xs text-slate-400 text-center">
+                        <th class="p-2 sm:p-3">نام کاربر و عملیات</th>
+                        <th class="p-1 sm:p-2 border-r border-slate-800">لینک ساب</th>
+                        <th class="p-1 sm:p-2 border-r border-slate-800">پروتکل</th>
+                        <th class="p-1 sm:p-2 border-r border-slate-800">پورت</th>
+                        <th class="p-1 sm:p-2 border-r border-slate-800">وضعیت حجم</th>
+                        <th class="p-1 sm:p-2 border-r border-slate-800">وضعیت ریکوئست</th>
+                        <th class="p-1 sm:p-2 border-r border-slate-800">وضعیت زمان</th>
+                        <th class="p-1 sm:p-2 border-r border-slate-800">کاربران آنلاین</th>
+                        <th class="p-1 sm:p-2 border-r border-slate-800">تاریخ ساخت</th>
                     </tr>
                 </thead>
-                <tbody id="users-tbody" class="divide-y divide-royal-border text-xs sm:text-sm"></tbody>
+                <tbody id="users-tbody" class="divide-y divide-slate-800 text-xs sm:text-sm"></tbody>
             </table>
         </div>
 
-        <div id="empty-state" class="hidden p-6 sm:p-8 border border-dashed border-royal-border rounded-2xl text-center">
-            <p class="text-gray-500">کاربری وجود ندارد. برای ساخت اولین کاربر روی دکمه + کلیک کنید.</p>
+        <div id="empty-state" class="hidden p-6 border border-dashed border-slate-700/50 rounded-xl text-center">
+            <p class="text-slate-500">کاربری وجود ندارد. برای ساخت اولین کاربر روی دکمه + کلیک کنید.</p>
         </div>
     </main>
-<div id="path-warning-modal" class="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300 ease-out">
-    <div class="w-full max-w-md bg-royal-card/95 backdrop-blur-xl border border-purple-500/40 rounded-3xl shadow-[0_0_60px_rgba(124,58,237,0.2)] overflow-hidden p-5 sm:p-6 text-center transition-all transform duration-300 opacity-0 scale-95 ease-out">
-        <div class="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-amber-900/30 text-amber-400 mb-4 border border-amber-500/20 shadow-[0_0_20px_rgba(245,158,11,0.1)]">
-            <svg class="w-7 h-7 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+<div id="path-warning-modal" class="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
+    <div class="w-full max-w-sm bg-slate-900/95 glass border border-slate-800/60 rounded-2xl shadow-2xl overflow-hidden p-5 text-center transition-all transform duration-300 opacity-0 scale-95">
+        <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-amber-900/20 text-amber-400 mb-3 border border-amber-800/30">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
         </div>
-        <h3 class="font-black text-lg sm:text-xl text-gray-100 mb-2">تغییر مسیر کانفیگ‌ها</h3>
-        <p class="text-xs sm:text-sm text-gray-400 mb-5 sm:mb-6 leading-relaxed font-medium">
+        <h3 class="font-bold text-base text-white mb-2">تغییر مسیر کانفیگ‌ها</h3>
+        <p class="text-xs text-slate-400 mb-5 leading-relaxed">
             به دلیل ارتقای امنیت و تغییر مسیر (Path) اتصال، کانفیگ‌های قبل از نسخه 1.3.4 غیرفعال شده‌اند. در صورت عدم اتصال لطفاً ساب خود را بروزرسانی کنید.
         </p>
-        <button onclick="closePathWarning()" class="w-full py-3 sm:py-3.5 bg-gradient-to-l from-amber-600 to-amber-800 hover:from-amber-500 hover:to-amber-700 text-white font-black rounded-xl text-sm transition duration-300 shadow-lg shadow-amber-900/50 border border-amber-500/40">
+        <button onclick="closePathWarning()" class="w-full py-2.5 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-bold rounded-xl text-xs transition duration-300 shadow-lg shadow-amber-900/30">
             متوجه شدم، کانفیگ‌های جدید را می‌گیرم 
         </button>
     </div>
 </div>
-<div id="usage-warning-modal" class="fixed inset-0 z-[80] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300 ease-out">
-    <div class="w-full max-w-md bg-royal-card/95 backdrop-blur-xl border border-orange-500/40 rounded-3xl shadow-[0_0_60px_rgba(124,58,237,0.2)] overflow-hidden p-5 sm:p-6 text-center transition-all transform duration-300 opacity-0 scale-95 ease-out">
-        <div class="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-orange-900/30 text-orange-400 mb-4 border border-orange-500/20">
-            <svg class="w-7 h-7 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+<div id="usage-warning-modal" class="fixed inset-0 z-[80] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
+    <div class="w-full max-w-sm bg-slate-900/95 glass border border-slate-800/60 rounded-2xl shadow-2xl overflow-hidden p-5 text-center transition-all transform duration-300 opacity-0 scale-95">
+        <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-orange-900/20 text-orange-400 mb-3 border border-orange-800/30">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
         </div>
-        <h3 class="font-black text-lg sm:text-xl text-gray-100 mb-2">هشدار محدودیت درخواست</h3>
-        <p class="text-xs sm:text-sm text-gray-400 mb-5 sm:mb-6 leading-relaxed font-medium">
+        <h3 class="font-bold text-base text-white mb-2">هشدار محدودیت درخواست</h3>
+        <p class="text-xs text-slate-400 mb-5 leading-relaxed">
             درخواست‌های روزانه کلودفلر شما از ۹۰,۰۰۰ عبور کرده است. در صورت عبور از محدودیت رایگان ۱۰۰,۰۰۰ درخواست، دسترسی به پنل و اتصالات تا ساعت ۳:۳۰ بامداد قطع خواهد شد.
         </p>
-        <button onclick="closeUsageWarning()" class="w-full py-3 sm:py-3.5 bg-gradient-to-l from-orange-600 to-orange-800 hover:from-orange-500 hover:to-orange-700 text-white font-black rounded-xl text-sm transition duration-300 shadow-lg shadow-orange-900/50 border border-orange-500/40">
+        <button onclick="closeUsageWarning()" class="w-full py-2.5 bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-500 hover:to-amber-500 text-white font-bold rounded-xl text-xs transition duration-300 shadow-lg shadow-orange-900/30">
             متوجه شدم
         </button>
     </div>
 </div>
-    <div id="user-modal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-200 ease-out">
-        <div id="user-modal-card" class="w-full max-w-xl bg-royal-card/95 backdrop-blur-xl border border-royal-border rounded-2xl shadow-[0_0_60px_rgba(124,58,237,0.15)] overflow-hidden transition-[opacity,transform] duration-200 opacity-0 scale-95 ease-out flex flex-col max-h-[90vh] transform-gpu" style="will-change: transform, opacity;">
-            <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-royal-border flex justify-between items-center bg-royal-input/50">
+    <div id="user-modal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-200">
+        <div id="user-modal-card" class="w-full max-w-xl bg-slate-900/95 glass border border-slate-800/60 rounded-2xl shadow-2xl overflow-hidden transition-[opacity,transform] duration-200 opacity-0 scale-95 flex flex-col max-h-[90vh]" style="will-change: transform, opacity;">
+            <div class="px-4 sm:px-5 py-3 border-b border-slate-800 flex justify-between items-center bg-slate-800/30">
                 <div class="flex items-center gap-2">
-                    <div class="w-2 h-2 rounded-full bg-purple-500 shadow-[0_0_8px_rgba(124,58,237,0.5)]"></div>
-                    <h3 id="modal-title" class="font-bold text-gray-100 text-sm sm:text-base">ایجاد کاربر جدید</h3>
+                    <div class="w-2 h-2 rounded-full bg-teal-500 shadow-[0_0_8px_rgba(20,184,166,0.5)]"></div>
+                    <h3 id="modal-title" class="font-bold text-white text-sm sm:text-base">ایجاد کاربر جدید</h3>
                 </div>
-                <button onclick="toggleModal(false)" class="p-1 rounded-lg hover:bg-royal-border text-gray-500 hover:text-gray-300 transition">
+                <button onclick="toggleModal(false)" class="p-1 rounded-lg hover:bg-slate-700/50 text-slate-500 hover:text-slate-300 transition">
                     <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
 
-            <form id="create-user-form" class="p-4 sm:p-6 space-y-4 sm:space-y-5 overflow-y-auto flex-1 overscroll-contain" style="-webkit-overflow-scrolling: touch; transform: translate3d(0,0,0); will-change: scroll-position, transform;" onsubmit="handleFormSubmit(event)">
-                <div class="space-y-4">
+            <form id="create-user-form" class="p-4 sm:p-5 space-y-4 overflow-y-auto flex-1 overscroll-contain" style="-webkit-overflow-scrolling: touch; transform: translate3d(0,0,0); will-change: scroll-position, transform;" onsubmit="handleFormSubmit(event)">
+                <div class="space-y-3">
                     <div>
-                        <label class="block text-[10px] sm:text-xs font-bold text-gray-400 mb-1.5 sm:mb-2 uppercase tracking-wider">نام کاربری</label>
+                        <label class="block text-[10px] sm:text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">نام کاربری</label>
                         <div class="relative">
-                            <span class="absolute inset-y-0 right-0 flex items-center pr-3.5 pointer-events-none text-gray-500">
-                                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                            <span class="absolute inset-y-0 right-0 flex items-center pr-3.5 pointer-events-none text-slate-500">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                             </span>
-                            <input type="text" id="input-name" placeholder="ali" class="w-full pl-3 pr-9 sm:pr-10 py-2.5 bg-royal-input border border-royal-border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 text-sm font-semibold text-gray-100 placeholder-gray-500 transition" required>
+                            <input type="text" id="input-name" placeholder="ali" class="w-full pl-3 pr-9 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 text-sm font-medium text-slate-100 placeholder-slate-500 transition" required>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
                         <div>
-                            <label class="block text-[9px] sm:text-xs font-bold text-gray-400 mb-1.5 sm:mb-2 uppercase tracking-wider">حجم (GB)</label>
-                            <div class="relative">
-                                <input type="number" id="input-limit" min="0" step="any" placeholder="نامحدود" class="w-full px-3 py-2.5 bg-royal-input border border-royal-border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 text-sm font-semibold text-gray-100 placeholder-gray-500 transition text-center">
-                            </div>
+                            <label class="block text-[9px] sm:text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">حجم (GB)</label>
+                            <input type="number" id="input-limit" min="0" step="any" placeholder="نامحدود" class="w-full px-3 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 text-sm font-medium text-slate-100 placeholder-slate-500 transition text-center">
                         </div>
                         <div>
-                            <label class="block text-[9px] sm:text-xs font-bold text-gray-400 mb-1.5 sm:mb-2 uppercase tracking-wider">اعتبار (روز)</label>
-                            <div class="relative">
-                                <input type="number" id="input-expiry" min="0" placeholder="نامحدود" class="w-full px-3 py-2.5 bg-royal-input border border-royal-border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 text-sm font-semibold text-gray-100 placeholder-gray-500 transition text-center">
-                            </div>
+                            <label class="block text-[9px] sm:text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">اعتبار (روز)</label>
+                            <input type="number" id="input-expiry" min="0" placeholder="نامحدود" class="w-full px-3 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 text-sm font-medium text-slate-100 placeholder-slate-500 transition text-center">
                         </div>
                         <div>
-                            <label class="block text-[9px] sm:text-xs font-bold text-gray-400 mb-1.5 sm:mb-2 uppercase tracking-wider">سقف ریکوئست</label>
-                            <div class="relative">
-                                <input type="number" id="input-req-limit" min="0" placeholder="نامحدود" class="w-full px-3 py-2.5 bg-royal-input border border-royal-border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 text-sm font-semibold text-gray-100 placeholder-gray-500 transition text-center">
-                            </div>
+                            <label class="block text-[9px] sm:text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">سقف ریکوئست</label>
+                            <input type="number" id="input-req-limit" min="0" placeholder="نامحدود" class="w-full px-3 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 text-sm font-medium text-slate-100 placeholder-slate-500 transition text-center">
                         </div>
                         <div>
-                            <label class="block text-[9px] sm:text-xs font-bold text-gray-400 mb-1.5 sm:mb-2 uppercase tracking-wider">کاربر همزمان</label>
-                            <div class="relative">
-                                <input type="number" id="input-max-connections" min="0" placeholder="نامحدود" class="w-full px-3 py-2.5 bg-royal-input border border-royal-border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 text-sm font-semibold text-gray-100 placeholder-gray-500 transition text-center">
+                            <label class="block text-[9px] sm:text-xs font-semibold text-slate-400 mb-1 uppercase tracking-wider">کاربر همزمان</label>
+                            <input type="number" id="input-max-connections" min="0" placeholder="نامحدود" class="w-full px-3 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 text-sm font-medium text-slate-100 placeholder-slate-500 transition text-center">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-3 border-t border-slate-800">
+                    <label class="block text-[10px] sm:text-xs font-semibold text-slate-400 mb-2 uppercase tracking-wider">پورت‌های اتصال</label>
+                    <div class="space-y-2">
+                        <div class="p-3 bg-slate-800/30 border border-slate-700/50 rounded-xl">
+                            <div class="flex items-center gap-1.5 mb-2">
+                                <span class="flex h-2 w-2 rounded-full bg-teal-500"></span>
+                                <span class="text-[10px] sm:text-xs font-semibold text-teal-400">پورت‌های امن (TLS)</span>
+                            </div>
+                            <div class="grid grid-cols-3 sm:grid-cols-4 gap-1.5" id="tls-ports-list">
+                            </div>
+                        </div>
+
+                        <div class="p-3 bg-slate-800/30 border border-slate-700/50 rounded-xl">
+                            <div class="flex items-center gap-1.5 mb-2">
+                                <span class="flex h-2 w-2 rounded-full bg-amber-500"></span>
+                                <span class="text-[10px] sm:text-xs font-semibold text-amber-400">پورت‌های معمولی (Non-TLS)</span>
+                            </div>
+                            <div class="grid grid-cols-3 sm:grid-cols-4 gap-1.5" id="nontls-ports-list">
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="pt-3 sm:pt-4 border-t border-royal-border">
-                    <label class="block text-[10px] sm:text-xs font-bold text-gray-400 mb-2 sm:mb-3 uppercase tracking-wider">پورت‌های اتصال</label>
-                    <div class="space-y-3">
-                        <div class="p-3 sm:p-4 bg-royal-input/50 border border-royal-border rounded-2xl">
-                            <div class="flex items-center gap-1.5 mb-2 sm:mb-3">
-                                <span class="flex h-2 w-2 rounded-full bg-purple-500 shadow-[0_0_8px_rgba(124,58,237,0.5)]"></span>
-                                <span class="text-[10px] sm:text-xs font-bold text-purple-400">پورت‌های امن (TLS)</span>
-                            </div>
-                            <div class="grid grid-cols-3 sm:grid-cols-4 gap-1.5 sm:gap-2" id="tls-ports-list">
-                            </div>
-                        </div>
-
-                        <div class="p-3 sm:p-4 bg-royal-input/50 border border-royal-border rounded-2xl">
-                            <div class="flex items-center gap-1.5 mb-2 sm:mb-3">
-                                <span class="flex h-2 w-2 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)]"></span>
-                                <span class="text-[10px] sm:text-xs font-bold text-amber-400">پورت‌های معمولی (Non-TLS)</span>
-                            </div>
-                            <div class="grid grid-cols-3 sm:grid-cols-4 gap-1.5 sm:gap-2" id="nontls-ports-list">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pt-3 sm:pt-4 border-t border-royal-border space-y-3 sm:space-y-4">
+                <div class="pt-3 border-t border-slate-800 space-y-3">
 					<div>
-    					<div class="flex items-center justify-between mb-1.5 sm:mb-2">
-        					<label class="block text-[10px] sm:text-xs font-bold text-gray-400 uppercase tracking-wider">آیپی تمیز (اختیاری)</label>
-        					<button type="button" onclick="openIpSelectorModal()" class="px-2 py-0.5 sm:px-2.5 sm:py-1 bg-purple-900/40 border border-purple-500/30 text-purple-400 hover:bg-purple-800/50 rounded-lg text-[10px] sm:text-xs font-bold transition">مخزن آیپی</button>
+    					<div class="flex items-center justify-between mb-1.5">
+        					<label class="block text-[10px] sm:text-xs font-semibold text-slate-400 uppercase tracking-wider">آیپی تمیز (اختیاری)</label>
+        					<button type="button" onclick="openIpSelectorModal()" class="px-2 py-0.5 bg-slate-800/60 border border-slate-700/50 text-slate-400 hover:bg-slate-700/60 rounded-lg text-[10px] font-medium transition">مخزن آیپی</button>
     					</div>
-    					<textarea id="input-ips" rows="2" placeholder="104.16.0.1" class="w-full px-3 py-2 bg-royal-input border border-royal-border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 text-xs font-mono text-gray-100 placeholder-gray-500 transition resize-none"></textarea>
+    					<textarea id="input-ips" rows="2" placeholder="104.16.0.1" class="w-full px-3 py-2 bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 text-xs font-mono text-slate-100 placeholder-slate-500 transition resize-none"></textarea>
 					</div>
 
                     <div>
-                        <label class="block text-[10px] sm:text-xs font-bold text-gray-400 mb-1.5 sm:mb-2 uppercase tracking-wider">اثر انگشت مرورگر</label>
+                        <label class="block text-[10px] sm:text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">اثر انگشت مرورگر</label>
                         <div class="relative">
-                            <select id="fingerprint-select" class="w-full px-3 py-2.5 bg-royal-input border border-royal-border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/50 text-xs sm:text-sm font-semibold text-gray-300 cursor-pointer appearance-none">
-                                <option value="chrome">🌐 Chrome</option>
-                                <option value="firefox">🦊 Firefox</option>
-                                <option value="safari">🧭 Safari</option>
-                                <option value="ios" selected>📱 iOS Device (پیش‌فرض)</option>
-                                <option value="android">🤖 Android Device</option>
-                                <option value="edge">🌀 Microsoft Edge</option>
-                                <option value="360">🔒 360 Browser</option>
-                                <option value="qq">💬 QQ Browser</option>
-                                <option value="random">🎲 Random</option>
-                                <option value="randomized">🎭 Randomized</option>
+                            <select id="fingerprint-select" class="w-full px-3 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 text-xs sm:text-sm font-medium text-slate-300 cursor-pointer appearance-none">
+                                <option value="chrome">Chrome</option>
+                                <option value="firefox">Firefox</option>
+                                <option value="safari">Safari</option>
+                                <option value="ios" selected>iOS Device (پیش‌فرض)</option>
+                                <option value="android">Android Device</option>
+                                <option value="edge">Microsoft Edge</option>
+                                <option value="360">360 Browser</option>
+                                <option value="qq">QQ Browser</option>
+                                <option value="random">Random</option>
+                                <option value="randomized">Randomized</option>
                             </select>
-                            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+                            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500">
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="pt-3 sm:pt-4 flex gap-2 sm:gap-3">
-                    <button type="button" onclick="toggleModal(false)" class="flex-1 py-2.5 sm:py-3 bg-royal-input border border-royal-border hover:bg-royal-border text-gray-300 font-bold rounded-xl text-xs sm:text-sm transition duration-200">انصراف</button>
-                    <button type="submit" id="submit-btn" class="flex-1 py-2.5 sm:py-3 bg-gradient-to-l from-purple-700 to-purple-900 hover:from-purple-600 hover:to-purple-800 text-white font-bold rounded-xl text-xs sm:text-sm transition-all duration-200 shadow-lg shadow-purple-900/40 border border-purple-500/40">ایجاد کاربر</button>
+                <div class="pt-3 flex gap-2 sm:gap-3">
+                    <button type="button" onclick="toggleModal(false)" class="flex-1 py-2.5 bg-slate-800/50 border border-slate-700/50 hover:bg-slate-700/50 text-slate-300 font-medium rounded-xl text-xs transition duration-200">انصراف</button>
+                    <button type="submit" id="submit-btn" class="flex-1 py-2.5 bg-gradient-to-r from-teal-600 to-sky-600 hover:from-teal-500 hover:to-sky-500 text-white font-bold rounded-xl text-xs transition-all duration-200 shadow-lg shadow-teal-900/30">ایجاد کاربر</button>
                 </div>
             </form>
         </div>
     </div>
-<div id="ip-selector-modal" class="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300 ease-out">
-    <div class="w-full max-w-sm bg-royal-card/95 backdrop-blur-xl border border-royal-border rounded-2xl shadow-[0_0_40px_rgba(124,58,237,0.12)] overflow-hidden transition-all transform duration-300 opacity-0 scale-95 ease-out">
-        <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-royal-border flex justify-between items-center bg-royal-input/50">
-            <h3 class="font-bold text-gray-100 text-sm">مخزن آیپی تمیز</h3>
-            <button type="button" onclick="toggleIpSelectorModal(false)" class="text-gray-500 hover:text-gray-300">
+<div id="ip-selector-modal" class="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
+    <div class="w-full max-w-sm bg-slate-900/95 glass border border-slate-800/60 rounded-2xl shadow-2xl overflow-hidden transition-all transform duration-300 opacity-0 scale-95">
+        <div class="px-4 sm:px-5 py-3 border-b border-slate-800 flex justify-between items-center bg-slate-800/30">
+            <h3 class="font-bold text-slate-200 text-sm">مخزن آیپی تمیز</h3>
+            <button type="button" onclick="toggleIpSelectorModal(false)" class="text-slate-500 hover:text-slate-300">
                 <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
         </div>
-        <div class="p-4 sm:p-6 space-y-4">
-            <div id="ip-loading-state" class="text-center text-sm text-gray-500 hidden">
+        <div class="p-4 sm:p-5 space-y-4">
+            <div id="ip-loading-state" class="text-center text-sm text-slate-500 hidden">
                 Loading IPs...
             </div>
             <div id="ip-selection-form" class="space-y-4">
                 <div>
-                    <label class="block text-[10px] sm:text-xs font-medium mb-1.5 text-gray-400">اوپراتور</label>
-                    <select id="ip-operator-select" class="w-full px-3 py-2.5 bg-royal-input border border-royal-border rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-300 cursor-pointer">
-                        <option value="all">All</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-[10px] sm:text-xs font-medium mb-1.5 text-gray-400">تعداد</label>
-                    <input type="number" id="ip-count-input" min="1" value="10" class="w-full px-3 py-2.5 bg-royal-input border border-royal-border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-xs font-mono text-center text-gray-100">
-                </div>
-            </div>
-            <div class="pt-3 sm:pt-4 flex gap-3">
-                <button type="button" onclick="toggleIpSelectorModal(false)" class="flex-1 py-2 bg-royal-input border border-royal-border hover:bg-royal-border font-bold rounded-xl text-xs transition text-gray-300">لغو</button>
-                <button type="button" onclick="applySelectedIps()" class="flex-1 py-2 bg-gradient-to-l from-purple-700 to-purple-900 hover:from-purple-600 hover:to-purple-800 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-purple-900/40 border border-purple-500/40">دریافت</button>
-            </div>
-        </div>
-    </div>
-</div>
-    <div id="qr-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300 ease-out">
-        <div class="w-full max-w-sm bg-royal-card/95 backdrop-blur-xl border border-royal-border rounded-2xl shadow-[0_0_40px_rgba(124,58,237,0.12)] overflow-hidden p-5 sm:p-6 text-center transition-all transform duration-300 opacity-0 scale-95 ease-out">
-            <h3 id="qr-modal-title" class="font-bold text-gray-100 mb-3 sm:mb-4">اسکن کد QR</h3>
-            <div class="bg-royal-input p-3 rounded-xl inline-block mb-3 sm:mb-4 border border-royal-border">
-                <div id="qrcode-box" class="flex justify-center items-center w-40 h-40 sm:w-48 sm:h-48 mx-auto"></div>
-            </div>
-            <button onclick="toggleQRModal(false)" class="w-full py-2 bg-royal-input border border-royal-border hover:bg-royal-border font-bold rounded-xl text-xs sm:text-sm transition text-gray-300">بستن</button>
-        </div>
-    </div>
-
-    <div id="settings-modal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300 ease-out">
-        <div class="w-full max-w-md bg-royal-card/95 backdrop-blur-xl border border-royal-border rounded-2xl shadow-[0_0_50px_rgba(124,58,237,0.15)] overflow-hidden transition-all transform duration-300 opacity-0 scale-95 ease-out">
-            <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-royal-border flex justify-between items-center bg-royal-input/50">
-                <h3 class="font-bold text-gray-100 text-sm sm:text-base">تنظیمات پنل</h3>
-                <button onclick="toggleSettingsModal(false)" class="text-gray-500 hover:text-gray-300">
-                    <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
-            </div>
-            <div class="p-4 sm:p-6 space-y-3 sm:space-y-4">
-                <div>
-                    <label class="block text-xs sm:text-sm font-medium mb-1.5 text-gray-400">موقعیت جغرافیایی پروکسی</label>
+                    <label class="block text-[10px] sm:text-xs font-semibold mb-1.5 text-slate-400 uppercase tracking-wider">اوپراتور</label>
                     <div class="relative">
-                        <select id="location-select" class="w-full pl-8 pr-3 py-2.5 bg-royal-input border border-royal-border rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-300 cursor-pointer appearance-none">
-                            <option value="">در حال بارگذاری...</option>
+                        <select id="ip-operator-select" class="w-full px-3 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-teal-500/40 text-slate-300 cursor-pointer appearance-none">
+                            <option value="all">All</option>
                         </select>
-                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500">
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                         </div>
                     </div>
                 </div>
-                <div class="grid grid-cols-2 gap-3 sm:gap-4 pt-2 sm:pt-3 border-t border-royal-border">
-                    <div>
-                        <label class="block text-xs sm:text-sm font-medium mb-1.5 text-gray-400">Fragment Length</label>
-                        <input type="text" id="frag-length" placeholder="20-30" class="w-full px-3 py-2 sm:py-2.5 bg-royal-input border border-royal-border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-xs sm:text-sm text-center font-mono text-gray-100" dir="ltr">
-                    </div>
-                    <div>
-                        <label class="block text-xs sm:text-sm font-medium mb-1.5 text-gray-400">Fragment Interval</label>
-                        <input type="text" id="frag-interval" placeholder="1-2" class="w-full px-3 py-2 sm:py-2.5 bg-royal-input border border-royal-border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-xs sm:text-sm text-center font-mono text-gray-100" dir="ltr">
-                    </div>
+                <div>
+                    <label class="block text-[10px] sm:text-xs font-semibold mb-1.5 text-slate-400 uppercase tracking-wider">تعداد</label>
+                    <input type="number" id="ip-count-input" min="1" value="10" class="w-full px-3 py-2.5 text-center bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 text-xs font-mono text-slate-100">
                 </div>
-                <div class="pt-3 sm:pt-4 border-t border-royal-border">
-                    <h4 class="text-xs sm:text-sm font-bold mb-2 sm:mb-3 text-gray-200">تغییر رمز عبور مدیریت</h4>
-                    <div class="space-y-2 sm:space-y-3">
-                        <div>
-                            <label class="block text-[10px] sm:text-[11px] text-gray-500 font-medium mb-1">رمز عبور فعلی</label>
-                            <input type="password" id="change-pwd-current" class="w-full px-3 py-2 sm:py-2 bg-royal-input border border-royal-border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-xs font-mono text-center text-gray-100">
-                        </div>
-                        <div>
-                            <label class="block text-[10px] sm:text-[11px] text-gray-500 font-medium mb-1">رمز عبور جدید</label>
-                            <input type="password" id="change-pwd-new" class="w-full px-3 py-2 sm:py-2 bg-royal-input border border-royal-border rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-xs font-mono text-center text-gray-100">
-                        </div>
-                        <button type="button" onclick="changeAdminPassword()" id="change-pwd-btn" class="w-full py-2 sm:py-2 bg-gradient-to-l from-purple-700 to-purple-900 hover:from-purple-600 hover:to-purple-800 text-white font-semibold rounded-xl text-xs transition-all shadow-lg shadow-purple-900/40 border border-purple-500/40">تغییر رمز عبور</button>
-                    </div>
-                </div>
-                <div class="pt-3 sm:pt-4 flex gap-2 sm:gap-3">
-                    <button type="button" onclick="toggleSettingsModal(false)" class="flex-1 py-2 sm:py-2 bg-royal-input border border-royal-border hover:bg-royal-border font-bold rounded-xl text-xs sm:text-sm transition text-gray-300">انصراف</button>
-                    <button type="button" onclick="saveSettings()" id="save-settings-btn" class="flex-1 py-2 sm:py-2 bg-gradient-to-l from-purple-700 to-purple-900 hover:from-purple-600 hover:to-purple-800 text-white font-bold rounded-xl text-xs sm:text-sm transition-all shadow-lg shadow-purple-900/40 border border-purple-500/40">ذخیره تنظیمات</button>
-                </div>
+            </div>
+            <div class="pt-3 flex gap-3">
+                <button type="button" onclick="toggleIpSelectorModal(false)" class="flex-1 py-2 bg-slate-800/50 border border-slate-700/50 hover:bg-slate-700/50 font-medium rounded-xl text-xs transition text-slate-300">لغو</button>
+                <button type="button" onclick="applySelectedIps()" class="flex-1 py-2 bg-gradient-to-r from-teal-600 to-sky-600 hover:from-teal-500 hover:to-sky-500 text-white font-bold rounded-xl text-xs transition shadow-lg shadow-teal-900/30">دریافت</button>
             </div>
         </div>
     </div>
+</div>
+<div id="qr-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
+    <div class="w-full max-w-sm bg-slate-900/95 glass border border-slate-800/60 rounded-2xl shadow-2xl overflow-hidden p-5 sm:p-6 text-center transition-all transform duration-300 opacity-0 scale-95">
+        <h3 id="qr-modal-title" class="font-bold text-slate-200 mb-3 sm:mb-4 text-base">اسکن کد QR</h3>
+        <div class="bg-slate-800/50 p-3 rounded-xl inline-block mb-3 sm:mb-4 border border-slate-700/50">
+            <div id="qrcode-box" class="flex justify-center items-center w-40 h-40 sm:w-48 sm:h-48 mx-auto"></div>
+        </div>
+        <button onclick="toggleQRModal(false)" class="w-full py-2 bg-slate-800/50 border border-slate-700/50 hover:bg-slate-700/50 font-medium rounded-xl text-xs transition text-slate-300">بستن</button>
+    </div>
+</div>
+
+<div id="settings-modal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/80 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
+    <div class="w-full max-w-md bg-slate-900/95 glass border border-slate-800/60 rounded-2xl shadow-2xl overflow-hidden transition-all transform duration-300 opacity-0 scale-95">
+        <div class="px-4 sm:px-5 py-3 border-b border-slate-800 flex justify-between items-center bg-slate-800/30">
+            <div class="flex items-center gap-2">
+                <div class="w-2 h-2 rounded-full bg-sky-500 shadow-[0_0_8px_rgba(14,165,233,0.5)]"></div>
+                <h3 class="font-bold text-slate-200 text-sm sm:text-base">تنظیمات پنل</h3>
+            </div>
+            <button onclick="toggleSettingsModal(false)" class="p-1 rounded-lg hover:bg-slate-700/50 text-slate-500 hover:text-slate-300 transition">
+                <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        <div class="p-4 sm:p-5 space-y-4">
+            <div>
+                <label class="block text-[10px] sm:text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">موقعیت جغرافیایی پروکسی</label>
+                <div class="relative">
+                    <select id="location-select" class="w-full px-3 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/40 text-slate-300 cursor-pointer appearance-none">
+                        <option value="">در حال بارگذاری...</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-3 pt-2 border-t border-slate-800">
+                <div>
+                    <label class="block text-[10px] sm:text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">Fragment Length</label>
+                    <input type="text" id="frag-length" placeholder="20-30" class="w-full px-3 py-2 sm:py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 text-xs sm:text-sm text-center font-mono text-slate-100" dir="ltr">
+                </div>
+                <div>
+                    <label class="block text-[10px] sm:text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wider">Fragment Interval</label>
+                    <input type="text" id="frag-interval" placeholder="1-2" class="w-full px-3 py-2 sm:py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 text-xs sm:text-sm text-center font-mono text-slate-100" dir="ltr">
+                </div>
+            </div>
+            <div class="pt-3 border-t border-slate-800">
+                <h4 class="text-xs sm:text-sm font-bold mb-3 text-slate-200">تغییر رمز عبور مدیریت</h4>
+                <div class="space-y-2">
+                    <div>
+                        <label class="block text-[10px] text-slate-500 font-medium mb-1">رمز عبور فعلی</label>
+                        <input type="password" id="change-pwd-current" class="w-full px-3 py-2 sm:py-2 bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 text-xs font-mono text-center text-slate-100">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] text-slate-500 font-medium mb-1">رمز عبور جدید</label>
+                        <input type="password" id="change-pwd-new" class="w-full px-3 py-2 sm:py-2 bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 text-xs font-mono text-center text-slate-100">
+                    </div>
+                    <button type="button" onclick="changeAdminPassword()" id="change-pwd-btn" class="w-full py-2 sm:py-2 bg-gradient-to-r from-teal-600 to-sky-600 hover:from-teal-500 hover:to-sky-500 text-white font-semibold rounded-xl text-xs transition-all shadow-lg shadow-teal-900/30">تغییر رمز عبور</button>
+                </div>
+            </div>
+            <div class="pt-3 flex gap-2 sm:gap-3">
+                <button type="button" onclick="toggleSettingsModal(false)" class="flex-1 py-2 sm:py-2 bg-slate-800/50 border border-slate-700/50 hover:bg-slate-700/50 font-medium rounded-xl text-xs sm:text-sm transition text-slate-300">انصراف</button>
+                <button type="button" onclick="saveSettings()" id="save-settings-btn" class="flex-1 py-2 sm:py-2 bg-gradient-to-r from-teal-600 to-sky-600 hover:from-teal-500 hover:to-sky-500 text-white font-bold rounded-xl text-xs sm:text-sm transition-all shadow-lg shadow-teal-900/30">ذخیره تنظیمات</button>
+            </div>
+        </div>
+    </div>
+</div>
 
     <script>
         window.globalFragLen = "20-30";
@@ -2598,9 +2569,9 @@ const HTML_TEMPLATES = {
                 const isCheckedDefault = port === '443' ? 'checked' : '';
                 return '<label class="relative cursor-pointer">' +
                     '<input type="checkbox" name="ports" value="' + port + '" ' + isCheckedDefault + ' class="peer sr-only">' +
-                    '<div class="flex items-center justify-center gap-2 px-3 py-2 border border-royal-border rounded-xl text-xs font-semibold select-none transition-all duration-200 hover:bg-royal-border/50 text-gray-400 peer-checked:bg-purple-900/30 peer-checked:border-purple-500 peer-checked:text-purple-400 shadow-sm">' +
+                    '<div class="flex items-center justify-center gap-2 px-3 py-2 border border-slate-700/50 rounded-xl text-xs font-semibold select-none transition-all duration-200 hover:bg-slate-700/50 text-slate-400 peer-checked:bg-teal-900/30 peer-checked:border-teal-500/60 peer-checked:text-teal-400 shadow-sm">' +
                         '<span>' + port + '</span>' +
-                        '<svg class="w-4 h-4 hidden peer-checked:block text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>' +
+                        '<svg class="w-4 h-4 hidden peer-checked:block text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>' +
                     '</div>' +
                 '</label>';
             }).join('');
@@ -2609,7 +2580,7 @@ const HTML_TEMPLATES = {
                 const isCheckedDefault = port === '80' ? 'checked' : '';
                 return '<label class="relative cursor-pointer">' +
                     '<input type="checkbox" name="ports" value="' + port + '" ' + isCheckedDefault + ' class="peer sr-only">' +
-                    '<div class="flex items-center justify-center gap-2 px-3 py-2 border border-royal-border rounded-xl text-xs font-semibold select-none transition-all duration-200 hover:bg-royal-border/50 text-gray-400 peer-checked:bg-amber-900/30 peer-checked:border-amber-500 peer-checked:text-amber-400 shadow-sm">' +
+                    '<div class="flex items-center justify-center gap-2 px-3 py-2 border border-slate-700/50 rounded-xl text-xs font-semibold select-none transition-all duration-200 hover:bg-slate-700/50 text-slate-400 peer-checked:bg-amber-900/30 peer-checked:border-amber-500/60 peer-checked:text-amber-400 shadow-sm">' +
                         '<span>' + port + '</span>' +
                         '<svg class="w-4 h-4 hidden peer-checked:block text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>' +
                     '</div>' +
@@ -2764,7 +2735,7 @@ const HTML_TEMPLATES = {
                     }
                 } else {
                     if (reqCard) {
-                        reqCard.className = "bg-royal-card/80 backdrop-blur-sm border border-royal-border rounded-2xl p-4 sm:p-5 shadow-[0_0_30px_rgba(124,58,237,0.08)] flex flex-col justify-between hover:shadow-[0_0_40px_rgba(124,58,237,0.15)] hover:border-orange-500/40 transition-all duration-300 relative overflow-hidden group";
+                        reqCard.className = "bg-slate-900/60 backdrop-blur-sm border border-slate-800/60 rounded-2xl p-4 sm:p-5 shadow-sm flex flex-col justify-between hover:border-sky-500/40 hover:shadow-[0_0_20px_rgba(14,165,233,0.08)] transition-all duration-300 relative overflow-hidden group";
                     }
                     if (warningBtn) {
                         warningBtn.classList.add('hidden');
@@ -3012,7 +2983,7 @@ const HTML_TEMPLATES = {
                                     '</div>' +
                                     '<div class="grid grid-cols-3 gap-1 w-full">' +
                                         '<button onclick="copyConfig(\\'' + encodeURIComponent(user.username) + '\\')" title="کپی کانفیگ" class="p-1.5 flex items-center justify-center bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-md transition shadow-sm"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg></button>' +
-                                        '<button onclick="copyJsonConfig(\\'' + encodeURIComponent(user.username) + '\\')" title="کپی JSON" class="p-1.5 flex items-center justify-center bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 hover:bg-purple-50 dark:hover:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-md transition shadow-sm"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg></button>' +
+                                        '<button onclick="copyJsonConfig(\\'' + encodeURIComponent(user.username) + '\\')" title="کپی JSON" class="p-1.5 flex items-center justify-center bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 hover:bg-sky-50 dark:hover:bg-sky-900/30 text-sky-600 dark:text-sky-400 rounded-md transition shadow-sm"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg></button>' +
                                         '<button onclick="showQR(\\'' + encodeURIComponent(user.username) + '\\')" title="کد QR" class="p-1.5 flex items-center justify-center bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 hover:bg-green-50 dark:hover:bg-green-900/30 text-green-600 dark:text-green-400 rounded-md transition shadow-sm"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg></button>' +
                                         '<button onclick="editUser(\\'' + encodeURIComponent(user.username) + '\\')" title="ویرایش" class="p-1.5 flex items-center justify-center bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 hover:bg-yellow-50 dark:hover:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400 rounded-md transition shadow-sm"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></button>' +
                                         '<button onclick="deleteUser(\\'' + encodeURIComponent(user.username) + '\\')" title="حذف" class="p-1.5 flex items-center justify-center bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 hover:bg-red-50 dark:hover:bg-red-950/20 text-red-600 dark:text-red-400 rounded-md transition shadow-sm"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button>' +
@@ -3032,11 +3003,11 @@ const HTML_TEMPLATES = {
 							            '</button>' +
 							        '</div>' +
 							        '<div class="flex gap-1">' +
-							            '<button onclick="copyJsonSubLink(\\'' + encodeURIComponent(user.username) + '\\')" class="flex-1 flex items-center justify-center gap-1.5 px-2 py-1.5 bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 hover:bg-purple-100 dark:hover:bg-purple-900/50 rounded-lg text-xs font-bold transition border border-purple-200 dark:border-purple-800">' +
+							            '<button onclick="copyJsonSubLink(\\'' + encodeURIComponent(user.username) + '\\')" class="flex-1 flex items-center justify-center gap-1.5 px-2 py-1.5 bg-teal-50 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 hover:bg-teal-100 dark:hover:bg-teal-900/50 rounded-lg text-xs font-bold transition border border-teal-200 dark:border-teal-800">' +
 							                '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>' +
 							                'ساب JSON' +
 							            '</button>' +
-							            '<button onclick="showSubQR(\\'' + encodeURIComponent(user.username) + '\\', \\'json\\')" title="QR ساب JSON" class="px-2 py-1.5 bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 hover:bg-purple-100 dark:hover:bg-purple-900/50 rounded-lg text-xs font-bold transition border border-purple-200 dark:border-purple-800">' +
+							            '<button onclick="showSubQR(\\'' + encodeURIComponent(user.username) + '\\', \\'json\\')" title="QR ساب JSON" class="px-2 py-1.5 bg-teal-50 dark:bg-teal-900/30 text-teal-600 dark:text-teal-400 hover:bg-teal-100 dark:hover:bg-teal-900/50 rounded-lg text-xs font-bold transition border border-teal-200 dark:border-teal-800">' +
 							                '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm14 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>' +
 							            '</button>' +
 							        '</div>' +
@@ -3693,7 +3664,7 @@ function editUser(encodedUsername) {
                 window.location.reload();
             }
         }
-const CURRENT_VERSION = '1.4.3';
+const CURRENT_VERSION = '1.0.0';
 const UPDATE_FIX = "constsCURRENT_VERSION='d.d.d'";
 
 		async function checkForUpdates(isManual = false) {
@@ -3887,41 +3858,34 @@ document.addEventListener('DOMContentLoaded', () => {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>وضعیت اشتراک | کوروش اصلی</title>
+    <title>وضعیت اشتراک | کوروش</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
     <script>
         tailwind.config = {
             darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Vazirmatn', 'sans-serif'] },
-                    colors: { royal: { bg: '#0a0015', card: '#15082e', input: '#1e0a3a', border: '#3d1a6e' } }
-                }
-            }
+            theme: { extend: { fontFamily: { sans: ['Vazirmatn', 'sans-serif'] } } }
         }
     </script>
     <style>
         body { font-family: 'Vazirmatn', sans-serif; }
+        .glass { background: rgba(15,23,42,0.6); backdrop-filter: blur(12px); }
     </style>
 </head>
-<body class="bg-royal-bg text-gray-100 min-h-screen flex flex-col items-center py-6 sm:py-12 px-3 sm:px-4 relative overflow-hidden">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col items-center py-6 sm:py-12 px-3 sm:px-4 relative overflow-hidden">
     <div class="fixed inset-0 overflow-hidden pointer-events-none">
-        <div class="absolute -top-48 -left-48 w-96 h-96 bg-purple-700/10 rounded-full blur-3xl"></div>
-        <div class="absolute -bottom-48 -right-48 w-96 h-96 bg-amber-600/5 rounded-full blur-3xl"></div>
+        <div class="absolute -top-48 -left-48 w-96 h-96 bg-teal-700/10 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-48 -right-48 w-96 h-96 bg-sky-600/5 rounded-full blur-3xl"></div>
     </div>
-    <div class="w-full max-w-xl bg-royal-card/80 backdrop-blur-xl border border-royal-border rounded-3xl shadow-[0_0_60px_rgba(124,58,237,0.12)] p-5 sm:p-8 relative overflow-hidden z-10">
-        <div class="absolute -left-12 -top-12 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute -right-12 -bottom-12 w-40 h-40 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
-
+    <div class="w-full max-w-xl glass border border-slate-800/60 rounded-3xl shadow-2xl p-5 sm:p-8 relative overflow-hidden z-10">
         <div class="text-center mb-6 sm:mb-8 relative z-10">
-            <div class="inline-flex items-center justify-center p-3 sm:p-3.5 bg-purple-900/40 text-amber-400 rounded-2xl sm:rounded-3xl mb-3 border border-amber-500/20 shadow-[0_0_20px_rgba(245,158,11,0.1)]">
+            <div class="inline-flex items-center justify-center p-3 sm:p-3.5 bg-teal-900/20 text-teal-400 rounded-2xl sm:rounded-3xl mb-3 border border-teal-800/30">
                 <svg class="w-7 h-7 sm:w-9 sm:h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
             </div>
-            <h1 class="text-lg sm:text-xl font-bold text-gray-100 mb-1">پنل کوروش اصلی</h1>
-            <p class="text-xs sm:text-sm text-gray-400 mb-1">وضعیت اشتراک</p>
-            <p id="display-username" class="text-sm sm:text-base font-bold text-amber-400 tracking-wide font-mono mb-2"></p>
+            <h1 class="text-lg sm:text-xl font-bold text-slate-100 mb-1">پنل کوروش اصلی</h1>
+            <p class="text-xs sm:text-sm text-slate-400 mb-1">وضعیت اشتراک</p>
+            <p id="display-username" class="text-sm sm:text-base font-bold text-teal-400 tracking-wide font-mono mb-2"></p>
             <div id="live-connections-badge" class="hidden inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-900/30 border border-emerald-500/30 text-emerald-400 rounded-full text-xs font-bold">
                 <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                 <span id="live-connections-text" dir="rtl">۰ دستگاه متصل</span>
@@ -3933,113 +3897,113 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
 
         <div class="space-y-3 sm:space-y-4 mb-6 sm:mb-8 relative z-10">
-            <div class="bg-royal-input/50 border border-royal-border rounded-2xl p-4 sm:p-5">
+            <div class="bg-slate-900/60 border border-slate-800/60 rounded-2xl p-4 sm:p-5">
                 <div class="flex justify-between items-center mb-2 sm:mb-3">
-                    <span class="text-[10px] sm:text-xs font-semibold text-gray-400 flex items-center gap-1.5">
-                        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    <span class="text-[10px] sm:text-xs font-semibold text-slate-400 flex items-center gap-1.5">
+                        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
                         میزان حجم مصرفی
                     </span>
-                    <span id="volume-pct" class="text-[10px] sm:text-xs font-bold text-amber-400">۰٪</span>
+                    <span id="volume-pct" class="text-[10px] sm:text-xs font-bold text-teal-400">۰٪</span>
                 </div>
-                <div class="w-full bg-royal-bg rounded-full h-2 sm:h-2.5 overflow-hidden mb-2 sm:mb-3">
+                <div class="w-full bg-slate-950 rounded-full h-2 sm:h-2.5 overflow-hidden mb-2 sm:mb-3">
                     <div id="volume-progress" class="h-2 sm:h-2.5 rounded-full transition-all duration-1000" style="width: 0%"></div>
                 </div>
-                <div class="flex justify-between text-[10px] sm:text-xs text-gray-500 font-medium">
-                    <span>مصرف: <span id="used-vol" class="font-bold text-gray-200">-</span></span>
-                    <span>کل: <span id="limit-vol" class="font-bold text-gray-200">-</span></span>
+                <div class="flex justify-between text-[10px] sm:text-xs text-slate-500 font-medium">
+                    <span>مصرف: <span id="used-vol" class="font-bold text-slate-200">-</span></span>
+                    <span>کل: <span id="limit-vol" class="font-bold text-slate-200">-</span></span>
                 </div>
             </div>
 
-            <div class="bg-royal-input/50 border border-royal-border rounded-2xl p-4 sm:p-5">
+            <div class="bg-slate-900/60 border border-slate-800/60 rounded-2xl p-4 sm:p-5">
                 <div class="flex justify-between items-center mb-2 sm:mb-3">
-                    <span class="text-[10px] sm:text-xs font-semibold text-gray-400 flex items-center gap-1.5">
-                        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span class="text-[10px] sm:text-xs font-semibold text-slate-400 flex items-center gap-1.5">
+                        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         زمان باقی‌مانده
                     </span>
-                    <span id="expiry-pct" class="text-[10px] sm:text-xs font-bold text-purple-400">۰٪</span>
+                    <span id="expiry-pct" class="text-[10px] sm:text-xs font-bold text-sky-400">۰٪</span>
                 </div>
-                <div class="w-full bg-royal-bg rounded-full h-2 sm:h-2.5 overflow-hidden mb-2 sm:mb-3 flex justify-end">
-                    <div id="expiry-progress" class="bg-purple-600 h-2 sm:h-2.5 rounded-full transition-all duration-1000" style="width: 0%"></div>
+                <div class="w-full bg-slate-950 rounded-full h-2 sm:h-2.5 overflow-hidden mb-2 sm:mb-3 flex justify-end">
+                    <div id="expiry-progress" class="h-2 sm:h-2.5 rounded-full transition-all duration-1000" style="width: 0%"></div>
                 </div>
-                <div class="flex justify-between text-[10px] sm:text-xs text-gray-500 font-medium">
-                    <span>باقی: <span id="days-remaining" class="font-bold text-gray-200">-</span></span>
-                    <span>کل: <span id="total-days" class="font-bold text-gray-200">-</span></span>
+                <div class="flex justify-between text-[10px] sm:text-xs text-slate-500 font-medium">
+                    <span>باقی: <span id="days-remaining" class="font-bold text-slate-200">-</span></span>
+                    <span>کل: <span id="total-days" class="font-bold text-slate-200">-</span></span>
                 </div>
             </div>
 
-            <div class="bg-royal-input/50 border border-royal-border rounded-2xl p-4 sm:p-5">
+            <div class="bg-slate-900/60 border border-slate-800/60 rounded-2xl p-4 sm:p-5">
                 <div class="flex justify-between items-center mb-2 sm:mb-3">
-                    <span class="text-[10px] sm:text-xs font-semibold text-gray-400 flex items-center gap-1.5">
+                    <span class="text-[10px] sm:text-xs font-semibold text-slate-400 flex items-center gap-1.5">
                         <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                         ریکوئست‌ها
                     </span>
                     <span id="req-pct" class="text-[10px] sm:text-xs font-bold text-emerald-400">۰٪</span>
                 </div>
-                <div class="w-full bg-royal-bg rounded-full h-2 sm:h-2.5 overflow-hidden mb-2 sm:mb-3">
+                <div class="w-full bg-slate-950 rounded-full h-2 sm:h-2.5 overflow-hidden mb-2 sm:mb-3">
                     <div id="req-progress" class="h-2 sm:h-2.5 rounded-full transition-all duration-1000" style="width: 0%"></div>
                 </div>
-                <div class="flex justify-between text-[10px] sm:text-xs text-gray-500 font-medium">
-                    <span>مصرف: <span id="used-req" class="font-bold text-gray-200">-</span></span>
-                    <span>سقف: <span id="limit-req" class="font-bold text-gray-200">-</span></span>
+                <div class="flex justify-between text-[10px] sm:text-xs text-slate-500 font-medium">
+                    <span>مصرف: <span id="used-req" class="font-bold text-slate-200">-</span></span>
+                    <span>سقف: <span id="limit-req" class="font-bold text-slate-200">-</span></span>
                 </div>
             </div>
 
-            <div class="bg-royal-input/50 border border-royal-border rounded-2xl p-4 sm:p-5">
+            <div class="bg-slate-900/60 border border-slate-800/60 rounded-2xl p-4 sm:p-5">
                 <div class="flex justify-between items-center mb-2 sm:mb-3">
-                    <span class="text-[10px] sm:text-xs font-semibold text-gray-400 flex items-center gap-1.5">
-                        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    <span class="text-[10px] sm:text-xs font-semibold text-slate-400 flex items-center gap-1.5">
+                        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                         دستگاه‌های متصل
                     </span>
-                    <span id="online-pct" class="text-[10px] sm:text-xs font-bold text-sky-400">۰٪</span>
+                    <span id="online-pct" class="text-[10px] sm:text-xs font-bold text-teal-400">۰٪</span>
                 </div>
-                <div class="w-full bg-royal-bg rounded-full h-2 sm:h-2.5 overflow-hidden mb-2 sm:mb-3">
+                <div class="w-full bg-slate-950 rounded-full h-2 sm:h-2.5 overflow-hidden mb-2 sm:mb-3">
                     <div id="online-progress" class="h-2 sm:h-2.5 rounded-full transition-all duration-1000" style="width: 0%"></div>
                 </div>
-                <div class="flex justify-between text-[10px] sm:text-xs text-gray-500 font-medium">
-                    <span>متصل: <span id="online-count" class="font-bold text-gray-200">۰</span></span>
-                    <span>سقف: <span id="limit-online" class="font-bold text-gray-200">-</span></span>
+                <div class="flex justify-between text-[10px] sm:text-xs text-slate-500 font-medium">
+                    <span>متصل: <span id="online-count" class="font-bold text-slate-200">۰</span></span>
+                    <span>سقف: <span id="limit-online" class="font-bold text-slate-200">-</span></span>
                 </div>
             </div>
         </div>
 
-        <div class="border-t border-royal-border pt-5 sm:pt-6 relative z-10">
-            <h2 class="text-xs sm:text-sm font-bold mb-3 sm:mb-4 flex items-center gap-2 text-gray-200">
-                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+        <div class="border-t border-slate-800 pt-5 sm:pt-6 relative z-10">
+            <h2 class="text-xs sm:text-sm font-bold mb-3 sm:mb-4 flex items-center gap-2 text-slate-200">
+                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                 دریافت کانفیگ و اشتراک‌ها
             </h2>
             <div class="space-y-2 sm:space-y-3">
-                <button onclick="copyTextSub()" class="w-full flex justify-between items-center px-3 sm:px-4 py-2.5 sm:py-3 bg-royal-input border border-royal-border hover:border-purple-500/50 rounded-xl text-[10px] sm:text-xs font-medium transition shadow-sm text-gray-300">
-                    <span class="flex items-center gap-2">⛓️ کپی لینک ساب متنی</span>
-                    <span class="text-purple-400">کپی</span>
+                <button onclick="copyTextSub()" class="w-full flex justify-between items-center px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-900/60 border border-slate-800/60 hover:border-teal-500/40 rounded-xl text-[10px] sm:text-xs font-medium transition shadow-sm text-slate-300">
+                    <span class="flex items-center gap-2">کپی لینک ساب متنی</span>
+                    <span class="text-teal-400">کپی</span>
                 </button>
-                <button onclick="copyVlessConfig()" class="w-full flex justify-between items-center px-3 sm:px-4 py-2.5 sm:py-3 bg-royal-input border border-royal-border hover:border-purple-500/50 rounded-xl text-[10px] sm:text-xs font-medium transition shadow-sm text-gray-300">
-                    <span class="flex items-center gap-2">🚀 کپی کانفیگ VLESS</span>
-                    <span class="text-purple-400">کپی</span>
+                <button onclick="copyVlessConfig()" class="w-full flex justify-between items-center px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-900/60 border border-slate-800/60 hover:border-teal-500/40 rounded-xl text-[10px] sm:text-xs font-medium transition shadow-sm text-slate-300">
+                    <span class="flex items-center gap-2">کپی کانفیگ VLESS</span>
+                    <span class="text-teal-400">کپی</span>
                 </button>
-                <button onclick="copyJsonSub()" class="w-full flex justify-between items-center px-3 sm:px-4 py-2.5 sm:py-3 bg-royal-input border border-royal-border hover:border-purple-500/50 rounded-xl text-[10px] sm:text-xs font-medium transition shadow-sm text-gray-300">
-                    <span class="flex items-center gap-2">🌐 کپی ساب JSON</span>
-                    <span class="text-purple-400">کپی</span>
+                <button onclick="copyJsonSub()" class="w-full flex justify-between items-center px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-900/60 border border-slate-800/60 hover:border-teal-500/40 rounded-xl text-[10px] sm:text-xs font-medium transition shadow-sm text-slate-300">
+                    <span class="flex items-center gap-2">کپی ساب JSON</span>
+                    <span class="text-teal-400">کپی</span>
                 </button>
-                <button onclick="showQR()" class="w-full flex justify-between items-center px-3 sm:px-4 py-2.5 sm:py-3 bg-royal-input border border-royal-border hover:border-purple-500/50 rounded-xl text-[10px] sm:text-xs font-medium transition shadow-sm text-gray-300">
-                    <span class="flex items-center gap-2">📱 کد QR لینک ساب</span>
-                    <span class="text-purple-400">مشاهده</span>
+                <button onclick="showQR()" class="w-full flex justify-between items-center px-3 sm:px-4 py-2.5 sm:py-3 bg-slate-900/60 border border-slate-800/60 hover:border-teal-500/40 rounded-xl text-[10px] sm:text-xs font-medium transition shadow-sm text-slate-300">
+                    <span class="flex items-center gap-2">کد QR لینک ساب</span>
+                    <span class="text-teal-400">مشاهده</span>
                 </button>
             </div>
         </div>
     </div>
-<div class="flex items-center gap-3 sm:gap-4 mt-4 sm:mt-6 z-10">
-    <a href="https://t.me/kouroshasli" target="_blank" class="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-royal-card/80 backdrop-blur-sm border border-royal-border rounded-full shadow-sm hover:shadow-md hover:border-purple-500/40 transition text-xs sm:text-sm font-bold text-gray-400 hover:text-purple-400 group">
-        <svg class="w-4 h-4 sm:w-5 sm:h-5 text-purple-400 group-hover:scale-110 transition" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.94-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.37.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .24z"/></svg>
-        @KouroshPanel
-    </a>
-</div>
-    <div id="qr-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300 ease-out">
-        <div class="w-full max-w-sm bg-royal-card/95 backdrop-blur-xl border border-royal-border rounded-2xl shadow-[0_0_40px_rgba(124,58,237,0.12)] overflow-hidden p-5 sm:p-6 text-center transition-all transform duration-300 opacity-0 scale-95 ease-out">
-            <h3 class="font-bold text-gray-100 mb-3 sm:mb-4 text-sm sm:text-base">اسکن کد QR</h3>
-            <div class="bg-royal-input p-3 rounded-xl inline-block mb-3 sm:mb-4 border border-royal-border">
+    <div class="flex items-center gap-3 sm:gap-4 mt-4 sm:mt-6 z-10">
+        <a href="https://t.me/kouroshasli" target="_blank" class="flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 glass border border-slate-800/60 rounded-full shadow-sm hover:shadow-md hover:border-teal-500/40 transition text-xs sm:text-sm font-bold text-slate-400 hover:text-teal-400 group">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-teal-400 group-hover:scale-110 transition" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.94-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.37.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .24z"/></svg>
+            @KouroshPanel
+        </a>
+    </div>
+    <div id="qr-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
+        <div class="w-full max-w-sm bg-slate-900/95 glass border border-slate-800/60 rounded-2xl shadow-2xl overflow-hidden p-5 sm:p-6 text-center transition-all transform duration-300 opacity-0 scale-95">
+            <h3 class="font-bold text-slate-200 mb-3 sm:mb-4 text-sm sm:text-base">اسکن کد QR</h3>
+            <div class="bg-slate-800/50 p-3 rounded-xl inline-block mb-3 sm:mb-4 border border-slate-700/50">
                 <div id="qrcode-box" class="flex justify-center items-center w-40 h-40 sm:w-48 sm:h-48 mx-auto"></div>
             </div>
-            <button onclick="toggleQRModal(false)" class="w-full py-2 bg-royal-input border border-royal-border hover:bg-royal-border font-bold rounded-xl text-xs sm:text-sm transition text-gray-300">بستن</button>
+            <button onclick="toggleQRModal(false)" class="w-full py-2 bg-slate-800/50 border border-slate-700/50 hover:bg-slate-700/50 font-medium rounded-xl text-xs sm:text-sm transition text-slate-300">بستن</button>
         </div>
     </div>
 
@@ -4131,8 +4095,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 badge.querySelector('span.w-2').className = 'w-2 h-2 rounded-full bg-emerald-500 animate-pulse';
             } else {
                 document.getElementById('live-connections-text').innerText = '۰ دستگاه متصل';
-                badge.className = 'inline-flex items-center gap-1.5 px-3 py-1 bg-gray-800 border border-gray-700 text-gray-400 rounded-full text-xs font-bold';
-                badge.querySelector('span.w-2').className = 'w-2 h-2 rounded-full bg-gray-500';
+                badge.className = 'inline-flex items-center gap-1.5 px-3 py-1 bg-slate-800 border border-slate-700 text-slate-400 rounded-full text-xs font-bold';
+                badge.querySelector('span.w-2').className = 'w-2 h-2 rounded-full bg-slate-500';
             }
 
             const usedGb = u.used_gb || 0;
@@ -4232,19 +4196,19 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (u.is_active === 0) {
                 statusCard.className = 'mb-5 sm:mb-6 rounded-2xl p-3 sm:p-4 text-center border font-bold relative z-10 bg-red-900/20 border-red-500/30 text-red-400';
-                statusText.innerText = '❌ وضعیت اشتراک: غیرفعال / مسدود دستی';
+                statusText.innerText = 'وضعیت اشتراک: غیرفعال / مسدود دستی';
             } else if (isVolumeExpired) {
                 statusCard.className = 'mb-5 sm:mb-6 rounded-2xl p-3 sm:p-4 text-center border font-bold relative z-10 bg-yellow-900/20 border-yellow-500/30 text-yellow-400';
-                statusText.innerText = '⚠️ وضعیت اشتراک: تمام شدن حجم مجاز';
+                statusText.innerText = 'وضعیت اشتراک: تمام شدن حجم مجاز';
             } else if (isReqExpired) {
                 statusCard.className = 'mb-5 sm:mb-6 rounded-2xl p-3 sm:p-4 text-center border font-bold relative z-10 bg-yellow-900/20 border-yellow-500/30 text-yellow-400';
-                statusText.innerText = '⚠️ وضعیت اشتراک: تمام شدن ریکوئست مجاز';
+                statusText.innerText = 'وضعیت اشتراک: تمام شدن ریکوئست مجاز';
             } else if (isTimeExpired) {
                 statusCard.className = 'mb-5 sm:mb-6 rounded-2xl p-3 sm:p-4 text-center border font-bold relative z-10 bg-yellow-900/20 border-yellow-500/30 text-yellow-400';
-                statusText.innerText = '⏳ وضعیت اشتراک: منقضی شده (پایان زمان اعتبار)';
+                statusText.innerText = 'وضعیت اشتراک: منقضی شده (پایان زمان اعتبار)';
             } else {
                 statusCard.className = 'mb-5 sm:mb-6 rounded-2xl p-3 sm:p-4 text-center border font-bold relative z-10 bg-emerald-900/20 border-emerald-500/30 text-emerald-400';
-                statusText.innerText = '✅ وضعیت اشتراک: فعال و متصل';
+                statusText.innerText = 'وضعیت اشتراک: فعال و متصل';
             }
         });
     </script>
