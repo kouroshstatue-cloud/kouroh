@@ -98,12 +98,13 @@ export default {
                     throw new Error(`CF_DEPLOY_ERROR|${cfError}`);
                 }
 
-                const routeRes = await fetch(`https://api.cloudflare.com/client/v4/accounts/${accountId}/workers/scripts/${workerName}/subdomain`, {
-                    method: 'POST',
-                    headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json" },
-                    body: "{}"
-                });
-                await routeRes.json();
+                try {
+                    await fetch(`https://api.cloudflare.com/client/v4/accounts/${accountId}/workers/scripts/${workerName}/subdomain`, {
+                        method: 'POST',
+                        headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json" },
+                        body: '{"enabled":true}'
+                    });
+                } catch (_) {}
 
                 const panelUrl = `https://${workerName}.${devSub}.workers.dev`;
                 return new Response(JSON.stringify({ success: true, url: panelUrl }), {
