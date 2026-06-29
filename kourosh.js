@@ -1997,11 +1997,11 @@ const HTML_TEMPLATES = {
         <form onsubmit="handleSetup(event)" class="space-y-4">
             <div>
                 <label class="block text-xs font-medium mb-1.5 text-slate-400">رمز عبور</label>
-                <input type="password" id="password" class="w-full px-4 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 focus:border-teal-500/50 text-sm text-center font-mono text-slate-100 transition-all duration-200" required minlength="4" placeholder="••••••••">
+                <input type="password" id="password" oninput="this.value=this.value.replace(/[\u0600-\u06FF]/g,'')" class="w-full px-4 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 focus:border-teal-500/50 text-sm text-center font-mono text-slate-100 transition-all duration-200" required minlength="4" placeholder="••••••••">
             </div>
             <div>
                 <label class="block text-xs font-medium mb-1.5 text-slate-400">تکرار رمز عبور</label>
-                <input type="password" id="confirm-password" class="w-full px-4 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 focus:border-teal-500/50 text-sm text-center font-mono text-slate-100 transition-all duration-200" required minlength="4" placeholder="••••••••">
+                <input type="password" id="confirm-password" oninput="this.value=this.value.replace(/[\u0600-\u06FF]/g,'')" class="w-full px-4 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 focus:border-teal-500/50 text-sm text-center font-mono text-slate-100 transition-all duration-200" required minlength="4" placeholder="••••••••">
             </div>
             <button type="submit" id="submit-btn" class="w-full py-2.5 bg-gradient-to-r from-teal-600 to-sky-600 hover:from-teal-500 hover:to-sky-500 text-white font-bold rounded-xl text-sm transition-all duration-300 shadow-lg shadow-teal-900/40">ثبت و ورود</button>
         </form>
@@ -2079,7 +2079,7 @@ const HTML_TEMPLATES = {
         <form onsubmit="handleLogin(event)" class="space-y-4">
             <div>
                 <label class="block text-xs font-medium mb-1.5 text-slate-400">رمز عبور</label>
-                <input type="password" id="password" class="w-full px-4 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 focus:border-teal-500/50 text-sm text-center font-mono text-slate-100 transition-all duration-200" required placeholder="••••••••">
+                <input type="password" id="password" oninput="this.value=this.value.replace(/[\u0600-\u06FF]/g,'')" class="w-full px-4 py-2.5 bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 focus:border-teal-500/50 text-sm text-center font-mono text-slate-100 transition-all duration-200" required placeholder="••••••••">
             </div>
             <button type="submit" id="submit-btn" class="w-full py-2.5 bg-gradient-to-r from-teal-600 to-sky-600 hover:from-teal-500 hover:to-sky-500 text-white font-bold rounded-xl text-sm transition-all duration-300 shadow-lg shadow-teal-900/40">ورود به پنل</button>
         </form>
@@ -2542,11 +2542,11 @@ const HTML_TEMPLATES = {
                 <div class="space-y-2">
                     <div>
                         <label class="block text-[10px] text-slate-500 font-medium mb-1">رمز عبور فعلی</label>
-                        <input type="password" id="change-pwd-current" class="w-full px-3 py-2 sm:py-2 bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 text-xs font-mono text-center text-slate-100">
-                    </div>
-                    <div>
-                        <label class="block text-[10px] text-slate-500 font-medium mb-1">رمز عبور جدید</label>
-                        <input type="password" id="change-pwd-new" class="w-full px-3 py-2 sm:py-2 bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 text-xs font-mono text-center text-slate-100">
+                        <input type="password" id="change-pwd-current" oninput="this.value=this.value.replace(/[\u0600-\u06FF]/g,'')" class="w-full px-3 py-2 sm:py-2 bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 text-xs font-mono text-center text-slate-100">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-slate-500 font-medium mb-1">رمز عبور جدید</label>
+                            <input type="password" id="change-pwd-new" oninput="this.value=this.value.replace(/[\u0600-\u06FF]/g,'')" class="w-full px-3 py-2 sm:py-2 bg-slate-800/50 border border-slate-700/50 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-500/40 text-xs font-mono text-center text-slate-100">
                     </div>
                     <button type="button" onclick="changeAdminPassword()" id="change-pwd-btn" class="w-full py-2 sm:py-2 bg-gradient-to-r from-teal-600 to-sky-600 hover:from-teal-500 hover:to-sky-500 text-white font-semibold rounded-xl text-xs transition-all shadow-lg shadow-teal-900/30">تغییر رمز عبور</button>
                 </div>
