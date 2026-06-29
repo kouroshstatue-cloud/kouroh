@@ -143,13 +143,16 @@ export default {
                 
                 const ghRes = await fetch("https://raw.githubusercontent.com/kouroshstatue-cloud/kouroh/refs/heads/main/kourosh.js?t=" + Date.now());
                 let latestVersion = "Unknown";
+                let latestBuildId = "";
                 if (ghRes.ok) {
                     const ghText = await ghRes.text();
-                    const match = ghText.match(/CURRENT_VERSION\s*=\s*['"]([^'"]+)['"]/i);
-                    if (match) latestVersion = match[1];
+                    const verMatch = ghText.match(/CURRENT_VERSION\s*=\s*['"]([^'"]+)['"]/i);
+                    if (verMatch) latestVersion = verMatch[1];
+                    const idMatch = ghText.match(/BUILD_ID\s*=\s*['"]([^'"]+)['"]/i);
+                    if (idMatch) latestBuildId = idMatch[1];
                 }
 
-                return new Response(JSON.stringify({ success: true, panels: kouroshScripts, latestVersion }), {
+                return new Response(JSON.stringify({ success: true, panels: kouroshScripts, latestVersion, latestBuildId }), {
                     headers: { 'Content-Type': 'application/json' }
                 });
             } catch (e) {
@@ -175,12 +178,15 @@ export default {
                 if (scriptData.success) {
                     const contentRes = await fetch(scriptData.result.live_content || `https://api.cloudflare.com/client/v4/accounts/${accountId}/workers/scripts/${scriptName}/content/v2`, { headers });
                     let version = "Unknown";
+                    let buildId = "";
                     if (contentRes.ok) {
                         const contentText = await contentRes.text();
                         const varMatch = contentText.match(/CURRENT_VERSION\s*=\s*['"]([^'"]+)['"]/i);
                         if (varMatch) version = varMatch[1];
+                        const idMatch = contentText.match(/BUILD_ID\s*=\s*['"]([^'"]+)['"]/i);
+                        if (idMatch) buildId = idMatch[1];
                     }
-                    return new Response(JSON.stringify({ success: true, version }), {
+                    return new Response(JSON.stringify({ success: true, version, buildId }), {
                         headers: { 'Content-Type': 'application/json' }
                     });
                 }
@@ -422,6 +428,7 @@ async function checkExistingPanels() {
 
         if (result.success) {
             const latestVersion = result.latestVersion || "Unknown";
+            const latestBuildId = result.latestBuildId || "";
 
             if (result.panels.length === 0) {
                 listContainer.innerHTML = '<div class="text-center text-xs text-slate-400 py-4">هیچ پنل کوروشی در این اکانت یافت نشد.</div>';
@@ -442,7 +449,7 @@ async function checkExistingPanels() {
 
                     listContainer.appendChild(panelDiv);
 
-                    fetchPanelVersion(token, panel.name, latestVersion);
+                    fetchPanelVersion(token, panel.name, latestVersion, latestBuildId);
                 });
             }
         } else {
@@ -453,7 +460,7 @@ async function checkExistingPanels() {
     }
 }
 
-async function fetchPanelVersion(token, scriptName, latestVersion) {
+async function fetchPanelVersion(token, scriptName, latestVersion, latestBuildId) {
     try {
         const response = await fetch('/api/get-panel-version', {
             method: 'POST',
@@ -463,10 +470,14 @@ async function fetchPanelVersion(token, scriptName, latestVersion) {
 
         const result = await response.json();
         const version = result.success ? result.version : "Unknown";
+        const buildId = result.success ? (result.buildId || "") : "";
 
-        const displayVersion = version === "Unknown" ? "نسخه قدیمی / نامشخص" : version;
         const cleanVersion = version.replace(/-[a-z0-9]+$/i, '');
-        const isLatest = (cleanVersion === latestVersion && latestVersion !== "Unknown");
+        const verMatch = (cleanVersion === latestVersion && latestVersion !== "Unknown");
+        const idMatch = (buildId && latestBuildId && buildId !== latestBuildId);
+        const needsUpdate = !verMatch || idMatch;
+
+        const displayVersion = version === "Unknown" ? "نسخه قدیمی / نامشخص" : version + (buildId ? ' (' + buildId.substring(0,5) + ')' : '');
 
         const versionText = document.getElementById('version-text-' + scriptName);
         const btnContainer = document.getElementById('btn-container-' + scriptName);
@@ -475,10 +486,10 @@ async function fetchPanelVersion(token, scriptName, latestVersion) {
             versionText.className = 'text-[11px] text-gray-500 dark:text-zinc-400 font-medium mt-1';
             versionText.innerText = displayVersion;
 
-            if (isLatest) {
-                btnContainer.innerHTML = '<button data-name="' + scriptName + '" onclick="updateKouroshPanel(this.dataset.name)" class="px-3 py-1.5 bg-emerald-100 hover:bg-emerald-200 text-emerald-700 dark:bg-emerald-900/30 dark:hover:bg-emerald-900/50 dark:text-emerald-400 font-bold rounded-lg text-xs transition">بروزرسانی مجدد</button>';
-            } else {
+            if (needsUpdate) {
                 btnContainer.innerHTML = '<button data-name="' + scriptName + '" onclick="updateKouroshPanel(this.dataset.name)" class="px-3 py-1.5 bg-indigo-100 hover:bg-indigo-200 text-indigo-700 dark:bg-indigo-900/30 dark:hover:bg-indigo-900/50 dark:text-indigo-400 font-bold rounded-lg text-xs transition">آپدیت</button>';
+            } else {
+                btnContainer.innerHTML = '<button data-name="' + scriptName + '" onclick="updateKouroshPanel(this.dataset.name)" class="px-3 py-1.5 bg-emerald-100 hover:bg-emerald-200 text-emerald-700 dark:bg-emerald-900/30 dark:hover:bg-emerald-900/50 dark:text-emerald-400 font-bold rounded-lg text-xs transition">بروزرسانی مجدد</button>';
             }
         }
     } catch (e) {
