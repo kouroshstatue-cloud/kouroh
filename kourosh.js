@@ -3741,7 +3741,7 @@ function editUser(encodedUsername) {
             }
         }
 const CURRENT_VERSION = '1.0.3';
-const BUILD_ID = 'm3n4p5';
+const BUILD_ID = 'k9j2h7';
 
 		async function checkForUpdates(isManual = false) {
             try {
@@ -3772,7 +3772,7 @@ const BUILD_ID = 'm3n4p5';
                     }
                 } else {
                     if (isManual) {
-                        alert('شما در حال استفاده از آخرین نسخه (v' + CURRENT_VERSION + ') هستید.');
+                        alert('شما در حال استفاده از آخرین نسخه (v' + CURRENT_VERSION + ').' + (latestVersion ? ' GitHub: v' + latestVersion : '') + (latestId ? ', ID: ' + latestId + ' vs ' + BUILD_ID : ''));
                     }
                 }
             } catch (err) {
