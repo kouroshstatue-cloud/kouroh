@@ -647,7 +647,7 @@ const SubscriptionService = {
     const configArray = [];
 
     const m1 = decodeURIComponent('%F0%9F%8F%9B%EF%B8%8F%20%D9%BE%D9%86%D9%84%20%DA%A9%D9%88%D8%B1%D9%88%D8%B4%20%D8%A7%D8%B5%D9%84%DB%8C%20-%20%D8%B1%D8%A7%DB%8C%DA%AF%D8%A7%D9%86%20%D9%88%20%D8%BA%DB%8C%D8%B1%D9%82%D8%A7%D8%A8%D9%84%20%D9%81%D8%B1%D9%88%D8%B4%20%F0%9F%8F%9B%EF%B8%8F');
-    const m2 = decodeURIComponent('%F0%9F%A6%81%20%40KouroshPanel%20-%20%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%DA%A9%20%D8%B1%D8%A7%DB%8C%DA%AF%D8%A7%D9%86%20%F0%9F%A6%81');
+    const m2 = decodeURIComponent('%F0%9F%A6%81%20%40kouroshasli%20-%20%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%DA%A9%20%D8%B1%D8%A7%DB%8C%DA%AF%D8%A7%D9%86%20%F0%9F%A6%81');
 
     const createFakeConfig = (remarkTitle) => {
       return {
@@ -839,7 +839,7 @@ const SubscriptionService = {
     const links = [];
 
     const m1 = decodeURIComponent('%F0%9F%8F%9B%EF%B8%8F%20%D9%BE%D9%86%D9%84%20%DA%A9%D9%88%D8%B1%D9%88%D8%B4%20%D8%A7%D8%B5%D9%84%DB%8C%20-%20%D8%B1%D8%A7%DB%8C%DA%AF%D8%A7%D9%86%20%D9%88%20%D8%BA%DB%8C%D8%B1%D9%82%D8%A7%D8%A8%D9%84%20%D9%81%D8%B1%D9%88%D8%B4%20%F0%9F%8F%9B%EF%B8%8F');
-    const m2 = decodeURIComponent('%F0%9F%A6%81%20%40KouroshPanel%20-%20%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%DA%A9%20%D8%B1%D8%A7%DB%8C%DA%AF%D8%A7%D9%86%20%F0%9F%A6%81');
+    const m2 = decodeURIComponent('%F0%9F%A6%81%20%40kouroshasli%20-%20%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%DA%A9%20%D8%B1%D8%A7%DB%8C%DA%AF%D8%A7%D9%86%20%F0%9F%A6%81');
 
     links.push(atob('dmxlc3M6Ly8=') + user.uuid + '@0.0.0.0:1?encryption=none&security=none&type=ws&host=' + host + '&path=%2Fkouroshasli_panel#' + encodeURIComponent(m1));
     links.push(atob('dmxlc3M6Ly8=') + user.uuid + '@0.0.0.0:1?encryption=none&security=none&type=ws&host=' + host + '&path=%2Fkouroshasli_panel#' + encodeURIComponent(m2));
@@ -3301,7 +3301,7 @@ function openUsageWarning() {
             const links = [];
 
             const m1 = decodeURIComponent('%F0%9F%8F%9B%EF%B8%8F%20%D9%BE%D9%86%D9%84%20%DA%A9%D9%88%D8%B1%D9%88%D8%B4%20%D8%A7%D8%B5%D9%84%DB%8C%20-%20%D8%B1%D8%A7%DB%8C%DA%AF%D8%A7%D9%86%20%D9%88%20%D8%BA%DB%8C%D8%B1%D9%82%D8%A7%D8%A8%D9%84%20%D9%81%D8%B1%D9%88%D8%B4%20%F0%9F%8F%9B%EF%B8%8F');
-            const m2 = decodeURIComponent('%F0%9F%A6%81%20%40KouroshPanel%20-%20%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%DA%A9%20%D8%B1%D8%A7%DB%8C%DA%AF%D8%A7%D9%86%20%F0%9F%A6%81');
+            const m2 = decodeURIComponent('%F0%9F%A6%81%20%40kouroshasli%20-%20%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%DA%A9%20%D8%B1%D8%A7%DB%8C%DA%AF%D8%A7%D9%86%20%F0%9F%A6%81');
 
             links.push('vle' + 'ss://' + (user.uuid || '') + '@0.0.0.0:1?encryption=none&security=none&type=ws&host=' + host + '&path=%2Fkouroshasli_panel#' + encodeURIComponent(m1));
             links.push('vle' + 'ss://' + (user.uuid || '') + '@0.0.0.0:1?encryption=none&security=none&type=ws&host=' + host + '&path=%2Fkouroshasli_panel#' + encodeURIComponent(m2));
@@ -3395,7 +3395,7 @@ function openUsageWarning() {
             const configArray = [];
 
             const m1 = decodeURIComponent('%F0%9F%8F%9B%EF%B8%8F%20%D9%BE%D9%86%D9%84%20%DA%A9%D9%88%D8%B1%D9%88%D8%B4%20%D8%A7%D8%B5%D9%84%DB%8C%20-%20%D8%B1%D8%A7%DB%8C%DA%AF%D8%A7%D9%86%20%D9%88%20%D8%BA%DB%8C%D8%B1%D9%82%D8%A7%D8%A8%D9%84%20%D9%81%D8%B1%D9%88%D8%B4%20%F0%9F%8F%9B%EF%B8%8F');
-            const m2 = decodeURIComponent('%F0%9F%A6%81%20%40KouroshPanel%20-%20%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%DA%A9%20%D8%B1%D8%A7%DB%8C%DA%AF%D8%A7%D9%86%20%F0%9F%A6%81');
+            const m2 = decodeURIComponent('%F0%9F%A6%81%20%40kouroshasli%20-%20%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%DA%A9%20%D8%B1%D8%A7%DB%8C%DA%AF%D8%A7%D9%86%20%F0%9F%A6%81');
 
             const createFakeConfig = (remarkTitle) => {
               return {
