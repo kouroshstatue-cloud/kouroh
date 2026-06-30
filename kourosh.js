@@ -284,7 +284,8 @@ const Router = {
       try {
         const githubRes = await fetch("https://raw.githubusercontent.com/kouroshstatue-cloud/kouroh/refs/heads/main/kourosh.js?t=" + Date.now());
         if (!githubRes.ok) throw new Error("خطا در دریافت سورس جدید از گیت‌هاب");
-        let newCode = await githubRes.text();
+        const rawSource = await githubRes.text();
+        let newCode = rawSource;
         const upVerMatch = newCode.match(/const CURRENT_VERSION\s*=\s*['"]([^'"]+)['"]/);
         if (upVerMatch) {
             newCode = newCode.replace(
@@ -336,7 +337,7 @@ const Router = {
         } catch (_) {}
         try {
             const encoder = new TextEncoder();
-            const data = encoder.encode(newCode);
+            const data = encoder.encode(rawSource);
             const hashBuffer = await crypto.subtle.digest('SHA-256', data);
             const hashArray = Array.from(new Uint8Array(hashBuffer));
             const deployHash = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
