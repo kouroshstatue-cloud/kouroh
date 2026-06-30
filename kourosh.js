@@ -26,8 +26,8 @@ const DOWNSTREAM_GRAIN_TAIL_THRESHOLD = 512;
 const DOWNSTREAM_GRAIN_SILENT_MS = 1;
 const TCP_CONCURRENCY = 2;
 const PRELOAD_RACE_DIAL = true;
-const CURRENT_VERSION = '1.0.4';
-const BUILD_ID = 'm3x8p1';
+const CURRENT_VERSION = '1.0.5';
+const BUILD_ID = 'r8t2y9';
 
 // ==========================================================
 // ۳. نقطه ورود اصلی ورکر (MAIN FETCH HANDLER)
@@ -239,6 +239,36 @@ const Router = {
         headers: { "Content-Type": "application/json; charset=utf-8", "Access-Control-Allow-Origin": "*" }
       });
     }
+
+    if (url.pathname === '/api/check-update' && request.method === 'GET') {
+      try {
+        const githubRes = await fetch("https://raw.githubusercontent.com/kouroshstatue-cloud/kouroh/refs/heads/main/kourosh.js?t=" + Date.now());
+        if (!githubRes.ok) throw new Error("GitHub fetch failed");
+        const text = await githubRes.text();
+        const encoder = new TextEncoder();
+        const data = encoder.encode(text);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const latestHash = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        const storedRow = await env.DB.prepare("SELECT value FROM settings WHERE key = 'last_update_hash'").first();
+        let storedHash = storedRow ? storedRow.value : null;
+        if (!storedHash) {
+          const idMatch = text.match(/const\s+BUILD_ID\s*=\s*['"]([^'"]+)['"]/i);
+          const gitBuildId = idMatch ? idMatch[1] : null;
+          if (gitBuildId === BUILD_ID) {
+            storedHash = latestHash;
+            await env.DB.prepare("INSERT OR REPLACE INTO settings (key, value) VALUES ('last_update_hash', ?)").bind(storedHash).run();
+          }
+        }
+        return new Response(JSON.stringify({
+          hasUpdate: latestHash !== storedHash,
+          latestHash,
+          storedHash
+        }), { headers: { "Content-Type": "application/json; charset=utf-8" } });
+      } catch (err) {
+        return new Response(JSON.stringify({ error: err.message }), { status: 500, headers: { "Content-Type": "application/json" } });
+      }
+    }
     // بررسی عمومی احراز هویت برای بقیه APIها
     const authorized = await DbService.verifyApiAuth(request, env);
     if (!authorized) {
@@ -303,6 +333,14 @@ const Router = {
                 headers: { "Authorization": "Bearer " + env.CF_API_TOKEN, "Content-Type": "application/json" },
                 body: '{"enabled":true}'
             });
+        } catch (_) {}
+        try {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(newCode);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const deployHash = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            await env.DB.prepare("INSERT OR REPLACE INTO settings (key, value) VALUES ('last_update_hash', ?)").bind(deployHash).run();
         } catch (_) {}
         return new Response(JSON.stringify({ success: true }), { headers: { "Content-Type": "application/json" } });
       } catch (err) {
@@ -3754,37 +3792,30 @@ const BUILD_ID = '${BUILD_ID}';
                 if (isManual) {
                     document.getElementById('update-toggle').classList.add('animate-pulse');
                 }
-                const res = await fetch('https://raw.githubusercontent.com/kouroshstatue-cloud/kouroh/refs/heads/main/kourosh.js?t=' + Date.now());
+                const res = await fetch('/api/check-update?t=' + Date.now());
                 if (!res.ok) throw new Error('Network response was not ok');
-                const text = await res.text();
-                const verMatch = text.match(/const\\s+CURRENT_VERSION\\s*=\\s*['"]([^'"]+)['"]/i);
-                const latestVersion = verMatch ? verMatch[1] : null;
-                const idMatch = text.match(/const\\s+BUILD_ID\\s*=\\s*['"]([^'"]+)['"]/i);
-                const latestId = idMatch ? idMatch[1] : null;
+                const data = await res.json();
                 if (isManual) {
                     document.getElementById('update-toggle').classList.remove('animate-pulse');
                 }
-                const hasUpdate = latestVersion && latestVersion !== CURRENT_VERSION.replace(/-[a-z0-9]+$/, '');
-                const hasNewCode = latestId && latestId !== BUILD_ID;
-                if (hasUpdate || hasNewCode) {
+                if (data.hasUpdate) {
                     document.getElementById('update-toggle').className = "p-1.5 rounded-lg bg-red-950/60 border border-red-500 hover:bg-red-900/80 transition text-red-400 shadow-[0_0_15px_rgba(239,68,68,0.4)] animate-pulse relative";
                     const badge = document.getElementById('update-badge');
                     if (badge) badge.remove();
                     if (isManual) {
-                        const vText = hasUpdate ? 'v' + latestVersion : 'نسخه جدید';
-                        if (confirm('نسخه جدید (' + vText + ') در دسترس است! آیا می خواهید پنل را آپدیت کنید؟')) {
+                        if (confirm('نسخه جدید در دسترس است! آیا می خواهید پنل را آپدیت کنید؟')) {
                             applyUpdate();
                         }
                     }
                 } else {
                     if (isManual) {
-                        alert('شما در حال استفاده از آخرین نسخه (v' + CURRENT_VERSION + ').' + (latestVersion ? ' GitHub: v' + latestVersion : '') + (latestId ? ', ID: ' + latestId + ' vs ' + BUILD_ID : ''));
+                        alert('شما در حال استفاده از آخرین نسخه هستید.');
                     }
                 }
             } catch (err) {
                 if (isManual) {
                     document.getElementById('update-toggle').classList.remove('animate-pulse');
-                    alert('خطا در بررسی آپدیت از گیت هاب.');
+                    alert('خطا در بررسی آپدیت.');
                 }
             }
         }
