@@ -28,6 +28,18 @@ const TCP_CONCURRENCY = 2;
 const PRELOAD_RACE_DIAL = true;
 const CURRENT_VERSION = '1.0.5';
 const BUILD_ID = 'r8t2y9';
+const VLESS_PREFIX = atob('dmxlc3M6Ly8=');
+const VLESS = atob('dmxlc3M=');
+const TLS_PORTS = new Set(['443', '2053', '2083', '2087', '2096', '8443']);
+const GITHUB_RAW_URL = 'https://raw.githubusercontent.com/kouroshstatue-cloud/kouroh/refs/heads/main/kourosh.js';
+const FRAG_CACHE_TTL = 300000;
+let fragSettingsCache = { len: '20-30', int: '1-2', ts: 0 };
+const P_VLESS = 'vle' + 'ss';
+const P_VNEXT = 'vne' + 'xt';
+const P_STREAM = 'stream' + 'Settings';
+const P_WSSETTINGS = 'ws' + 'Settings';
+const P_TLSSETTINGS = 'tls' + 'Settings';
+const P_DIALERPROXY = 'dialer' + 'Proxy';
 
 // ==========================================================
 // ۳. نقطه ورود اصلی ورکر (MAIN FETCH HANDLER)
@@ -106,8 +118,8 @@ const Router = {
     }
 
     try {
-      const user = await env.DB.prepare("SELECT * FROM users WHERE username = ? OR uuid = ?").bind(subUser, subUser).first();
-      if (!user || user.connection_type !== atob('dmxlc3M=')) {
+      const user = await env.DB.prepare("SELECT username, uuid, connection_type, used_gb, limit_gb, expiry_days, created_at, ips, port, fingerprint, limit_req, used_req, is_active, max_connections FROM users WHERE username = ? OR uuid = ?").bind(subUser, subUser).first();
+      if (!user || user.connection_type !== VLESS) {
         return new Response("Not Found", { status: 404 });
       }
 
@@ -173,7 +185,7 @@ const Router = {
       return new Response("Username is required", { status: 400 });
     }
     try {
-      const user = await env.DB.prepare("SELECT * FROM users WHERE username = ? OR uuid = ?").bind(username, username).first();
+      const user = await env.DB.prepare("SELECT username, uuid, limit_gb, expiry_days, used_gb, limit_req, used_req, is_active, max_connections, created_at, tls, port, ips, fingerprint FROM users WHERE username = ? OR uuid = ?").bind(username, username).first();
       if (!user) {
         return new Response("User not found", { status: 404 });
       }
@@ -268,23 +280,28 @@ const Router = {
 
     if (url.pathname === '/api/check-update' && request.method === 'GET') {
       try {
-        const githubRes = await fetch("https://raw.githubusercontent.com/kouroshstatue-cloud/kouroh/refs/heads/main/kourosh.js?t=" + Date.now());
-        if (!githubRes.ok) throw new Error("GitHub fetch failed");
-        const text = await githubRes.text();
-        const encoder = new TextEncoder();
-        const data = encoder.encode(text);
-        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        const latestHash = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
         const storedRow = await env.DB.prepare("SELECT value FROM settings WHERE key = 'last_update_hash'").first();
+        const timeRow = await env.DB.prepare("SELECT value FROM settings WHERE key = 'last_check_time'").first();
+        const lastCheck = timeRow ? parseInt(timeRow.value) || 0 : 0;
+
         let storedHash = storedRow ? storedRow.value : null;
-        if (!storedHash) {
-          const idMatch = text.match(/const\s+BUILD_ID\s*=\s*['"]([^'"]+)['"]/i);
-          const gitBuildId = idMatch ? idMatch[1] : null;
-          if (gitBuildId === BUILD_ID) {
-            storedHash = latestHash;
-            await env.DB.prepare("INSERT OR REPLACE INTO settings (key, value) VALUES ('last_update_hash', ?)").bind(storedHash).run();
+        let latestHash = storedHash;
+
+        if (!storedHash || Date.now() - lastCheck > 3600000) {
+          const githubRes = await fetch(GITHUB_RAW_URL);
+          if (!githubRes.ok) throw new Error("GitHub fetch failed");
+          const text = await githubRes.text();
+          const data = new TextEncoder().encode(text);
+          const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+          const hashArray = Array.from(new Uint8Array(hashBuffer));
+          latestHash = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+          if (!storedHash) {
+            const idMatch = text.match(/const\s+BUILD_ID\s*=\s*['"]([^'"]+)['"]/i);
+            const gitBuildId = idMatch ? idMatch[1] : null;
+            if (gitBuildId === BUILD_ID) storedHash = latestHash;
           }
+          await env.DB.prepare("INSERT OR REPLACE INTO settings (key, value) VALUES ('last_update_hash', ?)").bind(latestHash).run();
+          await env.DB.prepare("INSERT OR REPLACE INTO settings (key, value) VALUES ('last_check_time', ?)").bind(String(Date.now())).run();
         }
         return new Response(JSON.stringify({
           hasUpdate: latestHash !== storedHash,
@@ -308,7 +325,7 @@ const Router = {
         return new Response(JSON.stringify({ error: "توکن یا اکانت آیدی کلودفلر تنظیم نشده است." }), { status: 400, headers: { "Content-Type": "application/json" } });
       }
       try {
-        const githubRes = await fetch("https://raw.githubusercontent.com/kouroshstatue-cloud/kouroh/refs/heads/main/kourosh.js?t=" + Date.now());
+        const githubRes = await fetch(GITHUB_RAW_URL);
         if (!githubRes.ok) throw new Error("خطا در دریافت سورس جدید از گیت‌هاب");
         const rawSource = await githubRes.text();
         let newCode = rawSource;
@@ -488,7 +505,7 @@ const Router = {
           try {
             await flushExpiredTraffic(env);
           } catch (e) {}
-          const { results } = await env.DB.prepare("SELECT * FROM users ORDER BY id DESC").all();
+          const { results } = await env.DB.prepare("SELECT username, uuid, limit_gb, expiry_days, used_gb, limit_req, used_req, is_active, last_active, max_connections, created_at, tls, port, ips, fingerprint, connection_type FROM users ORDER BY id DESC").all();
           const now = Date.now();
           const enrichedUsers = (results || []).map(user => ({
             ...user,
@@ -556,7 +573,7 @@ const Router = {
               expiry_days ? parseInt(expiry_days) : null, 
               limit_req ? parseInt(limit_req) : null,
               ips || null, 
-              atob('dmxlc3M='), 
+               VLESS, 
               tls, 
               port,
               fingerprint || 'chrome',
@@ -662,179 +679,70 @@ const SubscriptionService = {
     const ports = String(user.port || '443').split(',').map(p => p.trim()).filter(p => p.length > 0);
     const fp = user.fingerprint || 'chrome';
     
-    let fragLen = "20-30";
-    let fragInt = "1-2";
-    try {
-      const rowLen = await env.DB.prepare("SELECT value FROM settings WHERE key = 'frag_len'").first();
-      if (rowLen && rowLen.value) fragLen = rowLen.value;
-      const rowInt = await env.DB.prepare("SELECT value FROM settings WHERE key = 'frag_int'").first();
-      if (rowInt && rowInt.value) fragInt = rowInt.value;
-    } catch(e) {}
-
-    const configArray = [];
+    let fragLen = fragSettingsCache.len;
+    let fragInt = fragSettingsCache.int;
+    if (Date.now() - fragSettingsCache.ts > FRAG_CACHE_TTL) {
+      try {
+        const rowLen = await env.DB.prepare("SELECT value FROM settings WHERE key = 'frag_len'").first();
+        if (rowLen && rowLen.value) fragLen = rowLen.value;
+        const rowInt = await env.DB.prepare("SELECT value FROM settings WHERE key = 'frag_int'").first();
+        if (rowInt && rowInt.value) fragInt = rowInt.value;
+        fragSettingsCache = { len: fragLen, int: fragInt, ts: Date.now() };
+      } catch(e) {}
+    }
 
     const m1 = decodeURIComponent('%F0%9F%8F%9B%EF%B8%8F%20%D9%BE%D9%86%D9%84%20%DA%A9%D9%88%D8%B1%D9%88%D8%B4%20%D8%A7%D8%B5%D9%84%DB%8C%20-%20%D8%B1%D8%A7%DB%8C%DA%AF%D8%A7%D9%86%20%D9%88%20%D8%BA%DB%8C%D8%B1%D9%82%D8%A7%D8%A8%D9%84%20%D9%81%D8%B1%D9%88%D8%B4%20%F0%9F%8F%9B%EF%B8%8F');
     const m2 = decodeURIComponent('%F0%9F%A6%81%20%40kouroshasli%20-%20%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%DA%A9%20%D8%B1%D8%A7%DB%8C%DA%AF%D8%A7%D9%86%20%F0%9F%A6%81');
 
-    const createFakeConfig = (remarkTitle) => {
-      return {
-        remarks: remarkTitle,
-        version: { min: "25.10.15" },
-        log: { loglevel: "none" },
-        dns: {
-          servers: [
-            { address: "https://8.8.8.8/dns-query", tag: "remote-dns" },
-            { address: "8.8.8.8", domains: ["full:" + host], skipFallback: true }
-          ],
-          queryStrategy: "UseIP",
-          tag: "dns"
-        },
-        inbounds: [
-          {
-            listen: "127.0.0.1", port: 10808, protocol: "socks",
-            settings: { auth: "noauth", udp: true },
-            sniffing: { destOverride: ["http", "tls"], enabled: true, routeOnly: true },
-            tag: "mixed-in"
-          },
-          {
-            listen: "127.0.0.1", port: 10853, protocol: "dokodemo-door",
-            settings: { address: "1.1.1.1", network: "tcp,udp", port: 53 },
-            tag: "dns-in"
-          }
-        ],
-        outbounds: [
-          {
-            protocol: "vle" + "ss",
-            settings: {
-              ["vne" + "xt"]: [{
-                address: "0.0.0.0",
-                port: 1,
-                users: [{ id: user.uuid, encryption: "none" }]
-              }]
-            },
-            ["stream" + "Settings"]: {
-              network: "ws",
-              ["ws" + "Settings"]: { host: host, path: "/kouroshasli_panel" },
-              security: "none"
-            },
-            tag: "proxy"
-          },
-          { protocol: "dns", settings: { nonIPQuery: "reject" }, tag: "dns-out" },
-          { protocol: "freedom", settings: { domainStrategy: "UseIP" }, tag: "direct" },
-          { protocol: "blackhole", settings: { response: { type: "http" } }, tag: "block" }
-        ],
-        routing: {
-          domainStrategy: "IPIfNonMatch",
-          rules: [
-            { inboundTag: ["mixed-in"], port: 53, outboundTag: "dns-out", type: "field" },
-            { inboundTag: ["dns-in"], outboundTag: "dns-out", type: "field" },
-            { inboundTag: ["remote-dns"], outboundTag: "proxy", type: "field" },
-            { inboundTag: ["dns"], outboundTag: "direct", type: "field" },
-            { domain: ["geosite:private"], outboundTag: "direct", type: "field" },
-            { ip: ["geoip:private"], outboundTag: "direct", type: "field" },
-            { network: "udp", outboundTag: "block", type: "field" },
-            { network: "tcp", outboundTag: "proxy", type: "field" }
-          ]
-        }
-      };
-    };
+    // Pre-serialize shared parts once instead of creating per-IP config objects
+    const staticHeader = ',"version":{"min":"25.10.15"},"log":{"loglevel":"none"},';
+    const dnsPart = JSON.stringify({ servers: [
+      { address: "https://8.8.8.8/dns-query", tag: "remote-dns" },
+      { address: "8.8.8.8", domains: ["full:" + host], skipFallback: true }
+    ], queryStrategy: "UseIP", tag: "dns" });
+    const inboundsPart = JSON.stringify([{ listen: "127.0.0.1", port: 10808, protocol: "socks", settings: { auth: "noauth", udp: true }, sniffing: { destOverride: ["http", "tls"], enabled: true, routeOnly: true }, tag: "mixed-in" }, { listen: "127.0.0.1", port: 10853, protocol: "dokodemo-door", settings: { address: "1.1.1.1", network: "tcp,udp", port: 53 }, tag: "dns-in" }]);
+    const routingPart = JSON.stringify({ domainStrategy: "IPIfNonMatch", rules: [
+      { inboundTag: ["mixed-in"], port: 53, outboundTag: "dns-out", type: "field" },
+      { inboundTag: ["dns-in"], outboundTag: "dns-out", type: "field" },
+      { inboundTag: ["remote-dns"], outboundTag: "proxy", type: "field" },
+      { inboundTag: ["dns"], outboundTag: "direct", type: "field" },
+      { domain: ["geosite:private"], outboundTag: "direct", type: "field" },
+      { ip: ["geoip:private"], outboundTag: "direct", type: "field" },
+      { network: "udp", outboundTag: "block", type: "field" },
+      { network: "tcp", outboundTag: "proxy", type: "field" }
+    ] });
+    const commonTrailer = ',"inbounds":' + inboundsPart + ',"routing":' + routingPart + '}';
+    const staticOutboundsTail = JSON.stringify({ protocol: "dns", settings: { nonIPQuery: "reject" }, tag: "dns-out" }) + ',' + JSON.stringify({ protocol: "freedom", settings: { domainStrategy: "UseIP" }, tag: "direct" }) + ',' + JSON.stringify({ protocol: "blackhole", settings: { response: { type: "http" } }, tag: "block" });
 
-    configArray.push(createFakeConfig(m1));
-    configArray.push(createFakeConfig(m2));
+    // Build fake proxy outbound (static, same for both fake configs)
+    const fakeProxyPart = JSON.stringify({ protocol: P_VLESS, settings: { [P_VNEXT]: [{ address: "0.0.0.0", port: 1, users: [{ id: user.uuid, encryption: "none" }] }] }, [P_STREAM]: { network: "ws", [P_WSSETTINGS]: { host: host, path: "/kouroshasli_panel" }, security: "none" }, tag: "proxy" });
+
+    const parts = [];
+    const makeObj = (remark, outboundsJson) => '{"remarks":' + JSON.stringify(remark) + staticHeader + '"dns":' + dnsPart + ',"outbounds":' + outboundsJson + commonTrailer;
+
+    parts.push(makeObj(m1, '[' + fakeProxyPart + ',' + staticOutboundsTail + ']'));
+    parts.push(makeObj(m2, '[' + fakeProxyPart + ',' + staticOutboundsTail + ']'));
+
+    // Fragment outbound (same for all real configs)
+    const fragPart = JSON.stringify({ protocol: "freedom", settings: { fragment: { packets: "tlshello", length: fragLen, interval: fragInt } }, [P_STREAM]: { sockopt: { domainStrategy: "UseIP", happyEyeballs: { tryDelayMs: 250, prioritizeIPv6: false, interleave: 2, maxConcurrentTry: 4 } } }, tag: "fragment" });
 
     ips.forEach((ip) => {
       ports.forEach((portStr) => {
-        const isTlsPort = ['443', '2053', '2083', '2087', '2096', '8443'].includes(portStr);
+        const isTlsPort = TLS_PORTS.has(portStr);
         const tlsVal = isTlsPort ? 'tls' : 'none';
         const remark = user.username + ' ● ' + ip + ' ║ ' + portStr;
-        
-        const configObj = {
-          remarks: remark,
-          version: { min: "25.10.15" },
-          log: { loglevel: "none" },
-          dns: {
-            servers: [
-              { address: "https://8.8.8.8/dns-query", tag: "remote-dns" },
-              { address: "8.8.8.8", domains: ["full:" + host], skipFallback: true }
-            ],
-            queryStrategy: "UseIP",
-            tag: "dns"
-          },
-          inbounds: [
-            {
-              listen: "127.0.0.1", port: 10808, protocol: "socks",
-              settings: { auth: "noauth", udp: true },
-              sniffing: { destOverride: ["http", "tls"], enabled: true, routeOnly: true },
-              tag: "mixed-in"
-            },
-            {
-              listen: "127.0.0.1", port: 10853, protocol: "dokodemo-door",
-              settings: { address: "1.1.1.1", network: "tcp,udp", port: 53 },
-              tag: "dns-in"
-            }
-          ],
-          outbounds: [
-            {
-              protocol: "vle" + "ss",
-              settings: {
-                ["vne" + "xt"]: [{
-                  address: ip,
-                  port: parseInt(portStr),
-                  users: [{ id: user.uuid, encryption: "none" }]
-                }]
-              },
-              ["stream" + "Settings"]: {
-                network: "ws",
-                ["ws" + "Settings"]: { host: host, path: "/kouroshasli_panel" },
-                security: tlsVal,
-                sockopt: { ["dialer" + "Proxy"]: "fragment" }
-              },
-              tag: "proxy"
-            },
-            {
-              protocol: "freedom",
-              settings: {
-                fragment: { packets: "tlshello", length: fragLen, interval: fragInt }
-              },
-              ["stream" + "Settings"]: {
-                sockopt: {
-                  domainStrategy: "UseIP",
-                  happyEyeballs: { tryDelayMs: 250, prioritizeIPv6: false, interleave: 2, maxConcurrentTry: 4 }
-                }
-              },
-              tag: "fragment"
-            },
-            { protocol: "dns", settings: { nonIPQuery: "reject" }, tag: "dns-out" },
-            { protocol: "freedom", settings: { domainStrategy: "UseIP" }, tag: "direct" },
-            { protocol: "blackhole", settings: { response: { type: "http" } }, tag: "block" }
-          ],
-          routing: {
-            domainStrategy: "IPIfNonMatch",
-            rules: [
-              { inboundTag: ["mixed-in"], port: 53, outboundTag: "dns-out", type: "field" },
-              { inboundTag: ["dns-in"], outboundTag: "dns-out", type: "field" },
-              { inboundTag: ["remote-dns"], outboundTag: "proxy", type: "field" },
-              { inboundTag: ["dns"], outboundTag: "direct", type: "field" },
-              { domain: ["geosite:private"], outboundTag: "direct", type: "field" },
-              { ip: ["geoip:private"], outboundTag: "direct", type: "field" },
-              { network: "udp", outboundTag: "block", type: "field" },
-              { network: "tcp", outboundTag: "proxy", type: "field" }
-            ]
-          }
-        };
+
+        const proxyObj = { protocol: P_VLESS, settings: { [P_VNEXT]: [{ address: ip, port: parseInt(portStr), users: [{ id: user.uuid, encryption: "none" }] }] }, [P_STREAM]: { network: "ws", [P_WSSETTINGS]: { host: host, path: "/kouroshasli_panel" }, security: tlsVal, sockopt: { [P_DIALERPROXY]: "fragment" } }, tag: "proxy" };
 
         if (tlsVal === 'tls') {
-          configObj.outbounds[0]["stream" + "Settings"]["tls" + "Settings"] = {
-            serverName: host,
-            fingerprint: fp,
-            alpn: ["http/1.1"],
-            allowInsecure: false
-          };
+          proxyObj[P_STREAM][P_TLSSETTINGS] = { serverName: host, fingerprint: fp, alpn: ["http/1.1"], allowInsecure: false };
         }
-        configArray.push(configObj);
+
+        parts.push(makeObj(remark, '[' + JSON.stringify(proxyObj) + ',' + fragPart + ',' + staticOutboundsTail + ']'));
       });
     });
 
+    const configJson = '[' + parts.join(',') + ']';
     const downloadBytes = Math.floor((user.used_gb || 0) * 1073741824);
     const totalBytes = user.limit_gb ? Math.floor(user.limit_gb * 1073741824) : 0;
     let expireTimestamp = 0;
@@ -845,7 +753,7 @@ const SubscriptionService = {
 
     const subUserInfo = `upload=0; download=${downloadBytes}; total=${totalBytes}; expire=${expireTimestamp}`;
 
-    return new Response(JSON.stringify(configArray), {
+    return new Response(configJson, {
       headers: { 
         "Content-Type": "text/plain; charset=utf-8",
         "Access-Control-Allow-Origin": "*",
@@ -868,16 +776,16 @@ const SubscriptionService = {
     const m1 = decodeURIComponent('%F0%9F%8F%9B%EF%B8%8F%20%D9%BE%D9%86%D9%84%20%DA%A9%D9%88%D8%B1%D9%88%D8%B4%20%D8%A7%D8%B5%D9%84%DB%8C%20-%20%D8%B1%D8%A7%DB%8C%DA%AF%D8%A7%D9%86%20%D9%88%20%D8%BA%DB%8C%D8%B1%D9%82%D8%A7%D8%A8%D9%84%20%D9%81%D8%B1%D9%88%D8%B4%20%F0%9F%8F%9B%EF%B8%8F');
     const m2 = decodeURIComponent('%F0%9F%A6%81%20%40KouroshPanel%20-%20%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%DA%A9%20%D8%B1%D8%A7%DB%8C%DA%AF%D8%A7%D9%86%20%F0%9F%A6%81');
 
-    links.push(atob('dmxlc3M6Ly8=') + user.uuid + '@0.0.0.0:1?encryption=none&security=none&type=ws&host=' + host + '&path=%2Fkouroshasli_panel#' + encodeURIComponent(m1));
-    links.push(atob('dmxlc3M6Ly8=') + user.uuid + '@0.0.0.0:1?encryption=none&security=none&type=ws&host=' + host + '&path=%2Fkouroshasli_panel#' + encodeURIComponent(m2));
+    links.push(VLESS_PREFIX + user.uuid + '@0.0.0.0:1?encryption=none&security=none&type=ws&host=' + host + '&path=%2Fkouroshasli_panel#' + encodeURIComponent(m1));
+    links.push(VLESS_PREFIX + user.uuid + '@0.0.0.0:1?encryption=none&security=none&type=ws&host=' + host + '&path=%2Fkouroshasli_panel#' + encodeURIComponent(m2));
 
     ips.forEach((ip) => {
       ports.forEach((portStr) => {
-        const isTlsPort = ['443', '2053', '2083', '2087', '2096', '8443'].includes(portStr);
+        const isTlsPort = TLS_PORTS.has(portStr);
         const tlsVal = isTlsPort ? 'tls' : 'none';
         const remark = user.username + ' ● ' + ip + ' ║ ' + portStr;
         
-        links.push(atob('dmxlc3M6Ly8=') + user.uuid + '@' + ip + ':' + portStr + '?path=%2Fkouroshasli_panel&security=' + tlsVal + '&encryption=none&insecure=0&host=' + host + '&fp=' + fp + '&type=ws&allowInsecure=0&sni=' + host + '#' + encodeURIComponent(remark));
+        links.push(VLESS_PREFIX + user.uuid + '@' + ip + ':' + portStr + '?path=%2Fkouroshasli_panel&security=' + tlsVal + '&encryption=none&insecure=0&host=' + host + '&fp=' + fp + '&type=ws&allowInsecure=0&sni=' + host + '#' + encodeURIComponent(remark));
       });
     });
 
@@ -1046,6 +954,7 @@ async function handleVLESS(env, storedData = null, ctx = null) {
     }
   };
 
+  let cachedUserStatus = null;
   const heartbeat = setInterval(async () => {
     if (serverSock.readyState === WebSocket.OPEN) {
       try {
@@ -1053,9 +962,10 @@ async function handleVLESS(env, storedData = null, ctx = null) {
         if (!validUUID) return;
         
         tickCount++;
-        if (tickCount >= 1) {
+        if (tickCount >= 4) {
           tickCount = 0;
           const user = await env.DB.prepare("SELECT is_active, limit_gb, used_gb, limit_req, used_req, expiry_days, created_at FROM users WHERE uuid = ?").bind(validUUID).first();
+          cachedUserStatus = user;
           
           let isExpired = false;
           if (!user || user.is_active === 0) {
@@ -1085,7 +995,7 @@ async function handleVLESS(env, storedData = null, ctx = null) {
 
           const now = Date.now();
           const lastRecorded = GLOBAL_LAST_ACTIVE_WRITE.get(username) || 0;
-          if (now - lastRecorded > 15000) {
+          if (now - lastRecorded > 60000) {
             GLOBAL_LAST_ACTIVE_WRITE.set(username, now);
             await env.DB.prepare("UPDATE users SET last_active = ? WHERE username = ?").bind(now, username).run();
           }
@@ -1169,7 +1079,7 @@ async function handleVLESS(env, storedData = null, ctx = null) {
 
       let user = null;
       try {
-        user = await env.DB.prepare("SELECT * FROM users WHERE uuid = ?").bind(reqUUID).first();
+        user = await env.DB.prepare("SELECT uuid, is_active, limit_gb, used_gb, limit_req, used_req, expiry_days, created_at, username, max_connections FROM users WHERE uuid = ?").bind(reqUUID).first();
       } catch (e) {}
 
       if (!user || user.is_active === 0) {
