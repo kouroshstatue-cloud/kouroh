@@ -165,32 +165,47 @@ export default {
         if (request.method === 'POST' && url.pathname === '/api/get-panel-version') {
             try {
                 const { token, scriptName } = await request.json();
-                const headers = { "Authorization": `Bearer ${token}`, "Content-Type": "application/json" };
+                const authHeaders = { "Authorization": `Bearer ${token}` };
 
-                const accRes = await fetch("https://api.cloudflare.com/client/v4/accounts", { headers });
+                const accRes = await fetch("https://api.cloudflare.com/client/v4/accounts", { headers: { ...authHeaders, "Content-Type": "application/json" } });
                 const accData = await accRes.json();
                 if (!accData.success || !accData.result.length) throw new Error("Invalid token");
                 const accountId = accData.result[0].id;
 
-                const scriptRes = await fetch(`https://api.cloudflare.com/client/v4/accounts/${accountId}/workers/scripts/${scriptName}`, { headers });
-                const scriptData = await scriptRes.json();
-                
-                if (scriptData.success) {
-                    const contentRes = await fetch(scriptData.result.live_content || `https://api.cloudflare.com/client/v4/accounts/${accountId}/workers/scripts/${scriptName}/content/v2`, { headers });
-                    let version = "Unknown";
-                    let buildId = "";
-                    if (contentRes.ok) {
-                        const contentText = await contentRes.text();
-                        const varMatch = contentText.match(/CURRENT_VERSION\s*=\s*['"]([^'"]+)['"]/i);
-                        if (varMatch) version = varMatch[1];
-                        const idMatch = contentText.match(/BUILD_ID\s*=\s*['"]([^'"]+)['"]/i);
-                        if (idMatch) buildId = idMatch[1];
-                    }
-                    return new Response(JSON.stringify({ success: true, version, buildId }), {
-                        headers: { 'Content-Type': 'application/json' }
-                    });
+                const subRes = await fetch(`https://api.cloudflare.com/client/v4/accounts/${accountId}/workers/subdomain`, { headers: authHeaders });
+                const subData = await subRes.json();
+                const subdomain = subData.success && subData.result ? subData.result.subdomain : null;
+
+                let version = "Unknown";
+                let buildId = "";
+                if (subdomain) {
+                    try {
+                        const panelUrl = `https://${scriptName}.${subdomain}.workers.dev/api/version`;
+                        const verRes = await fetch(panelUrl);
+                        if (verRes.ok) {
+                            const verData = await verRes.json();
+                            version = verData.version || "Unknown";
+                            buildId = verData.buildId || "";
+                        }
+                    } catch (_) {}
                 }
-                throw new Error("Script not found");
+
+                if (version === "Unknown") {
+                    try {
+                        const contentRes = await fetch(`https://api.cloudflare.com/client/v4/accounts/${accountId}/workers/scripts/${scriptName}/content/v2`, { headers: authHeaders });
+                        if (contentRes.ok) {
+                            const contentText = await contentRes.text();
+                            const varMatch = contentText.match(/CURRENT_VERSION\s*=\s*['"]([^'"]+)['"]/i);
+                            if (varMatch) version = varMatch[1];
+                            const idMatch = contentText.match(/BUILD_ID\s*=\s*['"]([^'"]+)['"]/i);
+                            if (idMatch) buildId = idMatch[1];
+                        }
+                    } catch (_) {}
+                }
+
+                return new Response(JSON.stringify({ success: true, version, buildId, subdomain }), {
+                    headers: { 'Content-Type': 'application/json' }
+                });
             } catch (e) {
                 return new Response(JSON.stringify({ success: false, error: e.message }), {
                     headers: { 'Content-Type': 'application/json' }
@@ -208,7 +223,7 @@ export default {
                 if (!accData.success || !accData.result.length) throw new Error("توکن نامعتبر است.");
                 const accountId = accData.result[0].id;
 
-                const ghRes = await fetch("https://raw.githubusercontent.com/kouroshstatue-cloud/kouroh/main/kourosh.js?t=" + Date.now());
+                const ghRes = await fetch("https://raw.githubusercontent.com/kouroshstatue-cloud/kouroh/refs/heads/main/kourosh.js?t=" + Date.now());
                 if (!ghRes.ok) throw new Error("خطا در دریافت نسخه جدید از گیت‌هاب.");
                 let newCode = await ghRes.text();
                 const verMatch2 = newCode.match(/const CURRENT_VERSION\s*=\s*['"]([^'"]+)['"]/);
@@ -218,6 +233,8 @@ export default {
                         `$1'${verMatch2[1]}-d'`
                     );
                 }
+                newCode = newCode.replace(/@KouroshPanel/gi, '@kouroshasli');
+                newCode = newCode.replace(/%40KouroshPanel/gi, '%40kouroshasli');
 
                 const bindingsRes = await fetch(`https://api.cloudflare.com/client/v4/accounts/${accountId}/workers/scripts/${scriptName}/bindings`, { headers });
                 const bindingsData = await bindingsRes.json();
@@ -324,6 +341,7 @@ function getHtmlContent() {
                 </div>
                 <h1 class="text-2xl font-bold text-white">پنل کوروش اصلی</h1>
                 <p class="text-xs text-slate-400 mt-1">Kourosh Asli Panel — Auto Deployer</p>
+                <p class="text-[10px] text-teal-500/70 mt-0.5 font-mono">v1.0.5</p>
             </div>
 
             <div class="space-y-3">
@@ -475,7 +493,20 @@ async function fetchPanelVersion(token, scriptName, latestVersion, latestBuildId
         const cleanVersion = version.replace(/-[a-z0-9]+$/i, '');
         const verMatch = (cleanVersion === latestVersion && latestVersion !== "Unknown");
         const idMatch = (buildId && latestBuildId && buildId !== latestBuildId);
-        const needsUpdate = !verMatch || idMatch;
+        let needsUpdate = !verMatch || idMatch;
+
+        let hashHasUpdate = false;
+        try {
+            const subdomain = result.subdomain;
+            if (subdomain) {
+                const hashRes = await fetch('https://' + scriptName + '.' + subdomain + '.workers.dev/api/check-update?t=' + Date.now());
+                if (hashRes.ok) {
+                    const hashData = await hashRes.json();
+                    hashHasUpdate = hashData.hasUpdate === true;
+                }
+            }
+        } catch (_) {}
+        if (hashHasUpdate) needsUpdate = true;
 
         const displayVersion = version === "Unknown" ? "نسخه قدیمی / نامشخص" : version + (buildId ? ' (' + buildId.substring(0,5) + ')' : '');
 

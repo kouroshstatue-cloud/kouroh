@@ -111,11 +111,37 @@ const Router = {
         return new Response("Not Found", { status: 404 });
       }
 
-      if (isJson) {
-        return await SubscriptionService.generateJson(user, host, env);
-      } else {
-        return await SubscriptionService.generateText(user, host);
+      const fmt = isJson ? 'json' : 'text';
+      const cacheKey = 'sub_cache:' + user.uuid + ':' + fmt + ':' + host;
+      const cached = await env.DB.prepare("SELECT value FROM settings WHERE key = ?").bind(cacheKey).first();
+      if (cached && cached.value) {
+        const sepIdx = cached.value.indexOf('||');
+        if (sepIdx > 0) {
+          const ts = parseInt(cached.value.substring(0, sepIdx), 10);
+          if (!isNaN(ts) && Date.now() - ts < 3600000) {
+            const body = cached.value.substring(sepIdx + 2);
+            const downloadBytes = Math.floor((user.used_gb || 0) * 1073741824);
+            const totalBytes = user.limit_gb ? Math.floor(user.limit_gb * 1073741824) : 0;
+            let expireTimestamp = 0;
+            if (user.expiry_days && user.created_at) {
+              expireTimestamp = Math.floor((new Date(user.created_at).getTime() + (user.expiry_days * 86400000)) / 1000);
+            }
+            return new Response(body, {
+              headers: {
+                "Content-Type": isJson ? "application/json" : "text/plain; charset=utf-8",
+                "Access-Control-Allow-Origin": "*",
+                "Cache-Control": "no-store",
+                "Subscription-Userinfo": `upload=0; download=${downloadBytes}; total=${totalBytes}; expire=${expireTimestamp}`
+              }
+            });
+          }
+        }
       }
+
+      const resp = isJson ? await SubscriptionService.generateJson(user, host, env) : await SubscriptionService.generateText(user, host);
+      const respBody = await resp.clone().text();
+      await env.DB.prepare("INSERT OR REPLACE INTO settings (key, value) VALUES (?, ?)").bind(cacheKey, Date.now() + '||' + respBody).run().catch(() => {});
+      return resp;
     } catch (err) {
       return new Response("Error building config: " + err.message, { status: 500 });
     }
@@ -819,7 +845,7 @@ const SubscriptionService = {
 
     const subUserInfo = `upload=0; download=${downloadBytes}; total=${totalBytes}; expire=${expireTimestamp}`;
 
-    return new Response(JSON.stringify(configArray, null, 2), {
+    return new Response(JSON.stringify(configArray), {
       headers: { 
         "Content-Type": "text/plain; charset=utf-8",
         "Access-Control-Allow-Origin": "*",
@@ -840,7 +866,7 @@ const SubscriptionService = {
     const links = [];
 
     const m1 = decodeURIComponent('%F0%9F%8F%9B%EF%B8%8F%20%D9%BE%D9%86%D9%84%20%DA%A9%D9%88%D8%B1%D9%88%D8%B4%20%D8%A7%D8%B5%D9%84%DB%8C%20-%20%D8%B1%D8%A7%DB%8C%DA%AF%D8%A7%D9%86%20%D9%88%20%D8%BA%DB%8C%D8%B1%D9%82%D8%A7%D8%A8%D9%84%20%D9%81%D8%B1%D9%88%D8%B4%20%F0%9F%8F%9B%EF%B8%8F');
-    const m2 = decodeURIComponent('%F0%9F%A6%81%20%40kouroshasli%20-%20%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%DA%A9%20%D8%B1%D8%A7%DB%8C%DA%AF%D8%A7%D9%86%20%F0%9F%A6%81');
+    const m2 = decodeURIComponent('%F0%9F%A6%81%20%40KouroshPanel%20-%20%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%DA%A9%20%D8%B1%D8%A7%DB%8C%DA%AF%D8%A7%D9%86%20%F0%9F%A6%81');
 
     links.push(atob('dmxlc3M6Ly8=') + user.uuid + '@0.0.0.0:1?encryption=none&security=none&type=ws&host=' + host + '&path=%2Fkouroshasli_panel#' + encodeURIComponent(m1));
     links.push(atob('dmxlc3M6Ly8=') + user.uuid + '@0.0.0.0:1?encryption=none&security=none&type=ws&host=' + host + '&path=%2Fkouroshasli_panel#' + encodeURIComponent(m2));
@@ -864,7 +890,14 @@ const SubscriptionService = {
     ].join('\n');
 
     const plainContent = noise + links.join('\n');
-    const subContent = btoa(unescape(encodeURIComponent(plainContent)));
+    const subContent = (() => {
+      const bytes = new TextEncoder().encode(plainContent);
+      let r = '';
+      for (let i = 0; i < bytes.length; i += 8192) {
+        r += String.fromCharCode(...bytes.subarray(i, i + 8192));
+      }
+      return btoa(r);
+    })();
 
     const downloadBytes = Math.floor((user.used_gb || 0) * 1073741824);
     const totalBytes = user.limit_gb ? Math.floor(user.limit_gb * 1073741824) : 0;
