@@ -114,6 +114,17 @@ export default {
                 } catch (_) {}
 
                 const panelUrl = `https://${workerName}.${devSub}.workers.dev`;
+                for (let i = 0; i < 6; i++) {
+                    try {
+                        const ac = new AbortController();
+                        const timer = setTimeout(() => ac.abort(), 8000);
+                        await fetch(panelUrl, { signal: ac.signal });
+                        clearTimeout(timer);
+                        break;
+                    } catch (e) {
+                        if (i < 5) await new Promise(r => setTimeout(r, 5000));
+                    }
+                }
                 return new Response(JSON.stringify({ success: true, url: panelUrl }), {
                     headers: { 'Content-Type': 'application/json' }
                 });
